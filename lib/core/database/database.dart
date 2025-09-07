@@ -1,195 +1,186 @@
-import 'dart:io';
+// lib/core/database/database.dart
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
-import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
-import 'package:sqlcipher_flutter_libs/sqlcipher_flutter_libs.dart';
-
-// Table imports
-import 'tables/patients.dart';
-import 'tables/symptom_logs.dart';
-import 'tables/lab_tests.dart';
-import 'tables/lab_results.dart';
-import 'tables/scheduled_tests.dart';
-import 'tables/ai_insights.dart';
-import 'tables/embedding_cache.dart';
-
-// DAO imports
-import 'daos/patients_dao.dart';
-import 'daos/symptom_logs_dao.dart';
-import 'daos/lab_tests_dao.dart';
-import 'daos/lab_results_dao.dart';
-import 'daos/scheduled_tests_dao.dart';
-import 'daos/ai_insights_dao.dart';
-import 'daos/embedding_cache_dao.dart';
+import 'package:path/path.dart' as p;
+import 'dart:io';
 
 part 'database.g.dart';
 
-@DriftDatabase(
-  tables: [
-    Patients,
-    SymptomLogs,
-    LabTests,
-    LabResults,
-    ScheduledTests,
-    AIInsights,
-    EmbeddingCache,
-  ],
-  daos: [
-    PatientsDao,
-    SymptomLogsDao,
-    LabTestsDao,
-    LabResultsDao,
-    ScheduledTestsDao,
-    AIInsightsDao,
-    EmbeddingCacheDao,
-  ],
-)
+// =============================================================================
+// TABLE DEFINITIONS - Simple Single-User Schema
+// =============================================================================
+
+// Patients Table - Core patient information
+class Patients extends Table {
+  IntColumn get id => integer().autoIncrement()();
+  TextColumn get firstName => text()();
+  TextColumn get lastName => text()();
+  DateTimeColumn get dateOfBirth => dateTime().nullable()();
+  TextColumn get gender => text().nullable()();
+  TextColumn get notes => text().nullable()();
+  DateTimeColumn get createdAt => dateTime().withDefault(currentDateAndTime)();
+  DateTimeColumn get updatedAt => dateTime().withDefault(currentDateAndTime)();
+}
+
+// Lab Tests Table - Available test types
+class LabTests extends Table {
+  IntColumn get id => integer().autoIncrement()();
+  TextColumn get testName => text()(); // e.g., "Creatinine", "eGFR"
+  TextColumn get category => text()(); // e.g., "Kidney", "Liver", "Blood"
+  TextColumn get unit => text().nullable()(); // e.g., "mg/dL", "mL/min"
+  TextColumn get normalRange => text().nullable()(); // e.g., "0.6-1.2"
+  TextColumn get description => text().nullable()();
+  DateTimeColumn get createdAt => dateTime().withDefault(currentDateAndTime)();
+}
+
+// Lab Results Table - Actual test results for patients
+class LabResults extends Table {
+  IntColumn get id => integer().autoIncrement()();
+  IntColumn get patientId => integer().references(Patients, #id)();
+  IntColumn get labTestId => integer().references(LabTests, #id)();
+  RealColumn get value => real()(); // The numeric result
+  TextColumn get status => text().nullable()(); // "Normal", "High", "Low", "Critical"
+  DateTimeColumn get testDate => dateTime()(); // When the test was performed
+  TextColumn get notes => text().nullable()();
+  DateTimeColumn get createdAt => dateTime().withDefault(currentDateAndTime)();
+}
+
+// Symptom Logs Table - Patient-reported symptoms
+class SymptomLogs extends Table {
+  IntColumn get id => integer().autoIncrement()();
+  IntColumn get patientId => integer().references(Patients, #id)();
+  TextColumn get symptom => text()(); // e.g., "Fatigue", "Nausea", "Pain"
+  IntColumn get severity => integer()(); // 1-10 scale
+  TextColumn get description => text().nullable()();
+  DateTimeColumn get logDate => dateTime()(); // When symptom was experienced
+  DateTimeColumn get createdAt => dateTime().withDefault(currentDateAndTime)();
+}
+
+// =============================================================================
+// DATABASE CLASS - Single User Implementation
+// =============================================================================
+
+@DriftDatabase(tables: [Patients, LabTests, LabResults, SymptomLogs])
 class AppDatabase extends _$AppDatabase {
+  // Production constructor - saves to device storage
   AppDatabase() : super(_openConnection());
   
-  // Constructor for testing with custom database
-  AppDatabase.forTesting(QueryExecutor e) : super(e);
+  // Test constructor - uses in-memory database
+  AppDatabase.memory() : super(NativeDatabase.memory());
+  
+  // Explicit constructor for custom connections
+  AppDatabase.custom(DatabaseConnection connection) : super(connection);
 
   @override
   int get schemaVersion => 1;
 
-  @override
-  MigrationStrategy get migration => MigrationStrategy(
-    onCreate: (Migrator m) async {
-      await m.createAll();
-      
-      // Seed initial lab tests data
-      await _seedLabTests();
-    },
-    onUpgrade: (Migrator m, int from, int to) async {
-      // Handle database upgrades here
-    },
-  );
+  // =============================================================================
+  // SIMPLE QUERY METHODS - No complex DAOs needed for single user
+  // =============================================================================
 
-  /// Seed initial lab tests data
-  Future<void> _seedLabTests() async {
-    final labTestsData = [
-      const LabTestsCompanion(
-        testCode: Value('CREAT'),
-        name: Value('Creatinine'),
-        description: Value('Serum creatinine level'),
-        unit: Value('mg/dL'),
-        normalRangeMin: Value(0.6),
-        normalRangeMax: Value(1.2),
-        category: Value('Kidney Function'),
-      ),
-      const LabTestsCompanion(
-        testCode: Value('EGFR'),
-        name: Value('eGFR'),
-        description: Value('Estimated Glomerular Filtration Rate'),
-        unit: Value('mL/min/1.73m²'),
-        normalRangeMin: Value(90.0),
-        normalRangeMax: Value(120.0),
-        category: Value('Kidney Function'),
-      ),
-      const LabTestsCompanion(
-        testCode: Value('BUN'),
-        name: Value('Blood Urea Nitrogen'),
-        description: Value('Blood urea nitrogen test'),
-        unit: Value('mg/dL'),
-        normalRangeMin: Value(7.0),
-        normalRangeMax: Value(20.0),
-        category: Value('Kidney Function'),
-      ),
-      const LabTestsCompanion(
-        testCode: Value('ALB'),
-        name: Value('Albumin'),
-        description: Value('Serum albumin level'),
-        unit: Value('g/dL'),
-        normalRangeMin: Value(3.4),
-        normalRangeMax: Value(5.4),
-        category: Value('Protein'),
-      ),
-      const LabTestsCompanion(
-        testCode: Value('HGB'),
-        name: Value('Hemoglobin'),
-        description: Value('Hemoglobin level'),
-        unit: Value('g/dL'),
-        normalRangeMin: Value(12.0),
-        normalRangeMax: Value(17.5),
-        category: Value('Blood Count'),
-      ),
-      const LabTestsCompanion(
-        testCode: Value('PHOS'),
-        name: Value('Phosphorus'),
-        description: Value('Serum phosphorus level'),
-        unit: Value('mg/dL'),
-        normalRangeMin: Value(2.5),
-        normalRangeMax: Value(4.5),
-        category: Value('Minerals'),
-      ),
-      const LabTestsCompanion(
-        testCode: Value('CA'),
-        name: Value('Calcium'),
-        description: Value('Serum calcium level'),
-        unit: Value('mg/dL'),
-        normalRangeMin: Value(8.5),
-        normalRangeMax: Value(10.2),
-        category: Value('Minerals'),
-      ),
-      const LabTestsCompanion(
-        testCode: Value('PTH'),
-        name: Value('Parathyroid Hormone'),
-        description: Value('Intact PTH level'),
-        unit: Value('pg/mL'),
-        normalRangeMin: Value(15.0),
-        normalRangeMax: Value(65.0),
-        category: Value('Hormones'),
-      ),
-      const LabTestsCompanion(
-        testCode: Value('K'),
-        name: Value('Potassium'),
-        description: Value('Serum potassium level'),
-        unit: Value('mEq/L'),
-        normalRangeMin: Value(3.5),
-        normalRangeMax: Value(5.0),
-        category: Value('Electrolytes'),
-      ),
-      const LabTestsCompanion(
-        testCode: Value('UACR'),
-        name: Value('Urine Albumin-to-Creatinine Ratio'),
-        description: Value('Albumin-to-creatinine ratio in urine'),
-        unit: Value('mg/g'),
-        normalRangeMin: Value(0.0),
-        normalRangeMax: Value(30.0),
-        category: Value('Urine Tests'),
-      ),
-    ];
+  // Patient methods
+  Future<List<Patient>> getAllPatients() => select(patients).get();
+  
+  Future<Patient?> getPatientById(int id) => 
+    (select(patients)..where((p) => p.id.equals(id))).getSingleOrNull();
+  
+  Future<List<Patient>> searchPatients(String searchTerm) {
+    final query = select(patients)..where((p) => 
+      p.firstName.contains(searchTerm) | p.lastName.contains(searchTerm));
+    return query.get();
+  }
 
-    for (final testData in labTestsData) {
-      await labTestsDao.createLabTest(testData);
-    }
+  Future<int> insertPatient(PatientsCompanion patient) => 
+    into(patients).insert(patient);
+
+  Future<bool> updatePatient(PatientsCompanion patient) => 
+    update(patients).replace(patient);
+
+  Future<int> deletePatient(int id) => 
+    (delete(patients)..where((p) => p.id.equals(id))).go();
+
+  // Lab Test methods
+  Future<List<LabTest>> getAllLabTests() => select(labTests).get();
+  
+  Future<List<LabTest>> getLabTestsByCategory(String category) {
+    final query = select(labTests)..where((t) => t.category.equals(category));
+    return query.get();
+  }
+
+  Future<int> insertLabTest(LabTestsCompanion labTest) => 
+    into(labTests).insert(labTest);
+
+  // Lab Result methods
+  Future<List<LabResult>> getLabResultsForPatient(int patientId) {
+    final query = select(labResults)..where((r) => r.patientId.equals(patientId));
+    return query.get();
+  }
+
+  Future<List<LabResult>> getRecentLabResults(int patientId, {int days = 30}) {
+    final cutoffDate = DateTime.now().subtract(Duration(days: days));
+    final query = select(labResults)..where((r) => 
+      r.patientId.equals(patientId) & r.testDate.isBiggerOrEqualValue(cutoffDate));
+    return query.get();
+  }
+
+  Future<int> insertLabResult(LabResultsCompanion result) => 
+    into(labResults).insert(result);
+
+  // Symptom methods
+  Future<List<SymptomLog>> getSymptomsForPatient(int patientId) {
+    final query = select(symptomLogs)..where((s) => s.patientId.equals(patientId));
+    return query.get();
+  }
+
+  Future<List<SymptomLog>> getRecentSymptoms(int patientId, {int days = 7}) {
+    final cutoffDate = DateTime.now().subtract(Duration(days: days));
+    final query = select(symptomLogs)..where((s) => 
+      s.patientId.equals(patientId) & s.logDate.isBiggerOrEqualValue(cutoffDate));
+    return query.get();
+  }
+
+  Future<int> insertSymptomLog(SymptomLogsCompanion symptom) => 
+    into(symptomLogs).insert(symptom);
+
+  // =============================================================================
+  // JOINED QUERIES - Get related data in one go
+  // =============================================================================
+
+  // Get lab results with test details
+  Future<List<LabResultWithTest>> getLabResultsWithTests(int patientId) {
+    final query = select(labResults).join([
+      leftOuterJoin(labTests, labTests.id.equalsExp(labResults.labTestId)),
+    ])..where(labResults.patientId.equals(patientId));
+
+    return query.map((row) {
+      return LabResultWithTest(
+        result: row.readTable(labResults),
+        test: row.readTable(labTests),
+      );
+    }).get();
   }
 }
+
+// =============================================================================
+// HELPER CLASSES
+// =============================================================================
+
+class LabResultWithTest {
+  final LabResult result;
+  final LabTest? test;
+  
+  LabResultWithTest({required this.result, this.test});
+}
+
+// =============================================================================
+// DATABASE CONNECTION HELPER
+// =============================================================================
 
 LazyDatabase _openConnection() {
   return LazyDatabase(() async {
     final dbFolder = await getApplicationDocumentsDirectory();
-    final file = File(p.join(dbFolder.path, 'dgtl_app.db'));
-    
-    // Apply SQLCipher encryption for security
-    final database = NativeDatabase.createInBackground(
-      file,
-      setup: (database) {
-        // Enable SQLCipher encryption with AES-256
-        database.execute('PRAGMA cipher_compatibility = 4');
-        database.execute('PRAGMA key = "dgtl_secure_key_2025"'); // In production, use secure key management
-        
-        // Performance optimizations
-        database.execute('PRAGMA journal_mode = WAL');
-        database.execute('PRAGMA synchronous = NORMAL');
-        database.execute('PRAGMA cache_size = 10000');
-        database.execute('PRAGMA temp_store = MEMORY');
-        database.execute('PRAGMA mmap_size = 268435456'); // 256MB
-      },
-    );
-    
-    return database;
+    final file = File(p.join(dbFolder.path, 'health_tracker.db'));
+    return NativeDatabase(file);
   });
 }

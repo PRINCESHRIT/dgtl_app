@@ -1,0 +1,6 @@
+# EmbeddingGemma 308M Placeholder Model
+# Replace this with actual model file from Google/Hugging Face
+# Model specifications:
+# - Input: tokenized text (max 2048 tokens)
+# - Output: 768-dimensional embedding vector
+# - Architecture: EmbeddingGemma 308M parameters

@@ -37,12 +37,12 @@ class AppTheme {
         secondary: secondaryColor,
         secondaryContainer: secondaryLightColor,
         surface: surfaceColor,
-        // surface: backgroundColor, // Removed duplicate
+        surface: backgroundColor,
         error: errorColor,
         onPrimary: Colors.white,
         onSecondary: Colors.white,
         onSurface: textPrimary,
-                // onSurface: textPrimary, // Removed duplicate
+        onSurface: textPrimary,
         onError: Colors.white,
       ),
       
