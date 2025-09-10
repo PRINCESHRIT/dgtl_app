@@ -1,5 +1,12 @@
+import 'package:dgtl_app/features/dashboard/widgets/ai_personal_tips_card.dart';
+import 'package:dgtl_app/features/dashboard/widgets/bp_symptom_logger_card.dart';
+import 'package:dgtl_app/features/dashboard/widgets/care_team_card.dart';
+import 'package:dgtl_app/features/dashboard/widgets/vital_tracker_card.dart';
+import 'package:dgtl_app/features/dashboard/widgets/gamified_header.dart';
 import 'package:flutter/material.dart';
-import '../../core/constants/app_constants.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:dgtl_app/app/design_system.dart';
+import 'widgets/personalized_greeting_hero.dart';
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({super.key});
@@ -7,68 +14,62 @@ class DashboardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(AppConstants.appName),
-      ),
-      body: const Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.dashboard,
-              size: 64,
-              color: Colors.grey,
-            ),
-            SizedBox(height: 16),
-            Text(
-              'DGTL Dashboard',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
+      backgroundColor: PastelColors.secondaryGray,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Gamified header with health scores
+              const GamifiedHeader(),
+              const SizedBox(height: 24),
+              Text(
+                "आपका स्वास्थ्य डैशबोर्ड", // Your Health Dashboard
+                style: PastelTextStyles.hindiHeading,
               ),
-            ),
-            SizedBox(height: 8),
-            Text(
-              'Welcome to your CKD management dashboard',
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.grey,
-              ),
-            ),
-            SizedBox(height: 32),
-            Text(
-              '🚀 Backend Phase 1.1.1 Complete!',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-                color: Colors.green,
-              ),
-            ),
-          ],
+              const SizedBox(height: 16),
+              const BPSymptomLoggerCard(),
+              const SizedBox(height: 16),
+              const AIPersonalTipsCard(),
+              const SizedBox(height: 16),
+              const VitalTrackerCard(),
+              const SizedBox(height: 16),
+              const CareTeamCard(),
+            ],
+          ).animate().fadeIn(duration: 500.ms),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: PastelColors.softWhite,
+        selectedItemColor: PastelColors.mutedBlack,
+        unselectedItemColor: PastelColors.mutedBlack.withOpacity(0.5),
         type: BottomNavigationBarType.fixed,
         currentIndex: 0,
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.dashboard),
+            icon: Icon(Icons.dashboard_outlined),
+            activeIcon: Icon(Icons.dashboard),
             label: 'Dashboard',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.chat),
+            icon: Icon(Icons.chat_bubble_outline),
+            activeIcon: Icon(Icons.chat_bubble),
             label: 'AI Chat',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
+            icon: Icon(Icons.favorite_border),
+            activeIcon: Icon(Icons.favorite),
             label: 'Symptoms',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.monitor_heart),
+            icon: Icon(Icons.monitor_heart_outlined),
+            activeIcon: Icon(Icons.monitor_heart),
             label: 'Vitals',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.calendar_today),
+            icon: Icon(Icons.calendar_today_outlined),
+            activeIcon: Icon(Icons.calendar_today),
             label: 'Lab Tests',
           ),
         ],
