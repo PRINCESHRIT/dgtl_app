@@ -3,6 +3,8 @@ import 'package:dgtl_app/features/dashboard/widgets/bp_symptom_logger_card.dart'
 import 'package:dgtl_app/features/dashboard/widgets/care_team_card.dart';
 import 'package:dgtl_app/features/dashboard/widgets/vital_tracker_card.dart';
 import 'package:dgtl_app/features/dashboard/widgets/gamified_header.dart';
+import 'package:dgtl_app/features/dashboard/widgets/polished_ai_tips_card.dart';
+import 'package:dgtl_app/features/dashboard/widgets/polished_gamified_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:dgtl_app/app/design_system.dart';
@@ -21,21 +23,37 @@ class DashboardPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Gamified header with health scores
-              const GamifiedHeader(),
-              const SizedBox(height: 24),
+              // Polished gamified header with enhanced animations
+              const PolishedGamifiedHeader(
+                userName: "श्रित जी",
+                healthScore: 847,
+                loginStreak: 15,
+              ),
+              const SizedBox(height: 32),
               Text(
                 "आपका स्वास्थ्य डैशबोर्ड", // Your Health Dashboard
                 style: PastelTextStyles.hindiHeading,
-              ),
-              const SizedBox(height: 16),
-              const BPSymptomLoggerCard(),
-              const SizedBox(height: 16),
-              const AIPersonalTipsCard(),
-              const SizedBox(height: 16),
-              const VitalTrackerCard(),
-              const SizedBox(height: 16),
-              const CareTeamCard(),
+              ).animate().fadeIn(delay: 300.ms).slideX(begin: -0.1),
+              const SizedBox(height: 20),
+              const BPSymptomLoggerCard()
+                .animate()
+                .fadeIn(delay: 400.ms)
+                .slideY(begin: 0.1),
+              const SizedBox(height: 20),
+              const PolishedAIPersonalTipsCard()
+                .animate()
+                .fadeIn(delay: 500.ms)
+                .slideY(begin: 0.1),
+              const SizedBox(height: 20),
+              const VitalTrackerCard()
+                .animate()
+                .fadeIn(delay: 600.ms)
+                .slideY(begin: 0.1),
+              const SizedBox(height: 20),
+              const CareTeamCard()
+                .animate()
+                .fadeIn(delay: 700.ms)
+                .slideY(begin: 0.1),
             ],
           ).animate().fadeIn(duration: 500.ms),
         ),
