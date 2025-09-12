@@ -68,5 +68,6 @@ flutter:
   assets:
     - assets/models/
     - assets/illustrations/
+    - assets/images/
     
   # Using Google Fonts package for Roboto font instead of local files

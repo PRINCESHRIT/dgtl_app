@@ -50,7 +50,7 @@ class SimpleHealthDashboard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Enhanced Greeting Hero with new color scheme
+              // Enhanced Greeting Hero with new color scheme - Borderless hero header
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(24),
@@ -64,26 +64,23 @@ class SimpleHealthDashboard extends StatelessWidget {
                     ],
                   ),
                   borderRadius: BorderRadius.circular(20),
-                  border: Border.all(
-                    color: PastelColors.empathyBorder,
-                    width: 1,
-                  ),
+                  // Removed border to make it feel like a hero header, not a card
                 ),
                 child: Row(
                   children: [
                     Container(
-                      padding: const EdgeInsets.all(16),
+                      width: 60,
+                      height: 60,
+                      padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
-                        color: PastelColors.primary.withOpacity(0.1), // Primary red accent
-                        borderRadius: BorderRadius.circular(16),
-                        border: Border.all(
-                          color: PastelColors.primary.withOpacity(0.2),
-                        ),
+                        borderRadius: BorderRadius.circular(12),
                       ),
-                      child: Icon(
-                        Icons.favorite,
-                        color: PastelColors.primary, // Primary red for heart icon
-                        size: 24,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Image.asset(
+                          'assets/images/medical_examination_male.png',
+                          fit: BoxFit.contain,
+                        ),
                       ),
                     ),
                     const SizedBox(width: 16),
@@ -97,7 +94,7 @@ class SimpleHealthDashboard extends StatelessWidget {
                           ),
                           const SizedBox(height: 4),
                           Text(
-                            "आज आप कैसा महसूस कर रहे हैं?",
+                            "और क्या हाल चाल?",
                             style: PastelTextStyles.hindiText.copyWith(
                               color: PastelColors.secondaryText,
                             ),
@@ -105,6 +102,22 @@ class SimpleHealthDashboard extends StatelessWidget {
                         ],
                       ),
                     ),
+                    const SizedBox(width: 16),
+                    // Medical consultation image on the right side
+                    Container(
+                      width: 80,
+                      height: 80,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: Image.asset(
+                          'assets/images/medical_consultation.png',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ).animate().fadeIn(delay: 300.ms).scale(begin: const Offset(0.8, 0.8)),
                   ],
                 ),
               ).animate().fadeIn(delay: 100.ms).slideX(begin: -0.2),
@@ -166,17 +179,9 @@ class AIHealthRecommendationCard extends StatelessWidget {
             children: [
               Container(
                 padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: PastelColors.empathyAccent.withOpacity(0.2),
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(
-                    color: PastelColors.empathyAccent.withOpacity(0.3),
-                  ),
-                ),
-                child: Icon(
-                  Icons.auto_awesome, // Sparkles - subtly communicates AI intelligence
-                  color: PastelColors.empathyAccent,
-                  size: 22,
+                child: const Text(
+                  "👨‍⚕️",
+                  style: TextStyle(fontSize: 22),
                 ),
               ),
               const SizedBox(width: 16),
@@ -431,17 +436,9 @@ class _CombinedSymptomsCardState extends State<CombinedSymptomsCard> {
             children: [
               Container(
                 padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: PastelColors.primary.withOpacity(0.1), // Primary red background
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(
-                    color: PastelColors.primary.withOpacity(0.2),
-                  ),
-                ),
-                child: Icon(
-                  Icons.monitor_heart,
-                  color: PastelColors.primary, // Primary red for vital metrics
-                  size: 20,
+                child: const Text(
+                  "❤️",
+                  style: TextStyle(fontSize: 20),
                 ),
               ),
               const SizedBox(width: 12),
@@ -2571,15 +2568,8 @@ class VitalsTrackerCard extends StatelessWidget {
             children: [
               Container(
                 padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: PastelColors.wellness.withOpacity(0.2),
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(
-                    color: PastelColors.wellness.withOpacity(0.3),
-                  ),
-                ),
                 child: Icon(
-                  Icons.favorite_border,
+                  Icons.monitor_heart,
                   color: PastelColors.wellness,
                   size: 22,
                 ),
