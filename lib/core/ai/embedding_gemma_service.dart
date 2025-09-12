@@ -149,25 +149,54 @@ Analyzing medical content for semantic understanding...<end_of_turn>''';
         .where((w) => w.isNotEmpty)
         .toList();
 
-    // Medical domain semantic vectors
+    // Medical domain semantic vectors - Enhanced for caregiver scenarios
     final medicalSemantics = <String, List<double>>{
       // Lab test categories
       'blood': _generateGaussianVector(seed: 1001),
       'glucose': _generateGaussianVector(seed: 1002),
       'cholesterol': _generateGaussianVector(seed: 1003),
       'pressure': _generateGaussianVector(seed: 1004),
+      'creatinine': _generateGaussianVector(seed: 1005),
+      'egfr': _generateGaussianVector(seed: 1006),
+      'potassium': _generateGaussianVector(seed: 1007),
       
       // Symptom categories  
       'pain': _generateGaussianVector(seed: 2001),
       'headache': _generateGaussianVector(seed: 2002),
       'fatigue': _generateGaussianVector(seed: 2003),
       'fever': _generateGaussianVector(seed: 2004),
+      'swelling': _generateGaussianVector(seed: 2005),
+      'puffy': _generateGaussianVector(seed: 2005), // Similar to swelling
+      'tight': _generateGaussianVector(seed: 2005), // Related to swelling
+      'dizzy': _generateGaussianVector(seed: 2006),
+      'dizziness': _generateGaussianVector(seed: 2006), // Similar to dizzy
+      'nausea': _generateGaussianVector(seed: 2007),
+      'weakness': _generateGaussianVector(seed: 2008),
+      'breathless': _generateGaussianVector(seed: 2009),
+      'shortness': _generateGaussianVector(seed: 2009), // Related to breathless
+      
+      // Body parts for context
+      'feet': _generateGaussianVector(seed: 2101),
+      'ankles': _generateGaussianVector(seed: 2101), // Similar to feet
+      'legs': _generateGaussianVector(seed: 2102),
+      'hands': _generateGaussianVector(seed: 2103),
+      'face': _generateGaussianVector(seed: 2104),
+      'eyes': _generateGaussianVector(seed: 2105),
       
       // Medical modifiers
       'high': _generateGaussianVector(seed: 3001),
       'low': _generateGaussianVector(seed: 3002),
       'normal': _generateGaussianVector(seed: 3003),
       'abnormal': _generateGaussianVector(seed: 3004),
+      'better': _generateGaussianVector(seed: 3005),
+      'worse': _generateGaussianVector(seed: 3006),
+      
+      // Hindi/Urdu terms for cultural inclusivity
+      'maa': _generateGaussianVector(seed: 4001), // Mother
+      'paani': _generateGaussianVector(seed: 4002), // Water
+      'dawa': _generateGaussianVector(seed: 4003), // Medicine
+      'dard': _generateGaussianVector(seed: 2001), // Pain (same as 'pain')
+      'bukhar': _generateGaussianVector(seed: 2004), // Fever (same as 'fever')
     };
 
     // Combine semantic vectors based on text content

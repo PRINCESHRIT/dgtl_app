@@ -13,13 +13,13 @@ class PastelColors {
   // Secondary Theme - Soft Gray for neutral, calming canvas
   static const secondary = Color(0xFFF8F9FA);       // Soft gray background
   static const secondaryDark = Color(0xFFE9ECEF);   // Darker gray for cards
-  static const secondaryText = Color(0xFF4A4A4A);   // Darker gray text
+  static const secondaryText = Color(0xFF6C757D);   // Gray text
   
   // Empathy Theme - Soft Teal/Green for AI advisory and supportive components
   static const empathy = Color(0xFFE6F7F1);         // Gentle, hopeful teal/green background
   static const empathyAccent = Color(0xFF4ECDC4);   // Soft teal accent for AI components
   static const empathyBorder = Color(0xFFB8E6D3);   // Gentle border for empathy cards
-  static const empathyText = Color(0xFF1E5A5A);     // Darker empathy text
+  static const empathyText = Color(0xFF2C7A7B);     // Readable text on empathy background
   
   // Contextual colors for medical data
   static const success = Color(0xFF28A745);         // Good health indicators
@@ -34,6 +34,10 @@ class PastelColors {
   static const darkText = Color(0xFF0D0D0D);       // Extra dark text variant
   static const mediumText = Color(0xFF2D2D2D);     // Medium dark text
   
+  // Enhanced secondary text colors
+  static const secondaryText = Color(0xFF4A4A4A);  // Darker gray text
+  static const lightSecondaryText = Color(0xFF6C757D); // Lighter secondary option
+  
   // Legacy support (maintaining backward compatibility)
   static const peachCream = Color(0xFFFFF2E7);     
   static const softWhite = Color(0xFFFAFAFA);      
@@ -46,6 +50,7 @@ class PastelColors {
   // Aliases for new system
   static Color get primaryAction => primary;
   static Color get secondaryGray => secondary;
+}
 }
 
 class PastelTextStyles {
@@ -126,30 +131,41 @@ class PastelTextStyles {
     color: Colors.white,
     letterSpacing: 0.1
   );
+    height: 1.5, letterSpacing: 0.1
+  );
   
-  // Body text for general content
+  // Enhanced card title with better visual hierarchy
+  static TextStyle cardTitle = GoogleFonts.poppins(
+    fontSize: 18, fontWeight: FontWeight.w600, color: PastelColors.mutedBlack,
+    letterSpacing: -0.2, height: 1.2
+  );
+  
+  // Polished subtitle with refined opacity
+  static TextStyle cardSubtitle = GoogleFonts.poppins(
+    fontSize: 14, fontWeight: FontWeight.w500, color: PastelColors.mutedBlack.withOpacity(0.75),
+    height: 1.4, letterSpacing: 0.1
+  );
+  
+  // Elegant caption text
+  static TextStyle caption = GoogleFonts.poppins(
+    fontSize: 12, fontWeight: FontWeight.w400, color: PastelColors.mutedBlack.withOpacity(0.6),
+    height: 1.3, letterSpacing: 0.2
+  );
+  
   static TextStyle body = GoogleFonts.poppins(
-    fontSize: 14, 
-    fontWeight: FontWeight.w500, 
-    color: PastelColors.mutedBlack,
+    fontSize: 14, fontWeight: FontWeight.w400, color: PastelColors.mutedBlack,
     height: 1.5
   );
   
-  // Empathy-themed text styles for AI components
+  // Empathy-themed text styles for AI components with enhanced polish
   static TextStyle empathyHeading = GoogleFonts.poppins(
-    fontSize: 19, 
-    fontWeight: FontWeight.w600, 
-    color: PastelColors.empathyText,
-    letterSpacing: -0.2, 
-    height: 1.2
+    fontSize: 19, fontWeight: FontWeight.w600, color: PastelColors.empathyText,
+    letterSpacing: -0.2, height: 1.2
   );
   
   static TextStyle empathyBody = GoogleFonts.poppins(
-    fontSize: 15, 
-    fontWeight: FontWeight.w500, 
-    color: PastelColors.empathyText,
-    height: 1.6, 
-    letterSpacing: 0.1
+    fontSize: 15, fontWeight: FontWeight.w400, color: PastelColors.empathyText,
+    height: 1.6, letterSpacing: 0.1
   );
 }
 
@@ -211,8 +227,8 @@ class PastelEffects {
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
     colors: [
-      PastelColors.empathy,
-      PastelColors.empathy.withOpacity(0.8),
+      PastelColors.cardEmpathy,
+      PastelColors.cardEmpathy.withOpacity(0.8),
     ],
   );
 }

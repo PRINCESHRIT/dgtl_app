@@ -1,0 +1,55 @@
+{
+  "@@locale": "en",
+  "appTitle": "DGTL Kidney Care",
+  "dashboard": "Dashboard",
+  "symptoms": "Symptoms",
+  "reports": "Reports",
+  "chat": "Chat",
+  "profile": "Profile",
+  
+  "goodMorning": "Good Morning",
+  "goodAfternoon": "Good Afternoon",
+  "goodEvening": "Good Evening",
+  "howAreYouFeeling": "How are you feeling?",
+  
+  "empathyGreeting": "We're here to care for you",
+  "empathySupport": "Your health is our priority",
+  "empathyEncouragement": "Every small step matters",
+  
+  "bloodPressure": "Blood Pressure",
+  "glucose": "Glucose",
+  "weight": "Weight",
+  "temperature": "Temperature",
+  "heartRate": "Heart Rate",
+  
+  "normal": "Normal",
+  "warning": "Warning",
+  "critical": "Critical",
+  "excellent": "Excellent",
+  
+  "addSymptom": "Add Symptom",
+  "viewReports": "View Reports",
+  "startChat": "Start Chat",
+  "logMedication": "Log Medication",
+  
+  "moodHappy": "Happy",
+  "moodSad": "Sad",
+  "moodAnxious": "Anxious",
+  "moodCalm": "Calm",
+  "moodEnergetic": "Energetic",
+  "moodTired": "Tired",
+  
+  "symptomsToday": "Today's Symptoms",
+  "medicationReminder": "Medication Reminder",
+  "appointmentReminder": "Appointment Reminder",
+  
+  "aiAssistant": "AI Assistant",
+  "typeMessage": "Type a message...",
+  "send": "Send",
+  
+  "welcome": "Welcome",
+  "letsStart": "Let's Get Started",
+  "saveAndContinue": "Save & Continue",
+  "cancel": "Cancel",
+  "confirm": "Confirm"
+}

@@ -1,0 +1,55 @@
+{
+  "@@locale": "hi",
+  "appTitle": "DGTL किडनी केयर",
+  "dashboard": "डैशबोर्ड",
+  "symptoms": "लक्षण",
+  "reports": "रिपोर्ट्स",
+  "chat": "चैट",
+  "profile": "प्रोफाइल",
+  
+  "goodMorning": "सुप्रभात",
+  "goodAfternoon": "नमस्ते",
+  "goodEvening": "शुभ संध्या",
+  "howAreYouFeeling": "आप कैसा महसूस कर रहे हैं?",
+  
+  "empathyGreeting": "हम आपकी देखभाल में यहाँ हैं",
+  "empathySupport": "आपकी सेहत हमारी प्राथमिकता है",
+  "empathyEncouragement": "हर छोटा कदम मायने रखता है",
+  
+  "bloodPressure": "रक्तचाप",
+  "glucose": "ग्लूकोज",
+  "weight": "वजन",
+  "temperature": "तापमान",
+  "heartRate": "हृदय गति",
+  
+  "normal": "सामान्य",
+  "warning": "चेतावनी",
+  "critical": "गंभीर",
+  "excellent": "उत्कृष्ट",
+  
+  "addSymptom": "लक्षण जोड़ें",
+  "viewReports": "रिपोर्ट्स देखें",
+  "startChat": "चैट शुरू करें",
+  "logMedication": "दवा रिकॉर्ड करें",
+  
+  "moodHappy": "खुश",
+  "moodSad": "उदास",
+  "moodAnxious": "चिंतित",
+  "moodCalm": "शांत",
+  "moodEnergetic": "ऊर्जावान",
+  "moodTired": "थका हुआ",
+  
+  "symptomsToday": "आज के लक्षण",
+  "medicationReminder": "दवा की याददाश्त",
+  "appointmentReminder": "अपॉइंटमेंट की याददाश्त",
+  
+  "aiAssistant": "AI सहायक",
+  "typeMessage": "संदेश टाइप करें...",
+  "send": "भेजें",
+  
+  "welcome": "स्वागत है",
+  "letsStart": "चलिए शुरू करते हैं",
+  "saveAndContinue": "सेव करें और आगे बढ़ें",
+  "cancel": "रद्द करें",
+  "confirm": "पुष्टि करें"
+}

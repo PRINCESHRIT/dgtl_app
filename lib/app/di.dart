@@ -1,9 +1,10 @@
 import 'package:get_it/get_it.dart';
 import '../core/database/database.dart';
 import '../core/security/secure_storage_service.dart';
-import '../core/ai/embedding_gemma_service.dart';
-import '../core/ai/gemma3n_rag_service.dart';
-import '../core/ai/vector_search_service.dart';
+// Temporarily commented out AI services due to tflite dependency issues
+// import '../core/ai/embedding_gemma_service.dart';
+// import '../core/ai/gemma3n_rag_service.dart';
+// import '../core/ai/vector_search_service.dart';
 
 final GetIt getIt = GetIt.instance;
 
@@ -16,17 +17,17 @@ Future<void> setupDependencies() async {
   // Security Services
   getIt.registerLazySingleton<SecureStorageService>(() => SecureStorageService());
   
-  // AI Services - Order matters due to dependencies
-  getIt.registerLazySingleton<EmbeddingGemmaService>(() => EmbeddingGemmaService());
-  getIt.registerLazySingleton<VectorSearchService>(() => VectorSearchService(
-    embeddingService: getIt<EmbeddingGemmaService>(),
-    database: getIt<AppDatabase>(),
-  ));
-  getIt.registerLazySingleton<Gemma3NRagService>(() => Gemma3NRagService(
-    embeddingService: getIt<EmbeddingGemmaService>(),
-    vectorSearch: getIt<VectorSearchService>(),
-    database: getIt<AppDatabase>(),
-  ));
+  // AI Services - Temporarily commented out due to tflite dependency issues
+  // getIt.registerLazySingleton<EmbeddingGemmaService>(() => EmbeddingGemmaService());
+  // getIt.registerLazySingleton<VectorSearchService>(() => VectorSearchService(
+  //   embeddingService: getIt<EmbeddingGemmaService>(),
+  //   database: getIt<AppDatabase>(),
+  // ));
+  // getIt.registerLazySingleton<Gemma3NRagService>(() => Gemma3NRagService(
+  //   embeddingService: getIt<EmbeddingGemmaService>(),
+  //   vectorSearch: getIt<VectorSearchService>(),
+  //   database: getIt<AppDatabase>(),
+  // ));
   
   // Initialize services that require async setup
   await _initializeAsyncServices();
@@ -44,9 +45,10 @@ Future<void> _initializeAsyncServices() async {
     await secureStorage.initialize();
     
     // Preload AI models in background (optional for faster first inference)
-    final embeddingService = getIt<EmbeddingGemmaService>();
+    // Temporarily commented out due to tflite dependency issues
+    // final embeddingService = getIt<EmbeddingGemmaService>();
     // Note: We don't await this to avoid blocking app startup
-    embeddingService.preloadModel();
+    // embeddingService.preloadModel();
     
     print('✅ DGTL dependencies initialized successfully');
   } catch (e) {
@@ -62,12 +64,12 @@ Future<void> disposeDependencies() async {
     final db = getIt<AppDatabase>();
     await db.close();
     
-    // Dispose AI services
-    final embeddingService = getIt<EmbeddingGemmaService>();
-    await embeddingService.dispose();
+    // Dispose AI services - Temporarily commented out due to tflite dependency issues
+    // final embeddingService = getIt<EmbeddingGemmaService>();
+    // await embeddingService.dispose();
     
-    final ragService = getIt<Gemma3NRagService>();
-    await ragService.dispose();
+    // final ragService = getIt<Gemma3NRagService>();
+    // await ragService.dispose();
     
     // Reset GetIt
     await getIt.reset();

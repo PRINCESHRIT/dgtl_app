@@ -1,9 +1,8 @@
 // lib/core/database/database.dart
 import 'package:drift/drift.dart';
-import 'package:drift/native.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:path/path.dart' as p;
-import 'dart:io';
+// Conditional connection import provides openConnection()
+import 'connection/connection_web.dart'
+  if (dart.library.io) 'connection/connection_io.dart';
 
 part 'database.g.dart';
 
@@ -57,23 +56,49 @@ class SymptomLogs extends Table {
   DateTimeColumn get createdAt => dateTime().withDefault(currentDateAndTime)();
 }
 
+// Daily Health Logs - Structured daily vitals and well-being
+class DailyHealthLogs extends Table {
+  IntColumn get id => integer().autoIncrement()();
+  IntColumn get patientId => integer().references(Patients, #id)();
+  DateTimeColumn get loggedAt => dateTime()();
+  IntColumn get systolic => integer().nullable()();
+  IntColumn get diastolic => integer().nullable()();
+  IntColumn get energyMood => integer().nullable()(); // 1-3
+  IntColumn get fatigue => integer().nullable()();     // 1-3
+  IntColumn get pain => integer().nullable()();        // 1-3
+  IntColumn get sleepQuality => integer().nullable()(); // 1-3
+  IntColumn get fluidIntake => integer().nullable()(); // ml
+  IntColumn get fluidOutput => integer().nullable()(); // ml
+  TextColumn get notes => text().nullable()();
+  DateTimeColumn get createdAt => dateTime().withDefault(currentDateAndTime)();
+}
+
 // =============================================================================
 // DATABASE CLASS - Single User Implementation
 // =============================================================================
 
-@DriftDatabase(tables: [Patients, LabTests, LabResults, SymptomLogs])
+@DriftDatabase(tables: [Patients, LabTests, LabResults, SymptomLogs, DailyHealthLogs])
 class AppDatabase extends _$AppDatabase {
-  // Production constructor - saves to device storage
-  AppDatabase() : super(_openConnection());
+  // Production constructor - uses platform-specific connection
+  AppDatabase() : super(openConnection());
   
-  // Test constructor - uses in-memory database
-  AppDatabase.memory() : super(NativeDatabase.memory());
+  // Test constructor - uses same connection (web-safe)
+  AppDatabase.memory() : super(openConnection());
   
   // Explicit constructor for custom connections
   AppDatabase.custom(DatabaseConnection connection) : super(connection);
 
   @override
-  int get schemaVersion => 1;
+  int get schemaVersion => 2;
+
+  @override
+  MigrationStrategy get migration => MigrationStrategy(
+        onUpgrade: (m, from, to) async {
+          if (from < 2) {
+            await m.createTable(dailyHealthLogs);
+          }
+        },
+      );
 
   // =============================================================================
   // SIMPLE QUERY METHODS - No complex DAOs needed for single user
@@ -143,6 +168,32 @@ class AppDatabase extends _$AppDatabase {
   Future<int> insertSymptomLog(SymptomLogsCompanion symptom) => 
     into(symptomLogs).insert(symptom);
 
+  // Daily Health Log methods
+  Future<int> insertDailyHealthLog(DailyHealthLogsCompanion log) =>
+      into(dailyHealthLogs).insert(log);
+
+  Future<List<DailyHealthLog>> getDailyLogsForRange(
+      int patientId, DateTime from, DateTime to) {
+    final q = select(dailyHealthLogs)
+      ..where((t) =>
+          t.patientId.equals(patientId) &
+          t.loggedAt.isBiggerOrEqualValue(from) &
+          t.loggedAt.isSmallerOrEqualValue(to))
+      ..orderBy([(t) => OrderingTerm.desc(t.loggedAt)]);
+    return q.get();
+  }
+
+  Future<List<DailyHealthLog>> getRecentDailyLogs(int patientId,
+      {int days = 7}) {
+    final cutoff = DateTime.now().subtract(Duration(days: days));
+    final q = select(dailyHealthLogs)
+      ..where((t) =>
+          t.patientId.equals(patientId) &
+          t.loggedAt.isBiggerOrEqualValue(cutoff))
+      ..orderBy([(t) => OrderingTerm.asc(t.loggedAt)]);
+    return q.get();
+  }
+
   // =============================================================================
   // JOINED QUERIES - Get related data in one go
   // =============================================================================
@@ -173,14 +224,4 @@ class LabResultWithTest {
   LabResultWithTest({required this.result, this.test});
 }
 
-// =============================================================================
-// DATABASE CONNECTION HELPER
-// =============================================================================
-
-LazyDatabase _openConnection() {
-  return LazyDatabase(() async {
-    final dbFolder = await getApplicationDocumentsDirectory();
-    final file = File(p.join(dbFolder.path, 'health_tracker.db'));
-    return NativeDatabase(file);
-  });
-}
+// Connection creation handled in connection/*.dart via conditional imports
