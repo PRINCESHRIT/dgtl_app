@@ -68,9 +68,10 @@ class SimpleHealthDashboard extends StatelessWidget {
                 ),
                 child: Row(
                   children: [
+                    // Left medical examination image - 90x90 size
                     Container(
-                      width: 60,
-                      height: 60,
+                      width: 90,
+                      height: 90,
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
@@ -83,14 +84,16 @@ class SimpleHealthDashboard extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(width: 16),
+                    const SizedBox(width: 20),
+                    // Centered text content
                     Expanded(
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
                             "नमस्ते माँ",
                             style: PastelTextStyles.greeting,
+                            textAlign: TextAlign.center,
                           ),
                           const SizedBox(height: 4),
                           Text(
@@ -98,15 +101,16 @@ class SimpleHealthDashboard extends StatelessWidget {
                             style: PastelTextStyles.hindiText.copyWith(
                               color: PastelColors.secondaryText,
                             ),
+                            textAlign: TextAlign.center,
                           ),
                         ],
                       ),
                     ),
-                    const SizedBox(width: 16),
-                    // Medical consultation image on the right side
+                    const SizedBox(width: 20),
+                    // Right medical consultation image - 90x90 size
                     Container(
-                      width: 80,
-                      height: 80,
+                      width: 90,
+                      height: 90,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
                       ),
