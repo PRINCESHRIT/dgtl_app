@@ -116,13 +116,13 @@ class SimpleHealthDashboard extends StatelessWidget {
               
               const SizedBox(height: 20),
               
-              // Vitals Tracker Card - CKD-specific biomarkers with Hindi-first design
-              const VitalsTrackerCard(),
+              // AI Health Recommendation Card - Empathy-driven design for daily reassurance
+              const AIHealthRecommendationCard(),
               
               const SizedBox(height: 20),
               
-              // AI Health Recommendation Card - Empathy-driven design for daily reassurance
-              const AIHealthRecommendationCard(),
+              // Card #3: Vitals Tracker - CKD "Big 7" Biomarkers with Hindi-first design
+              const VitalsTrackerCard(),
             ],
           ),
         ),
@@ -382,578 +382,6 @@ class AIHealthRecommendationCard extends StatelessWidget {
         ),
       ],
     );
-  }
-}
-
-// Vitals Tracker Card - CKD-specific biomarkers with Hindi-first design
-class VitalsTrackerCard extends StatefulWidget {
-  const VitalsTrackerCard({super.key});
-
-  @override
-  State<VitalsTrackerCard> createState() => _VitalsTrackerCardState();
-}
-
-class _VitalsTrackerCardState extends State<VitalsTrackerCard> 
-    with TickerProviderStateMixin {
-  
-  late AnimationController _bounceController;
-  late AnimationController _progressController;
-  late List<AnimationController> _cardControllers;
-  
-  // Big 7 CKD Biomarkers Data
-  final List<Map<String, dynamic>> vitals = [
-    {
-      "name": "Creatinine",
-      "hindi": "क्रिएटिनिन",
-      "value": "3.2",
-      "unit": "mg/dL",
-      "normal": "0.7-1.3",
-      "status": "high",
-      "progress": 0.85
-    },
-    {
-      "name": "eGFR",
-      "hindi": "eGFR",
-      "value": "27.3",
-      "unit": "mL/min",
-      "normal": ">60",
-      "status": "low",
-      "progress": 0.3
-    },
-    {
-      "name": "Potassium",
-      "hindi": "पोटेशियम",
-      "value": "4.2",
-      "unit": "mEq/L",
-      "normal": "3.5-5.0",
-      "status": "normal",
-      "progress": 0.7
-    },
-    {
-      "name": "Urine Albumin",
-      "hindi": "यूरिन एल्ब्यूमिन",
-      "value": "45",
-      "unit": "mg/g",
-      "normal": "<30",
-      "status": "high",
-      "progress": 0.9
-    },
-    {
-      "name": "Hemoglobin",
-      "hindi": "हीमोग्लोबिन",
-      "value": "11.2",
-      "unit": "g/dL",
-      "normal": "12-16",
-      "status": "low",
-      "progress": 0.4
-    },
-    {
-      "name": "Calcium",
-      "hindi": "कैल्शियम",
-      "value": "9.1",
-      "unit": "mg/dL",
-      "normal": "8.5-10.5",
-      "status": "normal",
-      "progress": 0.6
-    },
-    {
-      "name": "Phosphorus",
-      "hindi": "फास्फोरस",
-      "value": "4.8",
-      "unit": "mg/dL",
-      "normal": "2.5-4.5",
-      "status": "high",
-      "progress": 0.8
-    }
-  ];
-
-  @override
-  void initState() {
-    super.initState();
-    
-    // Bounce animation for header icon
-    _bounceController = AnimationController(
-      duration: const Duration(seconds: 2),
-      vsync: this,
-    )..repeat(reverse: true);
-    
-    // Progress bar animation controller
-    _progressController = AnimationController(
-      duration: const Duration(seconds: 1),
-      vsync: this,
-    );
-    
-    // Individual card animation controllers for staggered effect
-    _cardControllers = List.generate(
-      vitals.length,
-      (index) => AnimationController(
-        duration: const Duration(milliseconds: 300),
-        vsync: this,
-      ),
-    );
-    
-    // Start animations
-    _startAnimations();
-  }
-
-  void _startAnimations() async {
-    // Start progress bars
-    _progressController.forward();
-    
-    // Staggered card animations with 100ms delay
-    for (int i = 0; i < _cardControllers.length; i++) {
-      await Future.delayed(Duration(milliseconds: i * 100));
-      if (mounted) {
-        _cardControllers[i].forward();
-      }
-    }
-  }
-
-  @override
-  void dispose() {
-    _bounceController.dispose();
-    _progressController.dispose();
-    for (var controller in _cardControllers) {
-      controller.dispose();
-    }
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return PolishedPastelCard(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Header with animated icon
-          Row(
-            children: [
-              AnimatedBuilder(
-                animation: _bounceController,
-                builder: (context, child) {
-                  return Transform.scale(
-                    scale: 1.0 + (_bounceController.value * 0.1),
-                    child: Container(
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        color: PastelColors.success.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                          color: PastelColors.success.withOpacity(0.3),
-                        ),
-                      ),
-                      child: Icon(
-                        Icons.favorite_border,
-                        color: PastelColors.success,
-                        size: 22,
-                      ),
-                    ),
-                  );
-                },
-              ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "वाइटल्स ट्रैकर",
-                      style: PastelTextStyles.cardTitle.copyWith(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w700,
-                        color: PastelColors.success,
-                      ),
-                    ),
-                    Text(
-                      "गुर्दे की स्वास्थ्य निगरानी",
-                      style: PastelTextStyles.caption.copyWith(
-                        color: PastelColors.secondaryText,
-                        fontSize: 12,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('ट्रेंड व्यू जल्द आ रहा है!'),
-                      backgroundColor: Colors.blue,
-                    ),
-                  );
-                },
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                  decoration: BoxDecoration(
-                    color: Colors.blue.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(
-                      color: Colors.blue.withOpacity(0.3),
-                    ),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(
-                        Icons.trending_up,
-                        color: Colors.blue,
-                        size: 14,
-                      ),
-                      const SizedBox(width: 4),
-                      Text(
-                        "ट्रेंड देखें",
-                        style: PastelTextStyles.caption.copyWith(
-                          color: Colors.blue,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 11,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-          
-          const SizedBox(height: 24),
-          
-          // Vitals Grid - Big 7 CKD Biomarkers
-          Column(
-            children: vitals.asMap().entries.map((entry) {
-              final index = entry.key;
-              final vital = entry.value;
-              
-              return AnimatedBuilder(
-                animation: _cardControllers[index],
-                builder: (context, child) {
-                  return Transform.translate(
-                    offset: Offset(
-                      0, 
-                      20 * (1 - _cardControllers[index].value),
-                    ),
-                    child: Opacity(
-                      opacity: _cardControllers[index].value,
-                      child: Container(
-                        margin: const EdgeInsets.only(bottom: 12),
-                        child: _buildVitalCard(vital, index),
-                      ),
-                    ),
-                  );
-                },
-              );
-            }).toList(),
-          ),
-          
-          const SizedBox(height: 24),
-          
-          // Action Buttons Row
-          Row(
-            children: [
-              Expanded(
-                child: _buildActionButton(
-                  icon: Icons.upload_file,
-                  label: "रिपोर्ट अपलोड",
-                  color: PastelColors.primary,
-                  onTap: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('रिपोर्ट अपलोड फीचर जल्द आ रहा है!'),
-                        backgroundColor: Colors.green,
-                      ),
-                    );
-                  },
-                ),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: _buildActionButton(
-                  icon: Icons.download,
-                  label: "रिपोर्ट डाउनलोड",
-                  color: Colors.blue,
-                  onTap: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('रिपोर्ट डाउनलोड हो रही है...'),
-                        backgroundColor: Colors.blue,
-                      ),
-                    );
-                  },
-                ),
-              ),
-            ],
-          ),
-          
-          const SizedBox(height: 20),
-          
-          // Next Test Reminder
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: PastelColors.info.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(
-                color: PastelColors.info.withOpacity(0.3),
-              ),
-            ),
-            child: Row(
-              children: [
-                Icon(
-                  Icons.schedule,
-                  color: PastelColors.info,
-                  size: 20,
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "अगला टेस्ट रिमाइंडर",
-                        style: PastelTextStyles.cardTitle.copyWith(
-                          fontSize: 14,
-                          color: PastelColors.info,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      Text(
-                        "अगला ब्लड टेस्ट: 18 सितंबर 2025",
-                        style: PastelTextStyles.caption.copyWith(
-                          color: PastelColors.info.withOpacity(0.8),
-                          fontSize: 12,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    ).animate().fadeIn(delay: 500.ms).slideY(begin: 0.1);
-  }
-
-  Widget _buildVitalCard(Map<String, dynamic> vital, int index) {
-    final status = vital['status'] as String;
-    final statusColor = _getStatusColor(status);
-    final progressColor = _getProgressColor(status);
-    final statusIcon = _getStatusIcon(status);
-    
-    return GestureDetector(
-      onTap: () {
-        // Scale animation on tap
-        _cardControllers[index].reverse().then((_) {
-          _cardControllers[index].forward();
-        });
-        
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('${vital['hindi']} का विस्तृत विवरण जल्द आ रहा है!'),
-            backgroundColor: statusColor,
-          ),
-        );
-      },
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: progressColor.withOpacity(0.05),
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(
-            color: progressColor.withOpacity(0.2),
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: progressColor.withOpacity(0.08),
-              blurRadius: 8,
-              offset: const Offset(0, 2),
-            ),
-          ],
-        ),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                // Status Icon + Hindi Name
-                Row(
-                  children: [
-                    Text(
-                      statusIcon,
-                      style: const TextStyle(fontSize: 16),
-                    ),
-                    const SizedBox(width: 8),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          vital['hindi'],
-                          style: PastelTextStyles.cardTitle.copyWith(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
-                            color: statusColor,
-                          ),
-                        ),
-                        Text(
-                          vital['name'],
-                          style: PastelTextStyles.caption.copyWith(
-                            fontSize: 11,
-                            color: PastelColors.secondaryText,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                
-                const Spacer(),
-                
-                // Value + Unit
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Row(
-                      children: [
-                        Text(
-                          vital['value'],
-                          style: PastelTextStyles.medicalData.copyWith(
-                            fontSize: 24,
-                            fontWeight: FontWeight.w800,
-                            color: statusColor,
-                          ),
-                        ),
-                        const SizedBox(width: 4),
-                        Text(
-                          vital['unit'],
-                          style: PastelTextStyles.caption.copyWith(
-                            fontSize: 12,
-                            color: statusColor.withOpacity(0.7),
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Text(
-                      "सामान्य: ${vital['normal']}",
-                      style: PastelTextStyles.caption.copyWith(
-                        fontSize: 10,
-                        color: PastelColors.secondaryText,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            
-            const SizedBox(height: 12),
-            
-            // Animated Progress Bar
-            Container(
-              height: 6,
-              decoration: BoxDecoration(
-                color: progressColor.withOpacity(0.2),
-                borderRadius: BorderRadius.circular(3),
-              ),
-              child: AnimatedBuilder(
-                animation: _progressController,
-                builder: (context, child) {
-                  return FractionallySizedBox(
-                    alignment: Alignment.centerLeft,
-                    widthFactor: (vital['progress'] as double) * _progressController.value,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: progressColor,
-                        borderRadius: BorderRadius.circular(3),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildActionButton({
-    required IconData icon,
-    required String label,
-    required Color color,
-    required VoidCallback onTap,
-  }) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-        decoration: BoxDecoration(
-          color: color.withOpacity(0.1),
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(
-            color: color.withOpacity(0.3),
-          ),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              icon,
-              color: color,
-              size: 18,
-            ),
-            const SizedBox(width: 8),
-            Text(
-              label,
-              style: PastelTextStyles.buttonText.copyWith(
-                color: color,
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  // Status-based styling helper functions
-  Color _getStatusColor(String status) {
-    switch (status) {
-      case 'normal':
-        return PastelColors.success; // Green - Comfort & Safety
-      case 'high':
-        return PastelColors.danger; // Red - Gentle Alert
-      case 'low':
-        return Colors.blue; // Blue - Attention Needed
-      default:
-        return PastelColors.secondaryText;
-    }
-  }
-
-  Color _getProgressColor(String status) {
-    switch (status) {
-      case 'normal':
-        return PastelColors.success;
-      case 'high':
-        return PastelColors.danger;
-      case 'low':
-        return Colors.blue;
-      default:
-        return PastelColors.secondaryText;
-    }
-  }
-
-  String _getStatusIcon(String status) {
-    switch (status) {
-      case 'normal':
-        return '✅'; // Normal
-      case 'high':
-        return '⬆️'; // High
-      case 'low':
-        return '⬇️'; // Low
-      default:
-        return '❓';
-    }
   }
 }
 
@@ -3037,5 +2465,426 @@ class _AdditionalSymptomsCardState extends State<AdditionalSymptomsCard> {
         ),
       ),
     );
+  }
+}
+
+// Card #3: Vitals Tracker - CKD "Big 7" Biomarkers with Hindi-first design
+class VitalsTrackerCard extends StatelessWidget {
+  const VitalsTrackerCard({super.key});
+
+  // CKD "Big 7" biomarkers data structure
+  static const List<Map<String, dynamic>> vitals = [
+    // Kidney Function Primary Indicators
+    {
+      "name": "Creatinine",
+      "hindi": "क्रिएटिनिन",
+      "value": "3.2",
+      "unit": "mg/dL",
+      "normal": "0.7-1.3",
+      "status": "high",
+      "progress": 0.85
+    },
+    {
+      "name": "eGFR",
+      "hindi": "eGFR",
+      "value": "27.3",
+      "unit": "mL/min",
+      "normal": ">60",
+      "status": "low",
+      "progress": 0.45
+    },
+    // Electrolyte Balance
+    {
+      "name": "Potassium",
+      "hindi": "पोटेशियम",
+      "value": "4.2",
+      "unit": "mEq/L",
+      "normal": "3.5-5.0",
+      "status": "normal",
+      "progress": 0.7
+    },
+    // Protein & Kidney Damage Markers
+    {
+      "name": "Urine Albumin",
+      "hindi": "यूरिन एल्ब्यूमिन",
+      "value": "45",
+      "unit": "mg/g",
+      "normal": "<30",
+      "status": "high",
+      "progress": 0.9
+    },
+    // Anemia & Bone Health (CKD Complications)
+    {
+      "name": "Hemoglobin",
+      "hindi": "हीमोग्लोबिन",
+      "value": "11.2",
+      "unit": "g/dL",
+      "normal": "12-16",
+      "status": "low",
+      "progress": 0.6
+    },
+    {
+      "name": "Calcium",
+      "hindi": "कैल्शियम",
+      "value": "9.1",
+      "unit": "mg/dL",
+      "normal": "8.5-10.5",
+      "status": "normal",
+      "progress": 0.75
+    },
+    {
+      "name": "Phosphorus",
+      "hindi": "फास्फोरस",
+      "value": "4.8",
+      "unit": "mg/dL",
+      "normal": "2.5-4.5",
+      "status": "high",
+      "progress": 0.8
+    }
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(24),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(
+          color: PastelColors.mutedBlack.withOpacity(0.1),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: PastelColors.mutedBlack.withOpacity(0.08),
+            blurRadius: 20,
+            offset: const Offset(0, 4),
+            spreadRadius: 0,
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Card Header with animated icon
+          Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: PastelColors.wellness.withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(
+                    color: PastelColors.wellness.withOpacity(0.3),
+                  ),
+                ),
+                child: Icon(
+                  Icons.favorite_border,
+                  color: PastelColors.wellness,
+                  size: 22,
+                ),
+              ).animate(onPlay: (controller) => controller.repeat(reverse: true))
+                .scale(duration: 2.seconds, begin: const Offset(1.0, 1.0), end: const Offset(1.1, 1.1)),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Text(
+                  "वाइटल्स ट्रैकर",
+                  style: PastelTextStyles.cardTitle.copyWith(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700,
+                    color: PastelColors.mutedBlack,
+                  ),
+                ),
+              ),
+              // Trend view button
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                decoration: BoxDecoration(
+                  color: PastelColors.empathyAccent.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(
+                    color: PastelColors.empathyAccent.withOpacity(0.3),
+                  ),
+                ),
+                child: Text(
+                  "📈 ट्रेंड देखें",
+                  style: PastelTextStyles.cardSubtitle.copyWith(
+                    color: PastelColors.empathyAccent,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          
+          const SizedBox(height: 20),
+          
+          // Vitals Grid - The Big 7 CKD biomarkers
+          ...vitals.asMap().entries.map((entry) {
+            final index = entry.key;
+            final vital = entry.value;
+            return Container(
+              margin: const EdgeInsets.only(bottom: 12),
+              child: _buildVitalCard(vital, index),
+            ).animate(delay: (100 * index).ms)
+              .fadeIn(duration: 600.ms)
+              .slideX(begin: -0.3);
+          }).toList(),
+          
+          const SizedBox(height: 20),
+          
+          // Action Buttons Row
+          Row(
+            children: [
+              Expanded(
+                child: _buildActionButton(
+                  "📤 रिपोर्ट अपलोड",
+                  PastelColors.empathyAccent,
+                  () {
+                    // Handle upload action
+                  },
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: _buildActionButton(
+                  "📥 रिपोर्ट डाउनलोड",
+                  PastelColors.wellness,
+                  () {
+                    // Handle download action
+                  },
+                ),
+              ),
+            ],
+          ),
+          
+          const SizedBox(height: 16),
+          
+          // Next test reminder
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: PastelColors.empathy,
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(
+                color: PastelColors.empathyBorder,
+              ),
+            ),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.schedule,
+                  color: PastelColors.empathyAccent,
+                  size: 20,
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Text(
+                    "📅 अगला टेस्ट: 5 दिन में (18 सितंबर)",
+                    style: PastelTextStyles.cardSubtitle.copyWith(
+                      color: PastelColors.empathyText,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    ).animate()
+      .fadeIn(delay: 400.ms, duration: 600.ms)
+      .slideY(begin: 0.3);
+  }
+
+  // Build individual vital card
+  Widget _buildVitalCard(Map<String, dynamic> vital, int index) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: _getStatusBackgroundColor(vital['status']),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: _getStatusColor(vital['status']).withOpacity(0.3),
+        ),
+      ),
+      child: InkWell(
+        onTap: () {
+          // Handle tap to expand with detailed trends
+        },
+        borderRadius: BorderRadius.circular(12),
+        child: Row(
+          children: [
+            // Status icon
+            Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: _getStatusColor(vital['status']).withOpacity(0.2),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Text(
+                _getStatusIcon(vital['status']),
+                style: const TextStyle(fontSize: 16),
+              ),
+            ),
+            const SizedBox(width: 16),
+            // Vital information
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Hindi name (primary)
+                  Text(
+                    vital['hindi'],
+                    style: PastelTextStyles.cardTitle.copyWith(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      color: PastelColors.mutedBlack,
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  // English name (subtitle)
+                  Text(
+                    vital['name'],
+                    style: PastelTextStyles.cardSubtitle.copyWith(
+                      fontSize: 12,
+                      color: PastelColors.secondaryText,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  // Normal range
+                  Text(
+                    "सामान्य: ${vital['normal']}",
+                    style: PastelTextStyles.cardSubtitle.copyWith(
+                      fontSize: 11,
+                      color: _getStatusColor(vital['status']),
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            // Value and progress
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                // Large value display
+                RichText(
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                        text: vital['value'],
+                        style: PastelTextStyles.cardTitle.copyWith(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w800,
+                          color: _getStatusColor(vital['status']),
+                        ),
+                      ),
+                      TextSpan(
+                        text: " ${vital['unit']}",
+                        style: PastelTextStyles.cardSubtitle.copyWith(
+                          fontSize: 12,
+                          color: PastelColors.secondaryText,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 8),
+                // Progress bar
+                Container(
+                  width: 60,
+                  height: 4,
+                  decoration: BoxDecoration(
+                    color: _getStatusColor(vital['status']).withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(2),
+                  ),
+                  child: FractionallySizedBox(
+                    alignment: Alignment.centerLeft,
+                    widthFactor: vital['progress'],
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: _getStatusColor(vital['status']),
+                        borderRadius: BorderRadius.circular(2),
+                      ),
+                    ),
+                  ),
+                ).animate()
+                  .scaleX(duration: 1000.ms, delay: (200 * index).ms),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  // Build action button
+  Widget _buildActionButton(String label, Color color, VoidCallback onPressed) {
+    return InkWell(
+      onTap: onPressed,
+      borderRadius: BorderRadius.circular(12),
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+        decoration: BoxDecoration(
+          color: color.withOpacity(0.1),
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(
+            color: color.withOpacity(0.3),
+          ),
+        ),
+        child: Center(
+          child: Text(
+            label,
+            style: PastelTextStyles.cardSubtitle.copyWith(
+              color: color,
+              fontWeight: FontWeight.w600,
+              fontSize: 14,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  // Helper functions for status-based styling
+  Color _getStatusColor(String status) {
+    switch (status) {
+      case 'normal':
+        return PastelColors.wellness; // Green for normal
+      case 'high':
+        return PastelColors.primary; // Red for high values
+      case 'low':
+        return PastelColors.empathyAccent; // Blue for low values
+      default:
+        return PastelColors.mutedBlack;
+    }
+  }
+
+  Color _getStatusBackgroundColor(String status) {
+    switch (status) {
+      case 'normal':
+        return PastelColors.wellness.withOpacity(0.05); // Mint background
+      case 'high':
+        return PastelColors.primary.withOpacity(0.05); // Peach background
+      case 'low':
+        return PastelColors.empathyAccent.withOpacity(0.05); // Lavender background
+      default:
+        return Colors.white;
+    }
+  }
+
+  String _getStatusIcon(String status) {
+    switch (status) {
+      case 'normal':
+        return '✅'; // Green checkmark for normal
+      case 'high':
+        return '⬆️'; // Up arrow for high
+      case 'low':
+        return '⬇️'; // Down arrow for low
+      default:
+        return '➖'; // Neutral dash
+    }
   }
 }

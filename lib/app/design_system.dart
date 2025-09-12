@@ -26,6 +26,7 @@ class PastelColors {
   static const warning = Color(0xFFFFC107);         // Caution, attention needed
   static const danger = Color(0xFFDC3545);          // Critical health alerts
   static const info = Color(0xFF17A2B8);            // Medical information
+  static const wellness = Color(0xFF22C55E);        // Green for normal vitals and wellness
   
   // Base system colors - enhanced with darker variants for better contrast
   static const background = Color(0xFFFFFFFE);      // Pure white background
