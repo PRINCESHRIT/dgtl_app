@@ -1,20 +1,81 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:dgtl_app/app/design_system.dart';
+import '../../health_tracking/health_integration_service.dart';
 import 'pastel_card.dart';
 
-class BPSymptomLoggerCard extends StatefulWidget {
+                        final service = ref.read(healthIntegrationServiceProvider.notifier);
+                        final success = await service.submitBPReading(
+                          systolic: int.tryParse(systolic) ?? 0,
+                          diastolic: int.tryParse(diastolic) ?? 0,
+                          heartRate: 75, // Default heart rate
+                          notes: 'Fatigue Level: ${fatigueLevel.toInt()}/5',
+                        );
+
+                        setState(() {
+                          isLoading = false;
+                          isExpanded = false;
+                        });
+
+                        if (success) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('BP डेटा सेव हो गया!'),
+                              backgroundColor: Colors.green,
+                            ),
+                          );
+                          // Clear form
+                          systolic = "";
+                          diastolic = "";
+                          fatigueLevel = 3.0;
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('कुछ गलत हुआ। फिर कोशिश करें।'),
+                              backgroundColor: Colors.red,
+                            ),
+                          );
+                        }
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: PastelColors.primaryAction,
+                      foregroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                    ),
+                    child: isLoading
+                        ? SizedBox(
+                            height: 20,
+                            width: 20,
+                            child: CircularProgressIndicator(
+                              color: Colors.white,
+                              strokeWidth: 2,
+                            ),
+                          )
+                        : Text(
+                            "सेव करें", // Save
+                            style: PastelTextStyles.actionButton,
+                          ),
+                  ),king/health_integration_service.dart';
+import 'pastel_card.dart';
+
+class BPSymptomLoggerCard extends ConsumerStatefulWidget {
   const BPSymptomLoggerCard({super.key});
 
   @override
-  State<BPSymptomLoggerCard> createState() => _BPSymptomLoggerCardState();
+  ConsumerState<BPSymptomLoggerCard> createState() => _BPSymptomLoggerCardState();
 }
 
-class _BPSymptomLoggerCardState extends State<BPSymptomLoggerCard> {
+class _BPSymptomLoggerCardState extends ConsumerState<BPSymptomLoggerCard> {
   String systolic = "";
   String diastolic = "";
   double fatigueLevel = 3.0;
   bool isExpanded = false;
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {

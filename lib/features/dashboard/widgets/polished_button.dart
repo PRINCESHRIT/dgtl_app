@@ -57,7 +57,7 @@ class _PolishedButtonState extends State<PolishedButton>
 
   Color get _backgroundColor {
     if (widget.isPrimary) {
-      return _isPressed ? PastelColors.primaryActionHover : PastelColors.primaryAction;
+      return _isPressed ? PastelColors.primaryHover : PastelColors.primary;
     } else if (widget.isEmpathy) {
       return _isPressed 
         ? PastelColors.empathyAccent.withOpacity(0.8) 

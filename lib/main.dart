@@ -1,49 +1,20 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'app/di.dart';
-import 'app/router.dart';
-import 'app/theme.dart';
-import 'core/constants/app_constants.dart';
+// DGTL Healthcare App - Main Entry Point
+// 
+// This is the primary entry point for the DGTL Healthcare Dashboard.
+// 
+// IMPORTANT: The complete production-ready healthcare dashboard is in:
+// lib/healthcare_dashboard_main.dart
+//
+// To run the full healthcare dashboard:
+// flutter run -t lib/healthcare_dashboard_main.dart
+//
+// Features include:
+// - Advanced BP tracking with live feedback
+// - 7-day trend charts
+// - Hindi-first cultural design
+// - Professional medical UI with 90x90 medical icons
+// - Complete symptom logging system
+// - Ready for backend integration
 
-void main() async {
-  // Ensure Flutter is initialized
-  WidgetsFlutterBinding.ensureInitialized();
-  
-  // Configure system UI
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-  ]);
-  
-  // Initialize dependencies
-  try {
-    await setupDependencies();
-    print('✅ DGTL app initialized successfully');
-  } catch (e) {
-    print('❌ Failed to initialize DGTL app: $e');
-    // You might want to show an error screen here in production
-  }
-  
-  runApp(const DGTLApp());
-}
-
-class DGTLApp extends StatelessWidget {
-  const DGTLApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: AppConstants.appName,
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.lightTheme,
-      onGenerateRoute: AppRouter.generateRoute,
-      initialRoute: AppRouter.dashboard,
-      builder: (context, child) {
-        return Scaffold(
-          body: child,
-          // Optional: Add a global error boundary here
-        );
-      },
-    );
-  }
-}
+// For now, we export the healthcare dashboard as the main app
+export 'healthcare_dashboard_main.dart';
