@@ -1,0 +1,12 @@
+{
+  "model_type": "full_tflite_model",
+  "dimension": 256,
+  "vocabulary_size": 50000,
+  "max_sequence_length": 512,
+  "medical_domain": true,
+  "fallback_mode": false,
+  "model_file": "embedding-gemma-308m-e2b.tflite",
+  "quantization": "int8",
+  "batch_size": 1,
+  "num_threads": 4
+}

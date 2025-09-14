@@ -1,93 +1,47 @@
+// DGTL Healthcare - API Client
+// RESTful API client using Retrofit for backend communication
+
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
+import '../models/auth_models.dart';
 import '../models/health_data.dart';
-import '../models/ai_response.dart';
-import 'api_constants.dart';
 
 part 'api_client.g.dart';
 
-/// Retrofit API Client for DgtlClinicalService Backend
-@RestApi(baseUrl: ApiConstants.baseUrl)
+@RestApi()
 abstract class ApiClient {
   factory ApiClient(Dio dio, {String baseUrl}) = _ApiClient;
 
-  // Health Data Endpoints
-  @POST(ApiConstants.submitBPReading)
-  Future<ApiResponse<String>> submitBPReading(
-    @Body() BPReadingRequest request,
-  );
+  // Authentication endpoints
+  @POST('/auth/login')
+  Future<AuthResponse> login(@Body() LoginRequest request);
 
-  @GET('${ApiConstants.getBPHistory}/{userId}')
-  Future<ApiResponse<List<BPReading>>> getBPHistory(
-    @Path('userId') String userId,
-    @Query('days') int? days,
-  );
+  @POST('/auth/register') 
+  Future<AuthResponse> register(@Body() RegisterRequest request);
 
-  @POST(ApiConstants.submitSymptoms)
-  Future<ApiResponse<String>> submitSymptoms(
-    @Body() SymptomsRequest request,
-  );
+  @POST('/auth/refresh')
+  Future<AuthResponse> refreshToken(@Body() RefreshTokenRequest request);
 
-  @GET('${ApiConstants.getVitals}/{userId}')
-  Future<ApiResponse<VitalsData>> getVitals(
-    @Path('userId') String userId,
-  );
+  @POST('/auth/logout')
+  Future<void> logout();
 
-  // AI Endpoints
-  @POST(ApiConstants.getHealthRecommendations)
-  Future<AIRecommendationsResponse> getHealthRecommendations(
-    @Body() HealthDataRequest request,
-  );
+  // Health data endpoints
+  @POST('/health/vitals')
+  Future<Map<String, dynamic>> submitVitals(@Body() Map<String, dynamic> request);
 
-  @POST(ApiConstants.chatWithAI)
-  Future<AIChatResponse> chatWithAI(
-    @Body() AIChatRequest request,
-  );
+  @GET('/health/vitals/{userId}')
+  Future<List<Map<String, dynamic>>> getVitals(@Path('userId') String userId);
 
-  @POST(ApiConstants.getMedicationAdvice)
-  Future<MedicationAdviceResponse> getMedicationAdvice(
-    @Body() MedicationRequest request,
-  );
+  @POST('/health/bp-reading')
+  Future<Map<String, dynamic>> submitBPReading(@Body() Map<String, dynamic> request);
 
-  // User Profile Endpoints
-  @GET('${ApiConstants.userProfile}/{userId}')
-  Future<ApiResponse<UserProfile>> getUserProfile(
-    @Path('userId') String userId,
-  );
+  @GET('/health/bp-history/{userId}')
+  Future<List<Map<String, dynamic>>> getBPHistory(@Path('userId') String userId);
 
-  @PUT('${ApiConstants.userProfile}/{userId}')
-  Future<ApiResponse<String>> updateUserProfile(
-    @Path('userId') String userId,
-    @Body() UserProfileUpdateRequest request,
-  );
-}
+  // User profile endpoints
+  @GET('/user/profile/{userId}')
+  Future<User> getUserProfile(@Path('userId') String userId);
 
-/// Generic API Response wrapper
-class ApiResponse<T> {
-  final bool success;
-  final String message;
-  final T? data;
-  final String? error;
-  final int? errorCode;
-
-  const ApiResponse({
-    required this.success,
-    required this.message,
-    this.data,
-    this.error,
-    this.errorCode,
-  });
-
-  factory ApiResponse.fromJson(
-    Map<String, dynamic> json,
-    T Function(Object? json) fromJsonT,
-  ) {
-    return ApiResponse<T>(
-      success: json['success'] ?? false,
-      message: json['message'] ?? '',
-      data: json['data'] != null ? fromJsonT(json['data']) : null,
-      error: json['error'],
-      errorCode: json['errorCode'],
-    );
-  }
+  @PUT('/user/profile/{userId}')
+  Future<User> updateUserProfile(@Path('userId') String userId, @Body() Map<String, dynamic> request);
 }

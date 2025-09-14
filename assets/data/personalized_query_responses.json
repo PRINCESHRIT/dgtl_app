@@ -1,0 +1,47 @@
+{
+  "patient_id": "CLINICAL-P001",
+  "generated_date": "2025-09-14T16:48:37.645443",
+  "response_type": "guidelines_based",
+  "queries": [
+    {
+      "query": "What should I do about my kidney function getting worse?",
+      "response": "Based on your current eGFR of 8.8 ml/min (Stage 5 CKD), you need immediate dialysis preparation. This includes: 1) Arteriovenous fistula creation within 4-8 weeks, 2) Discuss dialysis modalities with your nephrologist, 3) Consider transplant evaluation if appropriate. Your kidney function has progressed beyond Stage 4, requiring urgent renal replacement therapy planning.",
+      "confidence": 0.95,
+      "source": "Stage 4 CKD Guidelines + Clinical Data",
+      "priority": "high",
+      "action_required": "Schedule nephrology appointment within 1-2 weeks"
+    },
+    {
+      "query": "Why is my PTH level high and what should I do?",
+      "response": "Your PTH level of 190.1 pg/ml indicates secondary hyperparathyroidism, common in advanced CKD. You need: 1) Check 25(OH)D vitamin D level and supplement if low, 2) Consider active vitamin D (calcitriol/paricalcitol) therapy, 3) Evaluate need for phosphate binders, 4) Monitor calcium and phosphorus levels. This prevents bone disease and cardiovascular complications.",
+      "confidence": 0.92,
+      "source": "MBD Guidelines + Lab Results",
+      "priority": "high",
+      "action_required": "Obtain vitamin D level within 2-4 weeks"
+    },
+    {
+      "query": "Do I need to start blood pressure medication?",
+      "response": "Yes, you have a critical gap in your care. Despite your average BP of 140/90 mmHg, you are not on ACE inhibitors or ARBs, which are essential for CKD patients. Starting an ACE inhibitor (like lisinopril 5-10mg daily) can reduce your risk of kidney failure by 30-39% and cardiovascular events by 18-24%. This is urgent given your advanced CKD.",
+      "confidence": 0.95,
+      "source": "BP Guidelines + Medication Review",
+      "priority": "high",
+      "action_required": "Start ACE inhibitor within 1-2 weeks"
+    },
+    {
+      "query": "Is my anemia being managed correctly?",
+      "response": "Yes, your anemia management is excellent. Your hemoglobin of 11.6 g/dl is within the target range of 10-11 g/dl for CKD patients. Continue your current treatment and monitor iron stores regularly with CBC every 3 months and iron studies every 6 months. Avoid blood transfusions unless absolutely necessary to preserve transplant candidacy.",
+      "confidence": 0.88,
+      "source": "Anemia Guidelines + Hematology Data",
+      "priority": "medium",
+      "action_required": "Continue current management"
+    },
+    {
+      "query": "What foods should I avoid with my kidney disease?",
+      "response": "With Stage 5 CKD, you need strict dietary management: 1) Limit phosphate-rich foods (dairy, cola, processed meats), 2) Restrict sodium to <2g/day, 3) Moderate protein intake (0.6-0.8 g/kg/day), 4) Monitor potassium intake if levels become elevated, 5) Consider a plant-rich diet with guidance from a renal dietitian. These changes slow disease progression and reduce complications.",
+      "confidence": 0.9,
+      "source": "Dietary Guidelines + Clinical Status",
+      "priority": "medium",
+      "action_required": "Implement dietary changes within 1-2 weeks"
+    }
+  ]
+}

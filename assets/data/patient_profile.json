@@ -1,0 +1,47 @@
+{
+  "patient_id": "CLINICAL-P001",
+  "clinical_summary": {
+    "primary_diagnoses": [
+      "Chronic Kidney Disease Stage 4",
+      "Hypertension",
+      "Hypothyroidism"
+    ],
+    "key_findings": [
+      "Persistently elevated creatinine (2.5-3.22 mg/dl)",
+      "Severely reduced GFR (8.8-21.3 ml/min)",
+      "Proteinuria present",
+      "Anemia of chronic disease",
+      "Elevated PTH (secondary hyperparathyroidism)"
+    ],
+    "medications": [
+      "Atenolol (Hypertension)",
+      "Levothyroxine/Etroxin (Hypothyroidism)",
+      "Calcitriol (CKD-MBD)",
+      "Furosemide/Lasix (Fluid management)",
+      "Iron supplements (Anemia)"
+    ],
+    "monitoring_parameters": [
+      "Creatinine and GFR trends",
+      "Blood pressure control",
+      "Hemoglobin levels",
+      "Electrolyte balance",
+      "PTH and bone metabolism"
+    ]
+  },
+  "risk_stratification": {
+    "ckd_progression_risk": "High",
+    "cardiovascular_risk": "High",
+    "hospitalization_risk": "Moderate-High",
+    "medication_adherence": "Good (based on prescription records)"
+  },
+  "ai_insights": {
+    "pattern_recognition": "Stable CKD with controlled progression",
+    "trend_analysis": "Creatinine stable over recent years",
+    "alert_triggers": [
+      "Creatinine >3.5 mg/dl",
+      "GFR <15 ml/min",
+      "Potassium >5.5 mEq/L",
+      "Hemoglobin <10 g/dl"
+    ]
+  }
+}

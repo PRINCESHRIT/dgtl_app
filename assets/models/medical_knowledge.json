@@ -1,0 +1,50 @@
+{
+  "ckd_guidelines": {
+    "stage_1": "eGFR \u226590 with kidney damage. Annual monitoring, control diabetes/hypertension.",
+    "stage_2": "eGFR 60-89 with kidney damage. Monitor every 6-12 months.",
+    "stage_3a": "eGFR 45-59. Monitor every 6 months, nephrology referral.",
+    "stage_3b": "eGFR 30-44. Monitor every 3-6 months, prepare for advanced care.",
+    "stage_4": "eGFR 15-29. Prepare for renal replacement therapy.",
+    "stage_5": "eGFR <15. Dialysis or transplant needed."
+  },
+  "medication_safety": {
+    "avoid_ckd": [
+      "NSAIDs",
+      "Contrast agents",
+      "Aminoglycosides",
+      "Lithium"
+    ],
+    "dose_adjust": [
+      "ACE inhibitors",
+      "ARBs",
+      "Diuretics",
+      "Metformin"
+    ],
+    "monitoring": [
+      "Creatinine",
+      "Potassium",
+      "eGFR",
+      "Phosphorus"
+    ]
+  },
+  "symptom_analysis": {
+    "fluid_retention": "Monitor for swelling in legs, shortness of breath",
+    "bone_health": "Watch for bone pain, weakness (CKD-MBD)",
+    "anemia": "Fatigue, pale skin may indicate low hemoglobin",
+    "cardiovascular": "Chest pain, irregular heartbeat need immediate attention"
+  },
+  "lab_interpretations": {
+    "creatinine": {
+      "normal_male": "0.7-1.3 mg/dL",
+      "normal_female": "0.6-1.1 mg/dL",
+      "concerning": ">2.0 mg/dL indicates significant kidney impairment"
+    },
+    "egfr": {
+      "normal": ">90 mL/min/1.73m\u00b2",
+      "mild_decrease": "60-89 mL/min/1.73m\u00b2",
+      "moderate_decrease": "30-59 mL/min/1.73m\u00b2",
+      "severe_decrease": "15-29 mL/min/1.73m\u00b2",
+      "kidney_failure": "<15 mL/min/1.73m\u00b2"
+    }
+  }
+}

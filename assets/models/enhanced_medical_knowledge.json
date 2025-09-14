@@ -1,0 +1,87 @@
+{
+  "metadata": {
+    "version": "2.0",
+    "created_date": "2025-09-14T16:29:22.083727",
+    "source": "Clinical dataset integration + KDIGO guidelines",
+    "embedding_ready": true,
+    "rag_optimized": true
+  },
+  "patient_patterns": {
+    "ckd_progression": {
+      "content": "CKD Stage 4 progression: Creatinine stable 2.5-3.22 mg/dl over 5 years suggests controlled progression with good medication adherence. GFR 8.8-21.3 ml/min indicates need for renal replacement therapy preparation.",
+      "source": "Patient clinical dataset 2017-2023",
+      "category": "nephrology",
+      "confidence": 0.95,
+      "clinical_evidence": "Based on 6-year longitudinal data"
+    },
+    "medication_response": {
+      "content": "Thyroid management in CKD: TSH reduction from 10.7 to 4.29 µIU/mL demonstrates effective levothyroxine therapy. Monitor for drug interactions with phosphate binders.",
+      "source": "Patient medication history",
+      "category": "endocrinology",
+      "confidence": 0.9,
+      "clinical_evidence": "Documented improvement 2017-2018"
+    },
+    "anemia_management": {
+      "content": "CKD anemia pattern: Hemoglobin maintained 10.0-11.6 g/dl with iron supplementation. Consider ESA therapy if Hb consistently <10 g/dl despite iron repletion.",
+      "source": "Hematology monitoring data",
+      "category": "hematology",
+      "confidence": 0.88,
+      "clinical_evidence": "Multiple lab results 2017-2022"
+    }
+  },
+  "lab_interpretations": {
+    "creatinine_trending": {
+      "content": "Creatinine stability at 3.0-3.22 mg/dl over years suggests optimal medical management. Sudden increases >0.5 mg/dl warrant immediate evaluation for reversible causes.",
+      "source": "Longitudinal lab analysis",
+      "category": "laboratory",
+      "confidence": 0.92,
+      "clinical_context": "CKD Stage 4 monitoring"
+    },
+    "gfr_interpretation": {
+      "content": "Bilateral kidney GFR: Left 8.8 + Right 12.4 = 21.3 ml/min total. Differential function suggests right kidney preservation. Monitor for further decline.",
+      "source": "Nuclear medicine renogram 2018",
+      "category": "imaging",
+      "confidence": 0.98,
+      "clinical_context": "Renal function assessment"
+    },
+    "pth_elevation": {
+      "content": "PTH 190.1 pg/ml indicates secondary hyperparathyroidism. Requires active vitamin D therapy, phosphate control, and calcium monitoring to prevent CKD-MBD.",
+      "source": "Endocrine evaluation",
+      "category": "endocrinology",
+      "confidence": 0.94,
+      "clinical_context": "Bone mineral disorder"
+    }
+  },
+  "medication_optimization": {
+    "nephroprotection": {
+      "content": "ACE inhibitor therapy demonstrated with atenolol for BP control. Consider ACE/ARB if not contraindicated for additional nephroprotection in proteinuric CKD.",
+      "source": "Prescription analysis 2018-2023",
+      "category": "cardiology",
+      "confidence": 0.87,
+      "clinical_context": "Hypertension management in CKD"
+    },
+    "mineral_metabolism": {
+      "content": "Calcitriol 0.25mcg prescribed for CKD-MBD. Monitor serum calcium, phosphorus, and PTH quarterly. Adjust dose based on laboratory targets.",
+      "source": "Prescription records",
+      "category": "nephrology",
+      "confidence": 0.91,
+      "clinical_context": "Bone disease prevention"
+    }
+  },
+  "risk_predictions": {
+    "dialysis_timeline": {
+      "content": "Based on stable creatinine 2.5-3.22 mg/dl and GFR 21.3 ml/min, estimated 12-24 months until dialysis requirement. Prepare vascular access when GFR <20 ml/min.",
+      "source": "Predictive modeling from clinical data",
+      "category": "prognosis",
+      "confidence": 0.85,
+      "clinical_context": "RRT preparation timeline"
+    },
+    "cardiovascular_risk": {
+      "content": "CKD Stage 4 + Hypertension + Hypothyroidism = High CV risk. Average BP 140/90 mmHg requires optimization. Consider cardioprotective strategies.",
+      "source": "Risk stratification analysis",
+      "category": "cardiology",
+      "confidence": 0.89,
+      "clinical_context": "Primary prevention"
+    }
+  }
+}

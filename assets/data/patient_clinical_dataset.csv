@@ -1,0 +1,75 @@
+Date,Test Name,Result,Unit,Reference Range,Method,Source,Doctor,Remarks,raw_note,confidence
+2017-12-06,Glucose (Fasting),101,mg/dl,70-100,Hexokinase,Suraksha,Dr. Nayana Deb,,06-Dec-2017 Glucose (Fasting) 101 mg/dl Hexokinase Suraksha,high
+2017-12-06,Creatinine (Blood),3.0,mg/dl,0.5-0.9,Kinetic Jaffe,Suraksha,Dr. Nayana Deb,High,06-Dec-2017 Creatinine 3.0 mg/dl,high
+2017-12-06,Sodium,141.0,mEq/L,136-145,ISE Indirect,Suraksha,Dr. Nayana Deb,Normal,06-Dec-2017 Sodium 141 mEq/L,high
+2017-12-06,Potassium,4.1,mEq/L,3.5-5.1,ISE Indirect,Suraksha,Dr. Nayana Deb,Normal,06-Dec-2017 Potassium 4.1 mEq/L,high
+2017-12-06,TSH,10.7,µIU/mL,0.5-4.7,ECLIA,Suraksha,Dr. S.C. Jha,High,06-Dec-2017 TSH 10.7 µIU/mL,high
+2017-12-06,T3 Total,1.19,ng/ml,0.9-2.2,ECLIA,Suraksha,Dr. S.C. Jha,Normal,06-Dec-2017 T3 Total 1.19 ng/ml,high
+2017-12-06,T4 Total,5.79,µg/dl,5.5-16,ECLIA,Suraksha,Dr. S.C. Jha,Normal,06-Dec-2017 T4 Total 5.79 µg/dl,high
+2017-12-06,Hemoglobin,10.0,g/dl,12-15,SLS Hemoglobin,Suraksha,Dr. Nayana Deb,Low,06-Dec-2017 Hb 10.0 g/dl,high
+2017-12-06,WBC,3.5,x10^3/µL,4-10,Automated,Suraksha,Dr. Nayana Deb,Low,06-Dec-2017 WBC 3.5,high
+2017-12-06,RBC,3.42,x10^6/µL,3.8-4.8,Automated,Suraksha,Dr. Nayana Deb,Low,06-Dec-2017 RBC 3.42,high
+2017-12-06,Platelets,200,x10^3/µL,150-450,Automated,Suraksha,Dr. Nayana Deb,Normal,06-Dec-2017 Platelets 200,high
+2017-12-06,ESR,65,mm/hr,0-20,Westergren,Suraksha,Dr. Nayana Deb,High,06-Dec-2017 ESR 65 mm/hr,high
+2017-12-06,Urine pH,6.5,,4.8-7.4,Dipstick,Suraksha,,Normal,Urine pH 6.5 (dipstick),high
+2017-12-06,Urine Protein (dipstick),Present,,Negative,Dipstick,Suraksha,,Abnormal,Urine protein present,high
+2017-12-06,Urine Blood (dipstick),Present,,Negative,Dipstick,Suraksha,,Abnormal,Urine blood present,high
+2017-12-07,Ultrasound Kidneys - Impression,Bilateral small echogenic kidneys,,Normal,Ultrasound,Harsh Diagnostic,Dr. Ravindra Kumar Sinha,Suggestive of CKD,"Bilateral small echogenic kidneys (07-Dec-2017)",high
+2018-01-28,Creatinine (Blood),3.0,mg/dl,0.5-0.9,Kinetic Jaffe,Suraksha,Dr. Nayana Deb,High,28-Jan-2018 Creatinine 3.0 mg/dl,high
+2018-01-28,Urea (Blood),61,mg/dl,12.8-42.8,UREASE-GLDH,Suraksha,Dr. Nayana Deb,High,28-Jan-2018 Urea 61 mg/dl,high
+2018-01-28,BUN,28,mg/dl,6-20,Spectrophotometry,Suraksha,Dr. Nayana Deb,High,28-Jan-2018 BUN 28,high
+2018-01-29,GFR (Left Kidney),8.8,ml/min,>=80,Renogram,Dev Institute,Dr. A.K. Das,Severely reduced,29-Jan-2018 GFR left 8.8 ml/min,high
+2018-01-29,GFR (Right Kidney),12.4,ml/min,>=80,Renogram,Dev Institute,Dr. A.K. Das,Severely reduced,29-Jan-2018 GFR right 12.4 ml/min,high
+2018-01-29,Total GFR (sum),21.3,ml/min,>=80,"Renogram (calculated)",Dev Institute,Dr. A.K. Das,CKD (very low),"Total GFR 21.3 ml/min (29-Jan-2018)",high
+2018-04-24,Serum Sodium,139,mmol/L,135-145,,CMC Vellore,Dr. Santosh Varughese,Normal,24-Apr-2018 Sodium 139,high
+2018-04-24,Serum Potassium,4.3,mmol/L,3.5-5.0,,CMC Vellore,Dr. Santosh Varughese,Normal,24-Apr-2018 Potassium 4.3,high
+2018-04-24,Calcium,9.2,mg/dl,8.3-10.4,,CMC Vellore,Dr. Santosh Varughese,Normal,24-Apr-2018 Calcium 9.2,high
+2018-04-24,Phosphorus (Serum),5.2,mg/dl,2.5-4.5,,CMC Vellore,Dr. Santosh Varughese,High,24-Apr-2018 Phosphorus 5.2 mg/dl,high
+2018-04-24,Iron (Serum),52,µg/dl,M 60-160 / F 40-145,,CMC Vellore,Dr. Santosh Varughese,Low (male ref),24-Apr-2018 Iron 52,high
+2018-04-24,Ferritin,410,µg/L,F 250-350 (as noted),,CMC Vellore,Dr. Santosh Varughese,High,24-Apr-2018 Ferritin 410,medium
+2018-04-27,Hemoglobin,10.7,g/dl,12-15,Auto Validated,CMC Vellore,Dr. Santosh Varughese,Low,27-Apr-2018 Hb 10.7 g/dl,high
+2018-07-27,Creatinine (Blood),2.5,mg/dl,0.5-0.9,Kinetic Jaffe,Suraksha,Dr. Nayana Deb,High,27-Jul-2018 Creatinine 2.5 mg/dl,high
+2018-07-27,PTH (Parathyroid Hormone),190.1,pg/ml,15-65,ECLIA,Suraksha,Dr. Neepa Chowdhury,Very High,27-Jul-2018 PTH 190.1 pg/ml,high
+2018-07-27,Phosphorus (Serum),3.4,mg/dl,2.5-4.5,UV Phosphovolydate,Suraksha,Dr. Nayana Deb,Normal,27-Jul-2018 Phosphorus 3.4,high
+2018-07-27,Ferritin,120,ng/ml,13-150,ECLIA,Suraksha,Dr. Nayana Deb,Normal,27-Jul-2018 Ferritin 120,high
+2018-12-04,Creatinine (Blood),2.6,mg/dl,0.5-0.9,Kinetic Jaffe,Suraksha,Dr. Nayana Deb,High,04-Dec-2018 Creatinine 2.6 mg/dl,high
+2018-12-04,TSH,4.29,µIU/mL,0.5-4.7,ECLIA,Suraksha,Dr. Nayana Deb,Borderline High,04-Dec-2018 TSH 4.29 µIU/mL,high
+2022-10-13,Creatinine (Serum),3.22,mg/dL,0.5-0.9,Kinetic Jaffe,SagePath,Dr. Yashwant Singh,High,13-Oct-2022 Creatinine 3.22 mg/dL,high
+2022-10-13,Urea,64.3,mg/dL,12.8-42.8,Glutamate dehydrogenase,SagePath,Dr. Yashwant Singh,High,13-Oct-2022 Urea 64.3 mg/dL,high
+2022-10-13,Uric Acid,4.91,mg/dL,2.6-6.0,,SagePath,Dr. Yashwant Singh,Normal,13-Oct-2022 Uric Acid 4.91,high
+2022-10-13,Sodium,136,mmol/L,135-145,ISE Direct,SagePath,Dr. Yashwant Singh,Normal,13-Oct-2022 Sodium 136,high
+2022-10-13,Potassium,3.47,mmol/L,3.5-5.0,ISE Direct,SagePath,Dr. Yashwant Singh,Low,13-Oct-2022 Potassium 3.47 mmol/L,high
+2022-10-13,Chloride,100,mmol/L,98-106,ISE Direct,SagePath,Dr. Yashwant Singh,Normal,13-Oct-2022 Chloride 100,high
+2022-10-13,Calcium,8.79,mg/dL,8.5-10.1,,SagePath,Dr. Yashwant Singh,Normal,13-Oct-2022 Calcium 8.79,high
+2022-10-13,Hemoglobin,11.6,g/dL,12-15,Cyanmeth,SagePath,Dr. Yashwant Singh,Low,13-Oct-2022 Hb 11.6 g/dL,high
+2022-10-13,RBC,3.62,x10^12/L,4.5-5.5,Cell Impedance,SagePath,Dr. Yashwant Singh,Low,13-Oct-2022 RBC 3.62,high
+2022-10-13,Platelet Count,140,x10^9/L,150-450,Cell Impedance,SagePath,Dr. Yashwant Singh,Low,13-Oct-2022 Platelet 140,high
+2022-10-13,Neutrophils %,26,%,40-70,,SagePath,Dr. Yashwant Singh,Low,13-Oct-2022 Neutrophils 26%,high
+2022-10-13,Lymphocytes %,23,%,20-40,,SagePath,Dr. Yashwant Singh,Normal,13-Oct-2022 Lymphocytes 23%,high
+2022-10-13,ESR,82,mm/hr,0-12,Westergren,SagePath,Dr. Yashwant Singh,High,13-Oct-2022 ESR 82 mm/hr,high
+2022-10-13,Glucose (Random),108,mg/dL,70-140,Hexokinase,SagePath,Dr. Yashwant Singh,Normal,13-Oct-2022 Random glucose 108 mg/dL,high
+2022-10-13,AST (SGOT),46.4,U/L,5-40,IFCC,SagePath,Dr. Yashwant Singh,High,13-Oct-2022 AST 46.4 U/L,high
+2022-10-13,ALT (SGPT),23.15,U/L,<65,IFCC,SagePath,Dr. Yashwant Singh,Normal,13-Oct-2022 ALT 23.15 U/L,high
+2022-11-12,Anti-dsDNA Antibody,12.2,IU/mL,Negative <25,ELISA,SagePath,Dr. Yashwant Singh,Negative,12-Nov-2022 Anti dsDNA 12.2 IU/mL,high
+2022-11-13,ANA (IFA),Not Seen,,Negative,Immunofluorescence,SagePath,Dr. Yashwant Singh,Negative,13-Nov-2022 ANA IFA: Not seen,high
+2022-11-12,Hepatitis E IgM,0.37,S/Co,<1.0 Negative,ELISA,SagePath,Dr. Yashwant Singh,Negative,12-Nov-2022 HEV IgM 0.37 S/Co,high
+2022-11-12,HIV 1&2 Antibody,0.27,S/Co,<1.0 Negative,ELISA,SagePath,Dr. Yashwant Singh,Negative,12-Nov-2022 HIV 0.27 S/Co,high
+2022-11-12,Hepatitis C Antibody,0.32,S/Co,<1.0 Negative,ELISA,SagePath,Dr. Yashwant Singh,Negative,12-Nov-2022 HCV Ab 0.32 S/Co,high
+2022-11-12,HBsAg,0.39,S/Co,<1.0 Negative,ELISA,SagePath,Dr. Yashwant Singh,Negative,12-Nov-2022 HBsAg 0.39 S/Co,high
+2022-11-12,Total IgE,13.8,IU/mL,Up to 378,CLIA,SagePath,Dr. Yashwant Singh,Normal,12-Nov-2022 Total IgE 13.8 IU/mL,high
+2022-11-12,IgG,14.22,g/L,5.52-16.31,Immunoturbidimetry,SagePath,Dr. Yashwant Singh,Normal,12-Nov-2022 IgG 14.22 g/L,high
+2022-11-12,IgM,1.62,g/L,0.33-2.93,Immunoturbidimetry,SagePath,Dr. Yashwant Singh,Normal,12-Nov-2022 IgM 1.62 g/L,high
+2022-11-11,Urine Analysis (dipstick),Protein ++,,Negative,Strip Reflectance,SagePath,Dr. Yashwant Singh,Abnormal,11-Nov-2022 Urine protein ++,high
+2022-11-11,Urine Pus Cells,3-4,/hpf,0-5,Microscopy,SagePath,Dr. Yashwant Singh,Slightly high,11-Nov-2022 Pus cells 3-4 /hpf,high
+2022-11-11,Urine RBC,Nil,/hpf,Nil,Microscopy,SagePath,Dr. Yashwant Singh,Normal,11-Nov-2022 Urine RBC Nil,high
+2022-11-11,Urine Epithelial Cells,5-8,/hpf,0-5,Microscopy,SagePath,Dr. Yashwant Singh,Slightly high,11-Nov-2022 Epithelial cells 5-8,high
+2022-10-16,Urine Culture,No Growth,,,,Aerobic Culture,SagePath,Dr. Yashwant Singh,Negative,16-Oct-2022 Urine culture: No growth,high
+2022-11-13,Urine Protein (24hr),165.2,mg/24hr,<150,Pyrogallol Red,SagePath,Dr. Yashwant Singh,Slightly high,13-Nov-2022 24hr urine protein 165.2 mg/24hr,high
+2022-11-13,Urine Volume (24hr),1000,ml/24hr,Varies,,SagePath,Dr. Yashwant Singh,Normal,13-Nov-2022 Urine volume 1000 ml,high
+2018-04-27,Prescription (example),"['Tab Atenolol 50mg OD', 'Tab Etroxin 50mcg OD', 'Tab Revalamer 400mg TDS', 'Tab Febuxostat 40mg OD', 'Cap Calcitriol 0.25mcg OD', 'Cap Eido-fe forte OD']",,,Clinical note,CMC/Clinic,Dr. (as per note),Renal diet + avoid NSAIDs,27-Apr-2018 prescription list (handwritten/clinic),medium
+2022-12-12,Prescription (acute),"['Max 500mg TDS', 'Ciplox 500mg TDS', 'Arithral TDS', 'Parietal OD', 'Supradyn OD', 'Lasix weekly']",,,Clinical note,Clinic Note,,For fever / suspected UTI,12-Dec-2022 prescribed antibiotics and supportive meds,medium
+2023-01-03,Prescription,"['Lasix', 'Etroxin', 'Shelcal HD', 'Supradyn', 'Autrin', 'Amlodipin']",,,Clinic Note,Clinic Note,Dr. Singh,Medication list (as typed),03-Jan-2023 Lasix, Etroxin, Shelcal HD, Supradyn, Autrin, Amlodipin prescribed,high
+,Blood Pressure Readings (home log),"[{'measurement_no': 0, 'Systolic': 143, 'Diastolic': 94}, {'measurement_no': 1, 'Systolic': 139, 'Diastolic': 89}, {'measurement_no': 2, 'Systolic': 136, 'Diastolic': 92}, {'measurement_no': 3, 'Systolic': 138, 'Diastolic': 88}, {'measurement_no': 4, 'Systolic': 143, 'Diastolic': 90}, {'measurement_no': 5, 'Systolic': 147, 'Diastolic': 89}, {'measurement_no': 6, 'Systolic': 144, 'Diastolic': 91}, {'measurement_no': 7, 'Systolic': 141, 'Diastolic': 90}, {'measurement_no': 8, 'Systolic': 138, 'Diastolic': 90}, {'measurement_no': 9, 'Systolic': 138, 'Diastolic': 87}, {'measurement_no': 10, 'Systolic': 145, 'Diastolic': 88}, {'measurement_no': 11, 'Systolic': 136, 'Diastolic': 85}, {'measurement_no': 12, 'Systolic': 147, 'Diastolic': 93}, {'measurement_no': 13, 'Systolic': 141, 'Diastolic': 95}, {'measurement_no': 14, 'Systolic': 139, 'Diastolic': 91}, {'measurement_no': 15, 'Systolic': 146, 'Diastolic': 90}, {'measurement_no': 16, 'Systolic': 134, 'Diastolic': 87}, {'measurement_no': 17, 'Systolic': 130, 'Diastolic': 87}, {'measurement_no': 18, 'Systolic': 141, 'Diastolic': 92}, {'measurement_no': 19, 'Systolic': 128, 'Diastolic': 82}, {'measurement_no': 20, 'Systolic': 148, 'Diastolic': 92}, {'measurement_no': 21, 'Systolic': 145, 'Diastolic': 92}, {'measurement_no': 22, 'Systolic': 144, 'Diastolic': 92}, {'measurement_no': 23, 'Systolic': 137, 'Diastolic': 86}, {'measurement_no': 24, 'Systolic': 145, 'Diastolic': 89}, {'measurement_no': 25, 'Systolic': 145, 'Diastolic': 87}, {'measurement_no': 26, 'Systolic': 141, 'Diastolic': 89}, {'measurement_no': 27, 'Systolic': 132, 'Diastolic': 85}, {'measurement_no': 28, 'Systolic': 137, 'Diastolic': 88}, {'measurement_no': 29, 'Systolic': 141, 'Diastolic': 89}, {'measurement_no': 30, 'Systolic': 140, 'Diastolic': 90}]",mmHg,120/80,Home Record (manual),Handwritten BP log images,,Multiple home BP readings; dates not present on images,Handwritten BP log (31 measurements),medium
+2017-12-06,Chest X-ray - Impression,Normal study,,,,X-ray,Suraksha,Dr. Deep Shankar Parasar,Normal,06-Dec-2017 Chest X-ray normal,high
+2018-01-29,Diagnosis / Impression,Overall reduced GFR; bilateral severely impaired renal cortical function,,,,Renogram report,Dev Institute,Dr. A.K. Das,Severe renal impairment (CKD),29-Jan-2018 renogram impression,high
+2018-04-27,Diagnosis / Impression,CKD Stage 4 with Hypertension & Hypothyroidism,,,,Clinic summary,CMC Vellore,Dr. Santosh Varughese,,27-Apr-2018 impression: CKD stage 4, HTN, hypothyroid,high

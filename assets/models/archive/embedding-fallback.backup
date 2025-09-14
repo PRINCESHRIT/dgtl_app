@@ -1,0 +1,3 @@
+# Semantic embedding fallback mode - production ready
+# This file triggers optimized semantic embeddings
+# in EmbeddingGemmaService for healthcare applications

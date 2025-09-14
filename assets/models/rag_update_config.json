@@ -1,0 +1,45 @@
+{
+  "auto_learning": {
+    "enabled": true,
+    "triggers": [
+      "new_lab_results",
+      "medication_changes",
+      "symptom_updates",
+      "vital_sign_changes"
+    ],
+    "update_frequency": "real_time"
+  },
+  "knowledge_sources": [
+    {
+      "type": "clinical_data",
+      "source": "assets/data/patient_clinical_dataset.csv",
+      "auto_extract": true,
+      "confidence_threshold": 0.8
+    },
+    {
+      "type": "enhanced_knowledge",
+      "source": "assets/models/enhanced_medical_knowledge.json",
+      "static": false,
+      "version_controlled": true
+    },
+    {
+      "type": "personalized_insights",
+      "source": "assets/data/personalized_insights.json",
+      "learning_enabled": true,
+      "feedback_integration": true
+    }
+  ],
+  "embedding_management": {
+    "auto_generate": true,
+    "dimension": 256,
+    "model": "embedding-gemma-308m",
+    "batch_processing": true,
+    "cache_enabled": true
+  },
+  "quality_control": {
+    "confidence_threshold": 0.75,
+    "human_review_required": false,
+    "automated_validation": true,
+    "source_verification": true
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "patient_profile": {
+    "primary_conditions": [
+      "CKD Stage 4",
+      "Hypertension",
+      "Hypothyroidism"
+    ],
+    "timespan": "2017-2023",
+    "total_records": "Multiple data points",
+    "data_types": [
+      "Lab results",
+      "Prescriptions",
+      "Imaging",
+      "Vital signs"
+    ]
+  },
+  "critical_parameters": {
+    "creatinine_trend": "Consistently elevated (2.5-3.22 mg/dl)",
+    "gfr_status": "Severely reduced (8.8-21.3 ml/min)",
+    "blood_pressure": "Elevated (avg 140/90 mmHg)",
+    "hemoglobin": "Consistently low (10.0-11.6 g/dl)"
+  },
+  "ai_recommendations": [
+    "Monitor creatinine trends for CKD progression",
+    "Track blood pressure control effectiveness",
+    "Analyze medication adherence patterns",
+    "Predict hospitalization risk based on lab trends"
+  ]
+}

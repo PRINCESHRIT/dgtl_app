@@ -1,0 +1,202 @@
+{
+  "metadata": {
+    "title": "Stage 4 CKD Clinical Management Guidelines",
+    "version": "2025",
+    "egfr_range": "15-29 ml/min/1.73m²",
+    "created_date": "2025-09-14",
+    "evidence_level": "A"
+  },
+  "guidelines": {
+    "nephrology_referral": {
+      "category": "specialist_care",
+      "requirements": [
+        {
+          "criterion": "eGFR <30 ml/min",
+          "action": "Refer to nephrologist",
+          "urgency": "mandatory",
+          "monitoring_frequency": "every 2-3 months"
+        }
+      ],
+      "monitoring_parameters": [
+        "eGFR",
+        "albuminuria", 
+        "blood_pressure",
+        "progression_rate"
+      ],
+      "education_focus": "RRT planning, conservative care options"
+    },
+    "blood_pressure_management": {
+      "category": "cardiovascular",
+      "target_bp": "120/80 mmHg",
+      "first_line_medications": [
+        {
+          "class": "ACE_inhibitors",
+          "benefit": "30-39% kidney failure risk reduction",
+          "cv_benefit": "18-24% CV event reduction",
+          "monitoring": "creatinine rise <30%, hyperkalemia management"
+        },
+        {
+          "class": "ARBs", 
+          "benefit": "30-39% kidney failure risk reduction",
+          "cv_benefit": "18-24% CV event reduction",
+          "monitoring": "creatinine rise <30%, hyperkalemia management"
+        }
+      ],
+      "add_on_therapy": [
+        {
+          "medication": "amlodipine",
+          "type": "CCB",
+          "indication": "additional BP control"
+        },
+        {
+          "medication": "loop_diuretics",
+          "indication": "GFR <30, volume overload",
+          "preference": "preferred over thiazides"
+        },
+        {
+          "medication": "spironolactone",
+          "indication": "resistant HTN",
+          "monitoring": "potassium levels"
+        }
+      ],
+      "diabetes_specific": [
+        {
+          "medication": "SGLT2_inhibitors",
+          "requirement": "eGFR ≥20",
+          "benefit": "cardioprotective"
+        },
+        {
+          "medication": "GLP1_agonists",
+          "indication": "additional CV benefit"
+        }
+      ]
+    },
+    "lipid_management": {
+      "category": "cardiovascular",
+      "recommendations": [
+        {
+          "medication": "statins",
+          "indication": "all patients ≥50 with CKD G3-G5",
+          "combination": "± ezetimibe"
+        }
+      ],
+      "monitoring": "lipids annually"
+    },
+    "dietary_management": {
+      "category": "nutrition",
+      "sodium_restriction": "2g/day",
+      "protein_intake": "0.6-0.8 g/kg/day",
+      "diet_type": "plant-rich diet",
+      "restrictions": [
+        {
+          "nutrient": "phosphate",
+          "foods_to_avoid": ["dairy", "cola", "processed_meats"]
+        },
+        {
+          "nutrient": "potassium", 
+          "condition": "if hyperkalemia develops"
+        }
+      ]
+    },
+    "metabolic_acidosis": {
+      "category": "metabolic",
+      "monitoring": "serum bicarbonate regularly",
+      "treatment_threshold": "bicarbonate <22 mEq/L",
+      "treatments": [
+        "oral bicarbonate",
+        "base-producing diet (fruits/vegetables)"
+      ],
+      "target_range": "22-26 mEq/L",
+      "benefits": "slows CKD progression, improves nutrition"
+    },
+    "anemia_management": {
+      "category": "hematologic",
+      "screening": ["CBC", "iron_studies", "B12", "TSH"],
+      "treatment_threshold": "Hgb <10-11 g/dL",
+      "iron_deficiency_treatment": "replete iron (often IV)",
+      "esa_therapy": {
+        "indication": "persistent anemia after iron repletion",
+        "target_hgb": "10-11 g/dL",
+        "monitoring": "every 2-4 weeks after initiation"
+      },
+      "transfusion_avoidance": "preserve transplant candidacy"
+    },
+    "mineral_bone_disorder": {
+      "category": "metabolic_bone",
+      "phosphate_management": [
+        {
+          "intervention": "dietary_restriction",
+          "foods_to_limit": ["dairy", "processed_foods"]
+        },
+        {
+          "intervention": "phosphate_binders",
+          "first_line": "calcium_binders",
+          "alternatives": ["sevelamer", "lanthanum"],
+          "indication_for_alternatives": "hypercalcemia"
+        }
+      ],
+      "vitamin_d": [
+        {
+          "test": "25(OH)D",
+          "action": "replete if low"
+        },
+        {
+          "medication": "calcitriol/paricalcitol",
+          "indication": "high PTH despite normal D/Ca/Phos"
+        }
+      ],
+      "calcimimetics": {
+        "medication": "cinacalcet",
+        "indication": "persistently high PTH",
+        "monitoring": "hypocalcemia risk"
+      },
+      "monitoring_frequency": "PTH, Ca, Phos, ALP every 3-6 months",
+      "pth_target": "mildly elevated (2× normal range)"
+    },
+    "medication_adjustments": {
+      "category": "pharmacology",
+      "dose_adjustments_needed": [
+        "antibiotics",
+        "hypoglycemics", 
+        "anticoagulants",
+        "insulin"
+      ],
+      "medications_to_avoid": [
+        {
+          "class": "NSAIDs",
+          "reason": "nephrotoxic"
+        },
+        {
+          "agent": "iodine_contrast",
+          "precaution": "hydrate if essential use"
+        },
+        {
+          "agent": "gadolinium",
+          "risk": "NSF (nephrogenic systemic fibrosis)"
+        }
+      ],
+      "safe_pain_management": [
+        "acetaminophen (first-line)",
+        "cautious low-dose opioids (avoid morphine/codeine)"
+      ]
+    },
+    "vaccinations": {
+      "category": "preventive",
+      "hepatitis_b": {
+        "timing": "stages 3-5, preferably before GFR <15",
+        "reason": "better immune response"
+      },
+      "other_vaccines": "standard adult immunizations"
+    },
+    "ckd_progression_monitoring": {
+      "category": "disease_monitoring",
+      "tools": ["Kidney Failure Risk Equation"],
+      "reversible_factors": [
+        "obstruction",
+        "nephrotoxic_drugs",
+        "volume_depletion",
+        "infections"
+      ]
+    }
+  }
+}

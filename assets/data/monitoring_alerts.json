@@ -1,0 +1,40 @@
+{
+  "active_alerts": [
+    {
+      "type": "critical_value",
+      "parameter": "Creatinine",
+      "current_value": "3.22 mg/dl",
+      "threshold": ">3.0 mg/dl",
+      "priority": "high",
+      "recommendation": "Monitor closely for dialysis requirement"
+    },
+    {
+      "type": "trend_alert",
+      "parameter": "GFR",
+      "current_value": "21.3 ml/min",
+      "threshold": "<30 ml/min",
+      "priority": "high",
+      "recommendation": "CKD Stage 4 - prepare for renal replacement therapy"
+    },
+    {
+      "type": "medication_alert",
+      "parameter": "Blood Pressure",
+      "current_value": "140/90 mmHg (average)",
+      "threshold": ">130/80 mmHg",
+      "priority": "medium",
+      "recommendation": "Optimize antihypertensive therapy"
+    }
+  ],
+  "monitoring_schedule": {
+    "creatinine": "Every 3 months",
+    "blood_pressure": "Weekly (home monitoring)",
+    "hemoglobin": "Every 3 months",
+    "electrolytes": "Every 3 months",
+    "pth": "Every 6 months"
+  },
+  "ai_predictions": {
+    "dialysis_timeline": "12-24 months (based on current GFR decline)",
+    "cardiovascular_events": "Moderate risk in next 5 years",
+    "medication_optimization": "Consider ACE inhibitor adjustment"
+  }
+}

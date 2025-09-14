@@ -1,0 +1,93 @@
+{
+  "patient_id": "CLINICAL-P001",
+  "generated_date": "2025-09-14T16:46:09.252574",
+  "guidelines_version": "2025",
+  "total_recommendations": 8,
+  "priority_levels": {
+    "high": 5,
+    "medium": 3,
+    "low": 0
+  },
+  "recommendations": [
+    {
+      "category": "Cardioprotective Therapy",
+      "priority": "high",
+      "current_status": "No ACE inhibitor or ARB documented",
+      "guideline_requirement": "ACE inhibitor or ARB first-line for Stage 4 CKD",
+      "recommendation": "Initiate ACE inhibitor (lisinopril 5-10mg daily) or ARB if ACE intolerant. Monitor creatinine and potassium.",
+      "evidence": "30-39% kidney failure risk reduction, 18-24% CV event reduction",
+      "monitoring": "Recheck labs in 1-2 weeks after initiation",
+      "urgency": "Initiate within 1-2 weeks"
+    },
+    {
+      "category": "Anemia Management",
+      "priority": "medium",
+      "current_status": "Hemoglobin 11.6 g/dl (at target)",
+      "guideline_target": "10-11 g/dl",
+      "recommendation": "Continue current anemia management. Monitor iron stores regularly.",
+      "evidence": "Current hemoglobin within target range",
+      "monitoring": "CBC every 3 months, iron studies every 6 months",
+      "urgency": "Continue current management"
+    },
+    {
+      "category": "Mineral Bone Disorder",
+      "priority": "high",
+      "current_status": "PTH 190.1 pg/ml (elevated)",
+      "guideline_target": "Mildly elevated (2× normal range)",
+      "recommendation": "Check 25(OH)D and replete if low. Consider calcitriol or paricalcitol if D/Ca/Phos normal. Evaluate phosphate binders.",
+      "evidence": "High PTH indicates secondary hyperparathyroidism",
+      "monitoring": "PTH, Ca, Phos every 3-6 months",
+      "urgency": "Initiate treatment within 2-4 weeks"
+    },
+    {
+      "category": "Dietary Management",
+      "priority": "medium",
+      "current_status": "Stage 4 CKD requires phosphate restriction",
+      "guideline_requirement": "Limit phosphate intake",
+      "recommendation": "Restrict phosphate-rich foods (dairy, cola, processed meats). Consider phosphate binders if serum phosphate elevated.",
+      "evidence": "Phosphate restriction slows MBD progression",
+      "monitoring": "Serum phosphate every 3-6 months",
+      "urgency": "Implement dietary changes within 1-2 weeks"
+    },
+    {
+      "category": "Metabolic Acidosis Screening",
+      "priority": "medium",
+      "current_status": "No recent bicarbonate data",
+      "guideline_requirement": "Regular bicarbonate monitoring in Stage 4 CKD",
+      "recommendation": "Obtain serum bicarbonate level. If <22 mEq/L, initiate oral bicarbonate or base-producing diet.",
+      "evidence": "Treating acidosis slows CKD progression",
+      "monitoring": "Check bicarbonate every 3 months",
+      "urgency": "Obtain level within 2-4 weeks"
+    },
+    {
+      "category": "Specialist Care",
+      "priority": "high",
+      "current_status": "Stage 4 CKD (eGFR 15-29)",
+      "guideline_requirement": "Mandatory nephrology referral for eGFR <30",
+      "recommendation": "Ensure regular nephrology follow-up every 2-3 months. Discuss RRT options and conservative care.",
+      "evidence": "Stage 4 is transition phase requiring specialist management",
+      "monitoring": "eGFR, albuminuria, progression rate every 2-3 months",
+      "urgency": "Schedule within 4-6 weeks if not established"
+    },
+    {
+      "category": "Medication Safety",
+      "priority": "high",
+      "current_status": "Stage 4 CKD requires dose adjustments",
+      "guideline_requirement": "Adjust renally-cleared medications",
+      "recommendation": "Review all medications for dose adjustments (antibiotics, hypoglycemics, anticoagulants). Avoid NSAIDs and nephrotoxins.",
+      "evidence": "Prevents drug accumulation and toxicity",
+      "monitoring": "Medication review every visit",
+      "urgency": "Review within 1-2 weeks"
+    },
+    {
+      "category": "RRT Preparation",
+      "priority": "high",
+      "current_status": "eGFR 8.8 ml/min (approaching RRT need)",
+      "guideline_requirement": "Plan vascular access when eGFR approaches 15",
+      "recommendation": "Begin dialysis access planning. Consider arteriovenous fistula creation. Evaluate for transplant candidacy.",
+      "evidence": "Early access planning improves outcomes",
+      "monitoring": "Access evaluation within 3-6 months",
+      "urgency": "Initiate planning within 4-8 weeks"
+    }
+  ]
+}

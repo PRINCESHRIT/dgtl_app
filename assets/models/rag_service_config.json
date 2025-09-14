@@ -1,0 +1,33 @@
+{
+  "knowledge_base": {
+    "primary_source": "assets/models/rag_guidelines_integrated.json",
+    "backup_sources": [
+      "assets/models/rag_integrated_knowledge.json",
+      "assets/models/enhanced_medical_knowledge.json"
+    ]
+  },
+  "query_processing": {
+    "clinical_priority_weighting": true,
+    "guideline_evidence_boost": 0.15,
+    "patient_specific_matching": true,
+    "confidence_threshold": 0.75
+  },
+  "response_generation": {
+    "include_evidence": true,
+    "include_urgency": true,
+    "include_monitoring": true,
+    "personalization_level": "high"
+  },
+  "learning_system": {
+    "feedback_integration": true,
+    "guideline_updates": "automatic",
+    "clinical_outcome_tracking": true,
+    "recommendation_refinement": true
+  },
+  "integration_metadata": {
+    "last_updated": "2025-09-14T16:48:37.647385",
+    "guidelines_version": "2025",
+    "integration_level": "complete",
+    "patient_data_years": "2017-2023"
+  }
+}

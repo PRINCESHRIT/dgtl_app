@@ -1,0 +1,34 @@
+{
+  "patient_id": "CLINICAL-P001",
+  "generated_at": "2025-09-14T16:34:22.645673",
+  "insights": [
+    {
+      "type": "disease_progression",
+      "title": "CKD Progression Management",
+      "insight": "Your creatinine levels have remained stable between 2.5-3.22 mg/dl over 5+ years, indicating well-controlled CKD Stage 4. Continue current nephrology care plan.",
+      "confidence": 0.95,
+      "source": "Longitudinal lab analysis"
+    },
+    {
+      "type": "medication_effectiveness",
+      "title": "Thyroid Management Success",
+      "insight": "TSH improvement from 10.7 to 4.29 µIU/mL demonstrates excellent response to levothyroxine therapy. Current dose appears optimal.",
+      "confidence": 0.92,
+      "source": "Endocrine monitoring data"
+    },
+    {
+      "type": "risk_prediction",
+      "title": "Dialysis Timeline Estimate",
+      "insight": "Based on current GFR stability around 21 ml/min, estimated 12-24 months until potential dialysis need. Prepare vascular access when GFR approaches 15 ml/min.",
+      "confidence": 0.85,
+      "source": "Predictive modeling"
+    },
+    {
+      "type": "monitoring_optimization",
+      "title": "Blood Pressure Control",
+      "insight": "Average BP 140/90 with home monitoring shows good patient engagement. Consider ACE inhibitor addition for additional nephroprotection if not contraindicated.",
+      "confidence": 0.88,
+      "source": "Cardiovascular risk analysis"
+    }
+  ]
+}

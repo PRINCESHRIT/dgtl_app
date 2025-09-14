@@ -1,0 +1,47 @@
+{
+  "patient_id": "CLINICAL-P001",
+  "created_date": "2025-09-14T16:46:09.259042",
+  "ckd_stage": "Stage 5 (Kidney failure)",
+  "monitoring_schedule": {
+    "nephrology_visits": {
+      "frequency": "Every 2-3 months",
+      "parameters": [
+        "eGFR",
+        "albuminuria",
+        "blood_pressure",
+        "progression_rate"
+      ],
+      "next_visit": "2025-12-13"
+    },
+    "laboratory_monitoring": {
+      "frequency": "Every 3 months",
+      "tests": [
+        "CBC with differential",
+        "CMP (including eGFR, creatinine)",
+        "Phosphorus, PTH, 25(OH)D",
+        "Iron studies (ferritin, TSAT)",
+        "Lipid panel (annual)",
+        "HbA1c (if diabetic)"
+      ],
+      "next_labs": "2025-12-13"
+    },
+    "cardiovascular_monitoring": {
+      "blood_pressure": "Every visit + home monitoring",
+      "ecg": "As clinically indicated",
+      "lipids": "Annually"
+    },
+    "vaccination_schedule": {
+      "hepatitis_b": "Complete series before eGFR <15",
+      "annual_flu": "Yearly",
+      "covid_boosters": "Per CDC guidelines"
+    }
+  },
+  "alert_parameters": {
+    "egfr_decline": ">5 ml/min/year or >25% decline",
+    "hemoglobin": "<10 g/dl",
+    "pth": ">2× upper normal limit",
+    "phosphorus": ">4.5 mg/dl",
+    "potassium": ">5.5 mEq/L",
+    "bicarbonate": "<22 mEq/L"
+  }
+}

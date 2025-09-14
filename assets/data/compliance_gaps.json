@@ -1,0 +1,15 @@
+{
+  "assessment_date": "2025-09-14T16:46:09.260806",
+  "patient_id": "CLINICAL-P001",
+  "total_gaps": 1,
+  "compliance_score": "80%",
+  "gaps": [
+    {
+      "guideline": "ACE inhibitor or ARB therapy",
+      "current_status": "Gap - no ACE/ARB documented",
+      "impact": "High",
+      "recommendation": "Initiate ACE inhibitor or ARB if not contraindicated"
+    }
+  ],
+  "overall_assessment": "Good compliance with minor gaps"
+}

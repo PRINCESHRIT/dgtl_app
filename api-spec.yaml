@@ -1,0 +1,854 @@
+// DGTL Healthcare - Production OpenAPI Specification
+# OpenAPI v3.1 specification for DGTL Healthcare API
+# Medical-grade endpoints with idempotency, versioning, and real-time support
+
+openapi: 3.1.0
+info:
+  title: DGTL Healthcare API
+  description: |
+    Production healthcare API for CKD patient monitoring, AI recommendations, 
+    and clinical decision support. Designed for mobile-first, offline-capable 
+    applications with Hindi localization support.
+  version: "1.0.0"
+  contact:
+    name: DGTL Healthcare Team
+    url: https://dgtl.healthcare
+    email: api@dgtl.healthcare
+  license:
+    name: Proprietary
+    url: https://dgtl.healthcare/license
+
+servers:
+  - url: https://api.dgtl.healthcare/v1
+    description: Production API
+  - url: https://staging-api.dgtl.healthcare/v1
+    description: Staging API
+  - url: http://localhost:8080/v1
+    description: Development API
+
+security:
+  - BearerAuth: []
+
+paths:
+  # Authentication & Token Management
+  /auth/login:
+    post:
+      tags: [Authentication]
+      summary: User authentication
+      description: Exchange credentials for JWT access token and refresh token
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email: {type: string, format: email}
+                password: {type: string, minLength: 8}
+                device_id: {type: string, description: "Unique device identifier"}
+                device_info: 
+                  type: object
+                  properties:
+                    platform: {type: string, enum: [android, ios, web]}
+                    version: {type: string}
+                    model: {type: string}
+      responses:
+        "200":
+          description: Authentication successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "429":
+          $ref: '#/components/responses/RateLimited'
+
+  /auth/refresh:
+    post:
+      tags: [Authentication]
+      summary: Refresh access token
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [refresh_token]
+              properties:
+                refresh_token: {type: string}
+                device_id: {type: string}
+      responses:
+        "200":
+          description: Token refreshed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+
+  # Patient Management
+  /patients/{patient_id}:
+    get:
+      tags: [Patients]
+      summary: Get patient profile
+      parameters:
+        - $ref: '#/components/parameters/PatientId'
+      responses:
+        "200":
+          description: Patient profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+    put:
+      tags: [Patients]
+      summary: Update patient profile
+      parameters:
+        - $ref: '#/components/parameters/PatientId'
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatientUpdate'
+      responses:
+        "200":
+          description: Patient updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+
+  # Vitals Management (CKD Big 7)
+  /patients/{patient_id}/vitals:
+    get:
+      tags: [Vitals]
+      summary: Get patient vitals
+      description: Retrieve CKD biomarkers and other vital signs with filtering and pagination
+      parameters:
+        - $ref: '#/components/parameters/PatientId'
+        - name: since
+          in: query
+          description: Return vitals recorded after this timestamp
+          schema:
+            type: string
+            format: date-time
+            example: "2025-09-01T00:00:00Z"
+        - name: type
+          in: query
+          description: Filter by vital type
+          schema:
+            type: array
+            items:
+              type: string
+              enum: [creatinine, egfr, potassium, phosphorus, hemoglobin, calcium, albumin]
+          style: form
+          explode: false
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 50
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+      responses:
+        "200":
+          description: List of vitals
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Vital'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+                  sync_info:
+                    $ref: '#/components/schemas/SyncInfo'
+
+    post:
+      tags: [Vitals]
+      summary: Record new vital signs
+      description: |
+        Create new vital sign readings. Supports batch operations and idempotency.
+        Use client_id for idempotency - duplicate requests with same client_id will be ignored.
+      parameters:
+        - $ref: '#/components/parameters/PatientId'
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/VitalCreate'
+                - type: array
+                  items:
+                    $ref: '#/components/schemas/VitalCreate'
+                  maxItems: 50
+      responses:
+        "201":
+          description: Vitals created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    oneOf:
+                      - $ref: '#/components/schemas/Vital'
+                      - type: array
+                        items:
+                          $ref: '#/components/schemas/Vital'
+                  sync_info:
+                    $ref: '#/components/schemas/SyncInfo'
+        "409":
+          description: Conflict - duplicate client_id or version mismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictError'
+
+  /patients/{patient_id}/vitals/{vital_id}:
+    put:
+      tags: [Vitals]
+      summary: Update vital sign
+      parameters:
+        - $ref: '#/components/parameters/PatientId'
+        - $ref: '#/components/parameters/VitalId'
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VitalUpdate'
+      responses:
+        "200":
+          description: Vital updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vital'
+        "409":
+          $ref: '#/components/responses/Conflict'
+
+  # Blood Pressure Specific Endpoints
+  /patients/{patient_id}/bp-readings:
+    get:
+      tags: [Blood Pressure]
+      summary: Get BP readings with trend analysis
+      parameters:
+        - $ref: '#/components/parameters/PatientId'
+        - name: period
+          in: query
+          description: Time period for readings
+          schema:
+            type: string
+            enum: [daily, weekly, monthly, yearly]
+            default: weekly
+        - name: include_trend
+          in: query
+          description: Include trend analysis
+          schema:
+            type: boolean
+            default: true
+      responses:
+        "200":
+          description: BP readings with optional trend data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/BPReading'
+                  trend_analysis:
+                    $ref: '#/components/schemas/BPTrendAnalysis'
+                  recommendations:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AIRecommendation'
+
+    post:
+      tags: [Blood Pressure]
+      summary: Record BP reading
+      parameters:
+        - $ref: '#/components/parameters/PatientId'
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BPReadingCreate'
+      responses:
+        "201":
+          description: BP reading recorded
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/BPReading'
+                  ai_analysis:
+                    $ref: '#/components/schemas/BPAnalysis'
+                  recommendations:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AIRecommendation'
+
+  # AI Recommendations
+  /patients/{patient_id}/ai-recommendations:
+    get:
+      tags: [AI Recommendations]
+      summary: Get personalized AI recommendations
+      parameters:
+        - $ref: '#/components/parameters/PatientId'
+        - name: type
+          in: query
+          description: Filter by recommendation type
+          schema:
+            type: array
+            items:
+              type: string
+              enum: [daily_tips, expert_opinion, meal_plan, medication_alert, lifestyle]
+        - name: priority
+          in: query
+          description: Filter by priority level
+          schema:
+            type: string
+            enum: [low, medium, high, critical]
+        - name: active_only
+          in: query
+          description: Return only active recommendations
+          schema:
+            type: boolean
+            default: true
+      responses:
+        "200":
+          description: AI recommendations
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AIRecommendation'
+                  confidence_score:
+                    type: number
+                    format: float
+                    minimum: 0
+                    maximum: 1
+                    description: Overall AI confidence for recommendations
+
+  /patients/{patient_id}/ai-recommendations/{recommendation_id}/acknowledge:
+    post:
+      tags: [AI Recommendations]
+      summary: Mark recommendation as acknowledged
+      parameters:
+        - $ref: '#/components/parameters/PatientId'
+        - name: recommendation_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Recommendation acknowledged
+
+  # Clinical Assessments
+  /patients/{patient_id}/assessments:
+    get:
+      tags: [Clinical]
+      summary: Get clinical assessments
+      parameters:
+        - $ref: '#/components/parameters/PatientId'
+        - name: type
+          in: query
+          schema:
+            type: string
+            enum: [ckd_staging, medication_review, risk_assessment]
+      responses:
+        "200":
+          description: Clinical assessments
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ClinicalAssessment'
+
+    post:
+      tags: [Clinical]
+      summary: Create clinical assessment
+      parameters:
+        - $ref: '#/components/parameters/PatientId'
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClinicalAssessmentCreate'
+      responses:
+        "201":
+          description: Assessment created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClinicalAssessment'
+
+  # Batch Operations for Sync
+  /patients/{patient_id}/batch:
+    post:
+      tags: [Sync]
+      summary: Batch operation for offline sync
+      description: |
+        Execute multiple operations in a single request. Useful for syncing
+        offline changes when connectivity is restored.
+      parameters:
+        - $ref: '#/components/parameters/PatientId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                operations:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/BatchOperation'
+                  maxItems: 100
+      responses:
+        "200":
+          description: Batch operations completed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/BatchResult'
+                  summary:
+                    type: object
+                    properties:
+                      successful: {type: integer}
+                      failed: {type: integer}
+                      conflicts: {type: integer}
+
+  # Health Check & System Status
+  /health:
+    get:
+      tags: [System]
+      summary: System health check
+      security: []
+      responses:
+        "200":
+          description: System is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: {type: string, example: "healthy"}
+                  timestamp: {type: string, format: date-time}
+                  services:
+                    type: object
+                    properties:
+                      database: {type: string, enum: [healthy, degraded, down]}
+                      ai_service: {type: string, enum: [healthy, degraded, down]}
+                      cache: {type: string, enum: [healthy, degraded, down]}
+
+# WebSocket Stream Endpoint (documented for reference)
+# WS: /v1/stream?token={access_token}&channels=patient:{id}:vitals,patient:{id}:recommendations
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  parameters:
+    PatientId:
+      name: patient_id
+      in: path
+      required: true
+      description: Patient unique identifier
+      schema:
+        type: string
+        pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
+
+    VitalId:
+      name: vital_id
+      in: path
+      required: true
+      schema:
+        type: string
+
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      description: Idempotency key to prevent duplicate operations
+      schema:
+        type: string
+        maxLength: 255
+
+  schemas:
+    # Authentication Schemas
+    AuthResponse:
+      type: object
+      required: [access_token, token_type, expires_in]
+      properties:
+        access_token:
+          type: string
+          description: JWT access token
+        refresh_token:
+          type: string
+          description: Refresh token for getting new access tokens
+        token_type:
+          type: string
+          enum: [Bearer]
+        expires_in:
+          type: integer
+          description: Token expiration in seconds
+        user:
+          $ref: '#/components/schemas/User'
+
+    User:
+      type: object
+      properties:
+        id: {type: string}
+        email: {type: string, format: email}
+        role: {type: string, enum: [patient, clinician, admin]}
+        patient_id: {type: string, description: "Associated patient ID if role is patient"}
+
+    # Patient Schemas
+    Patient:
+      type: object
+      required: [id, name, created_at]
+      properties:
+        id: {type: string}
+        name: {type: string}
+        date_of_birth: {type: string, format: date}
+        gender: {type: string, enum: [male, female, other]}
+        ckd_stage: {type: string, enum: ["1", "2", "3a", "3b", "4", "5"]}
+        conditions: {type: array, items: {type: string}}
+        medications: {type: array, items: {type: string}}
+        allergies: {type: array, items: {type: string}}
+        primary_doctor: {type: string}
+        language: {type: string, default: "hi", enum: [hi, en]}
+        timezone: {type: string, default: "Asia/Kolkata"}
+        created_at: {type: string, format: date-time}
+        updated_at: {type: string, format: date-time}
+        version: {type: integer}
+
+    PatientUpdate:
+      type: object
+      properties:
+        name: {type: string}
+        ckd_stage: {type: string, enum: ["1", "2", "3a", "3b", "4", "5"]}
+        conditions: {type: array, items: {type: string}}
+        medications: {type: array, items: {type: string}}
+        allergies: {type: array, items: {type: string}}
+        language: {type: string, enum: [hi, en]}
+        version: {type: integer, description: "Version for optimistic locking"}
+
+    # Vital Signs Schemas
+    Vital:
+      type: object
+      required: [id, type, value, unit, recorded_at]
+      properties:
+        id: {type: string}
+        client_id: {type: string, description: "Client-generated idempotency key"}
+        patient_id: {type: string}
+        type: 
+          type: string
+          enum: [creatinine, egfr, potassium, phosphorus, hemoglobin, calcium, albumin]
+        value: {type: number, format: float}
+        unit: {type: string}
+        status: {type: string, enum: [normal, low, high, critical]}
+        notes: {type: string}
+        recorded_at: {type: string, format: date-time}
+        created_at: {type: string, format: date-time}
+        version: {type: integer}
+        synced: {type: boolean}
+
+    VitalCreate:
+      type: object
+      required: [client_id, type, value, unit, recorded_at]
+      properties:
+        client_id: {type: string, description: "Client-generated idempotency key"}
+        type: 
+          type: string
+          enum: [creatinine, egfr, potassium, phosphorus, hemoglobin, calcium, albumin]
+        value: {type: number, format: float}
+        unit: {type: string}
+        notes: {type: string}
+        recorded_at: {type: string, format: date-time}
+
+    VitalUpdate:
+      type: object
+      properties:
+        value: {type: number, format: float}
+        notes: {type: string}
+        version: {type: integer, description: "Version for optimistic locking"}
+
+    # Blood Pressure Schemas  
+    BPReading:
+      type: object
+      required: [id, systolic, diastolic, recorded_at]
+      properties:
+        id: {type: string}
+        client_id: {type: string}
+        patient_id: {type: string}
+        systolic: {type: integer, minimum: 50, maximum: 300}
+        diastolic: {type: integer, minimum: 30, maximum: 200}
+        heart_rate: {type: integer, minimum: 30, maximum: 250}
+        status: 
+          type: string
+          enum: [normal, elevated, high_stage1, high_stage2, crisis, low]
+        position: {type: string, enum: [sitting, standing, lying]}
+        arm: {type: string, enum: [left, right]}
+        fatigue_level: {type: number, format: float, minimum: 1, maximum: 5}
+        symptoms: {type: array, items: {type: string}}
+        recorded_at: {type: string, format: date-time}
+        created_at: {type: string, format: date-time}
+        version: {type: integer}
+
+    BPReadingCreate:
+      type: object
+      required: [client_id, systolic, diastolic, recorded_at]
+      properties:
+        client_id: {type: string}
+        systolic: {type: integer, minimum: 50, maximum: 300}
+        diastolic: {type: integer, minimum: 30, maximum: 200}
+        heart_rate: {type: integer, minimum: 30, maximum: 250}
+        position: {type: string, enum: [sitting, standing, lying]}
+        arm: {type: string, enum: [left, right]}
+        fatigue_level: {type: number, format: float, minimum: 1, maximum: 5}
+        symptoms: {type: array, items: {type: string}}
+        recorded_at: {type: string, format: date-time}
+
+    BPTrendAnalysis:
+      type: object
+      properties:
+        trend: {type: string, enum: [improving, stable, worsening]}
+        average_systolic: {type: number}
+        average_diastolic: {type: number}
+        readings_count: {type: integer}
+        period_days: {type: integer}
+        recommendations: {type: array, items: {type: string}}
+
+    BPAnalysis:
+      type: object
+      properties:
+        classification: 
+          type: string
+          enum: [normal, elevated, high_stage1, high_stage2, crisis, low]
+        risk_level: {type: string, enum: [low, medium, high, critical]}
+        immediate_action_required: {type: boolean}
+        advice: {type: string, description: "Hindi advice text"}
+
+    # AI Recommendation Schemas
+    AIRecommendation:
+      type: object
+      required: [id, type, title, content]
+      properties:
+        id: {type: string}
+        patient_id: {type: string}
+        type: 
+          type: string
+          enum: [daily_tips, expert_opinion, meal_plan, medication_alert, lifestyle]
+        title: {type: string, description: "Hindi title"}
+        content: {type: string, description: "Hindi content"}
+        priority: {type: string, enum: [low, medium, high, critical]}
+        confidence: {type: number, format: float, minimum: 0, maximum: 1}
+        triggers: {type: array, items: {type: string}}
+        related_vitals: {type: array, items: {type: string}}
+        valid_until: {type: string, format: date-time}
+        acknowledged: {type: boolean}
+        created_at: {type: string, format: date-time}
+
+    # Clinical Assessment Schemas
+    ClinicalAssessment:
+      type: object
+      properties:
+        id: {type: string}
+        patient_id: {type: string}
+        assessment_type: 
+          type: string
+          enum: [ckd_staging, medication_review, risk_assessment]
+        performed_by: {type: string}
+        assessment_date: {type: string, format: date-time}
+        results: {type: object, description: "Assessment results in JSON format"}
+        recommendations: {type: array, items: {type: string}}
+        severity: {type: string, enum: [low, medium, high, critical]}
+        confidence_score: {type: number, format: float}
+        next_review_date: {type: string, format: date-time}
+        status: {type: string, enum: [active, completed, superseded]}
+        created_at: {type: string, format: date-time}
+
+    ClinicalAssessmentCreate:
+      type: object
+      required: [client_id, assessment_type, assessment_date, results]
+      properties:
+        client_id: {type: string}
+        assessment_type: 
+          type: string
+          enum: [ckd_staging, medication_review, risk_assessment]
+        assessment_date: {type: string, format: date-time}
+        results: {type: object}
+        recommendations: {type: array, items: {type: string}}
+        next_review_date: {type: string, format: date-time}
+
+    # Batch Operations
+    BatchOperation:
+      type: object
+      required: [operation_type, entity_type, client_id]
+      properties:
+        operation_type: {type: string, enum: [create, update, delete]}
+        entity_type: {type: string, enum: [vital, bp_reading, assessment]}
+        client_id: {type: string}
+        entity_id: {type: string, description: "Required for update/delete operations"}
+        payload: {type: object, description: "Operation-specific data"}
+
+    BatchResult:
+      type: object
+      properties:
+        client_id: {type: string}
+        status: {type: string, enum: [success, error, conflict]}
+        entity_id: {type: string, description: "Created/updated entity ID if successful"}
+        error: {type: string, description: "Error message if failed"}
+        conflict_data: {type: object, description: "Current server state if conflict"}
+
+    # Utility Schemas
+    Pagination:
+      type: object
+      properties:
+        total: {type: integer}
+        limit: {type: integer}
+        offset: {type: integer}
+        has_more: {type: boolean}
+
+    SyncInfo:
+      type: object
+      properties:
+        last_sync: {type: string, format: date-time}
+        server_timestamp: {type: string, format: date-time}
+        version: {type: integer}
+
+    ConflictError:
+      type: object
+      properties:
+        error: {type: string, enum: [conflict]}
+        message: {type: string}
+        conflicting_entity: {type: object, description: "Current server state"}
+        client_version: {type: integer}
+        server_version: {type: integer}
+
+    ApiError:
+      type: object
+      required: [error, message]
+      properties:
+        error: {type: string}
+        message: {type: string}
+        details: {type: object}
+        timestamp: {type: string, format: date-time}
+
+  responses:
+    Unauthorized:
+      description: Authentication required or invalid token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+
+    Forbidden:
+      description: Insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+
+    Conflict:
+      description: Version conflict or duplicate operation
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ConflictError'
+
+    RateLimited:
+      description: Too many requests
+      headers:
+        Retry-After:
+          description: Seconds to wait before retrying
+          schema:
+            type: integer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+
+    ValidationError:
+      description: Invalid input data
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '#/components/schemas/ApiError'
+              - type: object
+                properties:
+                  validation_errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        field: {type: string}
+                        message: {type: string}
+
+tags:
+  - name: Authentication
+    description: User authentication and token management
+  - name: Patients
+    description: Patient profile management
+  - name: Vitals
+    description: Vital signs and CKD biomarkers
+  - name: Blood Pressure
+    description: Blood pressure monitoring and analysis
+  - name: AI Recommendations
+    description: Personalized health recommendations
+  - name: Clinical
+    description: Clinical assessments and medical decisions
+  - name: Sync
+    description: Offline synchronization and batch operations
+  - name: System
+    description: System health and monitoring

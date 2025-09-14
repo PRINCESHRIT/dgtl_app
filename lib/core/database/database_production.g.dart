@@ -3193,6 +3193,2659 @@ class RagQueryCacheCompanion extends UpdateCompanion<RagQueryCacheData> {
   }
 }
 
+class $VitalsTable extends Vitals with TableInfo<$VitalsTable, Vital> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $VitalsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+      'id', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _clientIdMeta =
+      const VerificationMeta('clientId');
+  @override
+  late final GeneratedColumn<String> clientId = GeneratedColumn<String>(
+      'client_id', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _patientIdMeta =
+      const VerificationMeta('patientId');
+  @override
+  late final GeneratedColumn<String> patientId = GeneratedColumn<String>(
+      'patient_id', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _typeMeta = const VerificationMeta('type');
+  @override
+  late final GeneratedColumn<String> type = GeneratedColumn<String>(
+      'type', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _valueMeta = const VerificationMeta('value');
+  @override
+  late final GeneratedColumn<double> value = GeneratedColumn<double>(
+      'value', aliasedName, false,
+      type: DriftSqlType.double, requiredDuringInsert: true);
+  static const VerificationMeta _unitMeta = const VerificationMeta('unit');
+  @override
+  late final GeneratedColumn<String> unit = GeneratedColumn<String>(
+      'unit', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _statusMeta = const VerificationMeta('status');
+  @override
+  late final GeneratedColumn<String> status = GeneratedColumn<String>(
+      'status', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
+  static const VerificationMeta _notesMeta = const VerificationMeta('notes');
+  @override
+  late final GeneratedColumn<String> notes = GeneratedColumn<String>(
+      'notes', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
+  static const VerificationMeta _recordedAtMeta =
+      const VerificationMeta('recordedAt');
+  @override
+  late final GeneratedColumn<DateTime> recordedAt = GeneratedColumn<DateTime>(
+      'recorded_at', aliasedName, false,
+      type: DriftSqlType.dateTime, requiredDuringInsert: true);
+  static const VerificationMeta _createdAtMeta =
+      const VerificationMeta('createdAt');
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+      'created_at', aliasedName, false,
+      type: DriftSqlType.dateTime,
+      requiredDuringInsert: false,
+      defaultValue: currentDateAndTime);
+  static const VerificationMeta _updatedAtMeta =
+      const VerificationMeta('updatedAt');
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+      'updated_at', aliasedName, false,
+      type: DriftSqlType.dateTime,
+      requiredDuringInsert: false,
+      defaultValue: currentDateAndTime);
+  static const VerificationMeta _versionMeta =
+      const VerificationMeta('version');
+  @override
+  late final GeneratedColumn<int> version = GeneratedColumn<int>(
+      'version', aliasedName, false,
+      type: DriftSqlType.int,
+      requiredDuringInsert: false,
+      defaultValue: const Constant(1));
+  static const VerificationMeta _syncedMeta = const VerificationMeta('synced');
+  @override
+  late final GeneratedColumn<bool> synced = GeneratedColumn<bool>(
+      'synced', aliasedName, false,
+      type: DriftSqlType.bool,
+      requiredDuringInsert: false,
+      defaultConstraints:
+          GeneratedColumn.constraintIsAlways('CHECK ("synced" IN (0, 1))'),
+      defaultValue: const Constant(false));
+  static const VerificationMeta _deviceIdMeta =
+      const VerificationMeta('deviceId');
+  @override
+  late final GeneratedColumn<String> deviceId = GeneratedColumn<String>(
+      'device_id', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
+  @override
+  List<GeneratedColumn> get $columns => [
+        id,
+        clientId,
+        patientId,
+        type,
+        value,
+        unit,
+        status,
+        notes,
+        recordedAt,
+        createdAt,
+        updatedAt,
+        version,
+        synced,
+        deviceId
+      ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'vitals';
+  @override
+  VerificationContext validateIntegrity(Insertable<Vital> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('client_id')) {
+      context.handle(_clientIdMeta,
+          clientId.isAcceptableOrUnknown(data['client_id']!, _clientIdMeta));
+    } else if (isInserting) {
+      context.missing(_clientIdMeta);
+    }
+    if (data.containsKey('patient_id')) {
+      context.handle(_patientIdMeta,
+          patientId.isAcceptableOrUnknown(data['patient_id']!, _patientIdMeta));
+    } else if (isInserting) {
+      context.missing(_patientIdMeta);
+    }
+    if (data.containsKey('type')) {
+      context.handle(
+          _typeMeta, type.isAcceptableOrUnknown(data['type']!, _typeMeta));
+    } else if (isInserting) {
+      context.missing(_typeMeta);
+    }
+    if (data.containsKey('value')) {
+      context.handle(
+          _valueMeta, value.isAcceptableOrUnknown(data['value']!, _valueMeta));
+    } else if (isInserting) {
+      context.missing(_valueMeta);
+    }
+    if (data.containsKey('unit')) {
+      context.handle(
+          _unitMeta, unit.isAcceptableOrUnknown(data['unit']!, _unitMeta));
+    } else if (isInserting) {
+      context.missing(_unitMeta);
+    }
+    if (data.containsKey('status')) {
+      context.handle(_statusMeta,
+          status.isAcceptableOrUnknown(data['status']!, _statusMeta));
+    }
+    if (data.containsKey('notes')) {
+      context.handle(
+          _notesMeta, notes.isAcceptableOrUnknown(data['notes']!, _notesMeta));
+    }
+    if (data.containsKey('recorded_at')) {
+      context.handle(
+          _recordedAtMeta,
+          recordedAt.isAcceptableOrUnknown(
+              data['recorded_at']!, _recordedAtMeta));
+    } else if (isInserting) {
+      context.missing(_recordedAtMeta);
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(_createdAtMeta,
+          createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta));
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(_updatedAtMeta,
+          updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta));
+    }
+    if (data.containsKey('version')) {
+      context.handle(_versionMeta,
+          version.isAcceptableOrUnknown(data['version']!, _versionMeta));
+    }
+    if (data.containsKey('synced')) {
+      context.handle(_syncedMeta,
+          synced.isAcceptableOrUnknown(data['synced']!, _syncedMeta));
+    }
+    if (data.containsKey('device_id')) {
+      context.handle(_deviceIdMeta,
+          deviceId.isAcceptableOrUnknown(data['device_id']!, _deviceIdMeta));
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => const {};
+  @override
+  Vital map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return Vital(
+      id: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}id'])!,
+      clientId: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}client_id'])!,
+      patientId: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}patient_id'])!,
+      type: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}type'])!,
+      value: attachedDatabase.typeMapping
+          .read(DriftSqlType.double, data['${effectivePrefix}value'])!,
+      unit: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}unit'])!,
+      status: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}status']),
+      notes: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}notes']),
+      recordedAt: attachedDatabase.typeMapping
+          .read(DriftSqlType.dateTime, data['${effectivePrefix}recorded_at'])!,
+      createdAt: attachedDatabase.typeMapping
+          .read(DriftSqlType.dateTime, data['${effectivePrefix}created_at'])!,
+      updatedAt: attachedDatabase.typeMapping
+          .read(DriftSqlType.dateTime, data['${effectivePrefix}updated_at'])!,
+      version: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}version'])!,
+      synced: attachedDatabase.typeMapping
+          .read(DriftSqlType.bool, data['${effectivePrefix}synced'])!,
+      deviceId: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}device_id']),
+    );
+  }
+
+  @override
+  $VitalsTable createAlias(String alias) {
+    return $VitalsTable(attachedDatabase, alias);
+  }
+}
+
+class Vital extends DataClass implements Insertable<Vital> {
+  final String id;
+  final String clientId;
+  final String patientId;
+  final String type;
+  final double value;
+  final String unit;
+  final String? status;
+  final String? notes;
+  final DateTime recordedAt;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final int version;
+  final bool synced;
+  final String? deviceId;
+  const Vital(
+      {required this.id,
+      required this.clientId,
+      required this.patientId,
+      required this.type,
+      required this.value,
+      required this.unit,
+      this.status,
+      this.notes,
+      required this.recordedAt,
+      required this.createdAt,
+      required this.updatedAt,
+      required this.version,
+      required this.synced,
+      this.deviceId});
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['client_id'] = Variable<String>(clientId);
+    map['patient_id'] = Variable<String>(patientId);
+    map['type'] = Variable<String>(type);
+    map['value'] = Variable<double>(value);
+    map['unit'] = Variable<String>(unit);
+    if (!nullToAbsent || status != null) {
+      map['status'] = Variable<String>(status);
+    }
+    if (!nullToAbsent || notes != null) {
+      map['notes'] = Variable<String>(notes);
+    }
+    map['recorded_at'] = Variable<DateTime>(recordedAt);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['updated_at'] = Variable<DateTime>(updatedAt);
+    map['version'] = Variable<int>(version);
+    map['synced'] = Variable<bool>(synced);
+    if (!nullToAbsent || deviceId != null) {
+      map['device_id'] = Variable<String>(deviceId);
+    }
+    return map;
+  }
+
+  VitalsCompanion toCompanion(bool nullToAbsent) {
+    return VitalsCompanion(
+      id: Value(id),
+      clientId: Value(clientId),
+      patientId: Value(patientId),
+      type: Value(type),
+      value: Value(value),
+      unit: Value(unit),
+      status:
+          status == null && nullToAbsent ? const Value.absent() : Value(status),
+      notes:
+          notes == null && nullToAbsent ? const Value.absent() : Value(notes),
+      recordedAt: Value(recordedAt),
+      createdAt: Value(createdAt),
+      updatedAt: Value(updatedAt),
+      version: Value(version),
+      synced: Value(synced),
+      deviceId: deviceId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(deviceId),
+    );
+  }
+
+  factory Vital.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return Vital(
+      id: serializer.fromJson<String>(json['id']),
+      clientId: serializer.fromJson<String>(json['clientId']),
+      patientId: serializer.fromJson<String>(json['patientId']),
+      type: serializer.fromJson<String>(json['type']),
+      value: serializer.fromJson<double>(json['value']),
+      unit: serializer.fromJson<String>(json['unit']),
+      status: serializer.fromJson<String?>(json['status']),
+      notes: serializer.fromJson<String?>(json['notes']),
+      recordedAt: serializer.fromJson<DateTime>(json['recordedAt']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
+      version: serializer.fromJson<int>(json['version']),
+      synced: serializer.fromJson<bool>(json['synced']),
+      deviceId: serializer.fromJson<String?>(json['deviceId']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'clientId': serializer.toJson<String>(clientId),
+      'patientId': serializer.toJson<String>(patientId),
+      'type': serializer.toJson<String>(type),
+      'value': serializer.toJson<double>(value),
+      'unit': serializer.toJson<String>(unit),
+      'status': serializer.toJson<String?>(status),
+      'notes': serializer.toJson<String?>(notes),
+      'recordedAt': serializer.toJson<DateTime>(recordedAt),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'updatedAt': serializer.toJson<DateTime>(updatedAt),
+      'version': serializer.toJson<int>(version),
+      'synced': serializer.toJson<bool>(synced),
+      'deviceId': serializer.toJson<String?>(deviceId),
+    };
+  }
+
+  Vital copyWith(
+          {String? id,
+          String? clientId,
+          String? patientId,
+          String? type,
+          double? value,
+          String? unit,
+          Value<String?> status = const Value.absent(),
+          Value<String?> notes = const Value.absent(),
+          DateTime? recordedAt,
+          DateTime? createdAt,
+          DateTime? updatedAt,
+          int? version,
+          bool? synced,
+          Value<String?> deviceId = const Value.absent()}) =>
+      Vital(
+        id: id ?? this.id,
+        clientId: clientId ?? this.clientId,
+        patientId: patientId ?? this.patientId,
+        type: type ?? this.type,
+        value: value ?? this.value,
+        unit: unit ?? this.unit,
+        status: status.present ? status.value : this.status,
+        notes: notes.present ? notes.value : this.notes,
+        recordedAt: recordedAt ?? this.recordedAt,
+        createdAt: createdAt ?? this.createdAt,
+        updatedAt: updatedAt ?? this.updatedAt,
+        version: version ?? this.version,
+        synced: synced ?? this.synced,
+        deviceId: deviceId.present ? deviceId.value : this.deviceId,
+      );
+  Vital copyWithCompanion(VitalsCompanion data) {
+    return Vital(
+      id: data.id.present ? data.id.value : this.id,
+      clientId: data.clientId.present ? data.clientId.value : this.clientId,
+      patientId: data.patientId.present ? data.patientId.value : this.patientId,
+      type: data.type.present ? data.type.value : this.type,
+      value: data.value.present ? data.value.value : this.value,
+      unit: data.unit.present ? data.unit.value : this.unit,
+      status: data.status.present ? data.status.value : this.status,
+      notes: data.notes.present ? data.notes.value : this.notes,
+      recordedAt:
+          data.recordedAt.present ? data.recordedAt.value : this.recordedAt,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+      version: data.version.present ? data.version.value : this.version,
+      synced: data.synced.present ? data.synced.value : this.synced,
+      deviceId: data.deviceId.present ? data.deviceId.value : this.deviceId,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('Vital(')
+          ..write('id: $id, ')
+          ..write('clientId: $clientId, ')
+          ..write('patientId: $patientId, ')
+          ..write('type: $type, ')
+          ..write('value: $value, ')
+          ..write('unit: $unit, ')
+          ..write('status: $status, ')
+          ..write('notes: $notes, ')
+          ..write('recordedAt: $recordedAt, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('version: $version, ')
+          ..write('synced: $synced, ')
+          ..write('deviceId: $deviceId')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      id,
+      clientId,
+      patientId,
+      type,
+      value,
+      unit,
+      status,
+      notes,
+      recordedAt,
+      createdAt,
+      updatedAt,
+      version,
+      synced,
+      deviceId);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is Vital &&
+          other.id == this.id &&
+          other.clientId == this.clientId &&
+          other.patientId == this.patientId &&
+          other.type == this.type &&
+          other.value == this.value &&
+          other.unit == this.unit &&
+          other.status == this.status &&
+          other.notes == this.notes &&
+          other.recordedAt == this.recordedAt &&
+          other.createdAt == this.createdAt &&
+          other.updatedAt == this.updatedAt &&
+          other.version == this.version &&
+          other.synced == this.synced &&
+          other.deviceId == this.deviceId);
+}
+
+class VitalsCompanion extends UpdateCompanion<Vital> {
+  final Value<String> id;
+  final Value<String> clientId;
+  final Value<String> patientId;
+  final Value<String> type;
+  final Value<double> value;
+  final Value<String> unit;
+  final Value<String?> status;
+  final Value<String?> notes;
+  final Value<DateTime> recordedAt;
+  final Value<DateTime> createdAt;
+  final Value<DateTime> updatedAt;
+  final Value<int> version;
+  final Value<bool> synced;
+  final Value<String?> deviceId;
+  final Value<int> rowid;
+  const VitalsCompanion({
+    this.id = const Value.absent(),
+    this.clientId = const Value.absent(),
+    this.patientId = const Value.absent(),
+    this.type = const Value.absent(),
+    this.value = const Value.absent(),
+    this.unit = const Value.absent(),
+    this.status = const Value.absent(),
+    this.notes = const Value.absent(),
+    this.recordedAt = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.version = const Value.absent(),
+    this.synced = const Value.absent(),
+    this.deviceId = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  VitalsCompanion.insert({
+    required String id,
+    required String clientId,
+    required String patientId,
+    required String type,
+    required double value,
+    required String unit,
+    this.status = const Value.absent(),
+    this.notes = const Value.absent(),
+    required DateTime recordedAt,
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.version = const Value.absent(),
+    this.synced = const Value.absent(),
+    this.deviceId = const Value.absent(),
+    this.rowid = const Value.absent(),
+  })  : id = Value(id),
+        clientId = Value(clientId),
+        patientId = Value(patientId),
+        type = Value(type),
+        value = Value(value),
+        unit = Value(unit),
+        recordedAt = Value(recordedAt);
+  static Insertable<Vital> custom({
+    Expression<String>? id,
+    Expression<String>? clientId,
+    Expression<String>? patientId,
+    Expression<String>? type,
+    Expression<double>? value,
+    Expression<String>? unit,
+    Expression<String>? status,
+    Expression<String>? notes,
+    Expression<DateTime>? recordedAt,
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? updatedAt,
+    Expression<int>? version,
+    Expression<bool>? synced,
+    Expression<String>? deviceId,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (clientId != null) 'client_id': clientId,
+      if (patientId != null) 'patient_id': patientId,
+      if (type != null) 'type': type,
+      if (value != null) 'value': value,
+      if (unit != null) 'unit': unit,
+      if (status != null) 'status': status,
+      if (notes != null) 'notes': notes,
+      if (recordedAt != null) 'recorded_at': recordedAt,
+      if (createdAt != null) 'created_at': createdAt,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (version != null) 'version': version,
+      if (synced != null) 'synced': synced,
+      if (deviceId != null) 'device_id': deviceId,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  VitalsCompanion copyWith(
+      {Value<String>? id,
+      Value<String>? clientId,
+      Value<String>? patientId,
+      Value<String>? type,
+      Value<double>? value,
+      Value<String>? unit,
+      Value<String?>? status,
+      Value<String?>? notes,
+      Value<DateTime>? recordedAt,
+      Value<DateTime>? createdAt,
+      Value<DateTime>? updatedAt,
+      Value<int>? version,
+      Value<bool>? synced,
+      Value<String?>? deviceId,
+      Value<int>? rowid}) {
+    return VitalsCompanion(
+      id: id ?? this.id,
+      clientId: clientId ?? this.clientId,
+      patientId: patientId ?? this.patientId,
+      type: type ?? this.type,
+      value: value ?? this.value,
+      unit: unit ?? this.unit,
+      status: status ?? this.status,
+      notes: notes ?? this.notes,
+      recordedAt: recordedAt ?? this.recordedAt,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      version: version ?? this.version,
+      synced: synced ?? this.synced,
+      deviceId: deviceId ?? this.deviceId,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (clientId.present) {
+      map['client_id'] = Variable<String>(clientId.value);
+    }
+    if (patientId.present) {
+      map['patient_id'] = Variable<String>(patientId.value);
+    }
+    if (type.present) {
+      map['type'] = Variable<String>(type.value);
+    }
+    if (value.present) {
+      map['value'] = Variable<double>(value.value);
+    }
+    if (unit.present) {
+      map['unit'] = Variable<String>(unit.value);
+    }
+    if (status.present) {
+      map['status'] = Variable<String>(status.value);
+    }
+    if (notes.present) {
+      map['notes'] = Variable<String>(notes.value);
+    }
+    if (recordedAt.present) {
+      map['recorded_at'] = Variable<DateTime>(recordedAt.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    if (version.present) {
+      map['version'] = Variable<int>(version.value);
+    }
+    if (synced.present) {
+      map['synced'] = Variable<bool>(synced.value);
+    }
+    if (deviceId.present) {
+      map['device_id'] = Variable<String>(deviceId.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('VitalsCompanion(')
+          ..write('id: $id, ')
+          ..write('clientId: $clientId, ')
+          ..write('patientId: $patientId, ')
+          ..write('type: $type, ')
+          ..write('value: $value, ')
+          ..write('unit: $unit, ')
+          ..write('status: $status, ')
+          ..write('notes: $notes, ')
+          ..write('recordedAt: $recordedAt, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('version: $version, ')
+          ..write('synced: $synced, ')
+          ..write('deviceId: $deviceId, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $BPReadingsTable extends BPReadings
+    with TableInfo<$BPReadingsTable, BPReading> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $BPReadingsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+      'id', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _clientIdMeta =
+      const VerificationMeta('clientId');
+  @override
+  late final GeneratedColumn<String> clientId = GeneratedColumn<String>(
+      'client_id', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _patientIdMeta =
+      const VerificationMeta('patientId');
+  @override
+  late final GeneratedColumn<String> patientId = GeneratedColumn<String>(
+      'patient_id', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _systolicMeta =
+      const VerificationMeta('systolic');
+  @override
+  late final GeneratedColumn<int> systolic = GeneratedColumn<int>(
+      'systolic', aliasedName, false,
+      type: DriftSqlType.int, requiredDuringInsert: true);
+  static const VerificationMeta _diastolicMeta =
+      const VerificationMeta('diastolic');
+  @override
+  late final GeneratedColumn<int> diastolic = GeneratedColumn<int>(
+      'diastolic', aliasedName, false,
+      type: DriftSqlType.int, requiredDuringInsert: true);
+  static const VerificationMeta _heartRateMeta =
+      const VerificationMeta('heartRate');
+  @override
+  late final GeneratedColumn<int> heartRate = GeneratedColumn<int>(
+      'heart_rate', aliasedName, true,
+      type: DriftSqlType.int, requiredDuringInsert: false);
+  static const VerificationMeta _statusMeta = const VerificationMeta('status');
+  @override
+  late final GeneratedColumn<String> status = GeneratedColumn<String>(
+      'status', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _positionMeta =
+      const VerificationMeta('position');
+  @override
+  late final GeneratedColumn<String> position = GeneratedColumn<String>(
+      'position', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
+  static const VerificationMeta _armMeta = const VerificationMeta('arm');
+  @override
+  late final GeneratedColumn<String> arm = GeneratedColumn<String>(
+      'arm', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
+  static const VerificationMeta _fatigueLevelMeta =
+      const VerificationMeta('fatigueLevel');
+  @override
+  late final GeneratedColumn<double> fatigueLevel = GeneratedColumn<double>(
+      'fatigue_level', aliasedName, true,
+      type: DriftSqlType.double, requiredDuringInsert: false);
+  static const VerificationMeta _symptomsMeta =
+      const VerificationMeta('symptoms');
+  @override
+  late final GeneratedColumn<String> symptoms = GeneratedColumn<String>(
+      'symptoms', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
+  static const VerificationMeta _recordedAtMeta =
+      const VerificationMeta('recordedAt');
+  @override
+  late final GeneratedColumn<DateTime> recordedAt = GeneratedColumn<DateTime>(
+      'recorded_at', aliasedName, false,
+      type: DriftSqlType.dateTime, requiredDuringInsert: true);
+  static const VerificationMeta _createdAtMeta =
+      const VerificationMeta('createdAt');
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+      'created_at', aliasedName, false,
+      type: DriftSqlType.dateTime,
+      requiredDuringInsert: false,
+      defaultValue: currentDateAndTime);
+  static const VerificationMeta _versionMeta =
+      const VerificationMeta('version');
+  @override
+  late final GeneratedColumn<int> version = GeneratedColumn<int>(
+      'version', aliasedName, false,
+      type: DriftSqlType.int,
+      requiredDuringInsert: false,
+      defaultValue: const Constant(1));
+  static const VerificationMeta _syncedMeta = const VerificationMeta('synced');
+  @override
+  late final GeneratedColumn<bool> synced = GeneratedColumn<bool>(
+      'synced', aliasedName, false,
+      type: DriftSqlType.bool,
+      requiredDuringInsert: false,
+      defaultConstraints:
+          GeneratedColumn.constraintIsAlways('CHECK ("synced" IN (0, 1))'),
+      defaultValue: const Constant(false));
+  @override
+  List<GeneratedColumn> get $columns => [
+        id,
+        clientId,
+        patientId,
+        systolic,
+        diastolic,
+        heartRate,
+        status,
+        position,
+        arm,
+        fatigueLevel,
+        symptoms,
+        recordedAt,
+        createdAt,
+        version,
+        synced
+      ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'b_p_readings';
+  @override
+  VerificationContext validateIntegrity(Insertable<BPReading> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('client_id')) {
+      context.handle(_clientIdMeta,
+          clientId.isAcceptableOrUnknown(data['client_id']!, _clientIdMeta));
+    } else if (isInserting) {
+      context.missing(_clientIdMeta);
+    }
+    if (data.containsKey('patient_id')) {
+      context.handle(_patientIdMeta,
+          patientId.isAcceptableOrUnknown(data['patient_id']!, _patientIdMeta));
+    } else if (isInserting) {
+      context.missing(_patientIdMeta);
+    }
+    if (data.containsKey('systolic')) {
+      context.handle(_systolicMeta,
+          systolic.isAcceptableOrUnknown(data['systolic']!, _systolicMeta));
+    } else if (isInserting) {
+      context.missing(_systolicMeta);
+    }
+    if (data.containsKey('diastolic')) {
+      context.handle(_diastolicMeta,
+          diastolic.isAcceptableOrUnknown(data['diastolic']!, _diastolicMeta));
+    } else if (isInserting) {
+      context.missing(_diastolicMeta);
+    }
+    if (data.containsKey('heart_rate')) {
+      context.handle(_heartRateMeta,
+          heartRate.isAcceptableOrUnknown(data['heart_rate']!, _heartRateMeta));
+    }
+    if (data.containsKey('status')) {
+      context.handle(_statusMeta,
+          status.isAcceptableOrUnknown(data['status']!, _statusMeta));
+    } else if (isInserting) {
+      context.missing(_statusMeta);
+    }
+    if (data.containsKey('position')) {
+      context.handle(_positionMeta,
+          position.isAcceptableOrUnknown(data['position']!, _positionMeta));
+    }
+    if (data.containsKey('arm')) {
+      context.handle(
+          _armMeta, arm.isAcceptableOrUnknown(data['arm']!, _armMeta));
+    }
+    if (data.containsKey('fatigue_level')) {
+      context.handle(
+          _fatigueLevelMeta,
+          fatigueLevel.isAcceptableOrUnknown(
+              data['fatigue_level']!, _fatigueLevelMeta));
+    }
+    if (data.containsKey('symptoms')) {
+      context.handle(_symptomsMeta,
+          symptoms.isAcceptableOrUnknown(data['symptoms']!, _symptomsMeta));
+    }
+    if (data.containsKey('recorded_at')) {
+      context.handle(
+          _recordedAtMeta,
+          recordedAt.isAcceptableOrUnknown(
+              data['recorded_at']!, _recordedAtMeta));
+    } else if (isInserting) {
+      context.missing(_recordedAtMeta);
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(_createdAtMeta,
+          createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta));
+    }
+    if (data.containsKey('version')) {
+      context.handle(_versionMeta,
+          version.isAcceptableOrUnknown(data['version']!, _versionMeta));
+    }
+    if (data.containsKey('synced')) {
+      context.handle(_syncedMeta,
+          synced.isAcceptableOrUnknown(data['synced']!, _syncedMeta));
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => const {};
+  @override
+  BPReading map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return BPReading(
+      id: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}id'])!,
+      clientId: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}client_id'])!,
+      patientId: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}patient_id'])!,
+      systolic: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}systolic'])!,
+      diastolic: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}diastolic'])!,
+      heartRate: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}heart_rate']),
+      status: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}status'])!,
+      position: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}position']),
+      arm: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}arm']),
+      fatigueLevel: attachedDatabase.typeMapping
+          .read(DriftSqlType.double, data['${effectivePrefix}fatigue_level']),
+      symptoms: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}symptoms']),
+      recordedAt: attachedDatabase.typeMapping
+          .read(DriftSqlType.dateTime, data['${effectivePrefix}recorded_at'])!,
+      createdAt: attachedDatabase.typeMapping
+          .read(DriftSqlType.dateTime, data['${effectivePrefix}created_at'])!,
+      version: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}version'])!,
+      synced: attachedDatabase.typeMapping
+          .read(DriftSqlType.bool, data['${effectivePrefix}synced'])!,
+    );
+  }
+
+  @override
+  $BPReadingsTable createAlias(String alias) {
+    return $BPReadingsTable(attachedDatabase, alias);
+  }
+}
+
+class BPReading extends DataClass implements Insertable<BPReading> {
+  final String id;
+  final String clientId;
+  final String patientId;
+  final int systolic;
+  final int diastolic;
+  final int? heartRate;
+  final String status;
+  final String? position;
+  final String? arm;
+  final double? fatigueLevel;
+  final String? symptoms;
+  final DateTime recordedAt;
+  final DateTime createdAt;
+  final int version;
+  final bool synced;
+  const BPReading(
+      {required this.id,
+      required this.clientId,
+      required this.patientId,
+      required this.systolic,
+      required this.diastolic,
+      this.heartRate,
+      required this.status,
+      this.position,
+      this.arm,
+      this.fatigueLevel,
+      this.symptoms,
+      required this.recordedAt,
+      required this.createdAt,
+      required this.version,
+      required this.synced});
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['client_id'] = Variable<String>(clientId);
+    map['patient_id'] = Variable<String>(patientId);
+    map['systolic'] = Variable<int>(systolic);
+    map['diastolic'] = Variable<int>(diastolic);
+    if (!nullToAbsent || heartRate != null) {
+      map['heart_rate'] = Variable<int>(heartRate);
+    }
+    map['status'] = Variable<String>(status);
+    if (!nullToAbsent || position != null) {
+      map['position'] = Variable<String>(position);
+    }
+    if (!nullToAbsent || arm != null) {
+      map['arm'] = Variable<String>(arm);
+    }
+    if (!nullToAbsent || fatigueLevel != null) {
+      map['fatigue_level'] = Variable<double>(fatigueLevel);
+    }
+    if (!nullToAbsent || symptoms != null) {
+      map['symptoms'] = Variable<String>(symptoms);
+    }
+    map['recorded_at'] = Variable<DateTime>(recordedAt);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['version'] = Variable<int>(version);
+    map['synced'] = Variable<bool>(synced);
+    return map;
+  }
+
+  BPReadingsCompanion toCompanion(bool nullToAbsent) {
+    return BPReadingsCompanion(
+      id: Value(id),
+      clientId: Value(clientId),
+      patientId: Value(patientId),
+      systolic: Value(systolic),
+      diastolic: Value(diastolic),
+      heartRate: heartRate == null && nullToAbsent
+          ? const Value.absent()
+          : Value(heartRate),
+      status: Value(status),
+      position: position == null && nullToAbsent
+          ? const Value.absent()
+          : Value(position),
+      arm: arm == null && nullToAbsent ? const Value.absent() : Value(arm),
+      fatigueLevel: fatigueLevel == null && nullToAbsent
+          ? const Value.absent()
+          : Value(fatigueLevel),
+      symptoms: symptoms == null && nullToAbsent
+          ? const Value.absent()
+          : Value(symptoms),
+      recordedAt: Value(recordedAt),
+      createdAt: Value(createdAt),
+      version: Value(version),
+      synced: Value(synced),
+    );
+  }
+
+  factory BPReading.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return BPReading(
+      id: serializer.fromJson<String>(json['id']),
+      clientId: serializer.fromJson<String>(json['clientId']),
+      patientId: serializer.fromJson<String>(json['patientId']),
+      systolic: serializer.fromJson<int>(json['systolic']),
+      diastolic: serializer.fromJson<int>(json['diastolic']),
+      heartRate: serializer.fromJson<int?>(json['heartRate']),
+      status: serializer.fromJson<String>(json['status']),
+      position: serializer.fromJson<String?>(json['position']),
+      arm: serializer.fromJson<String?>(json['arm']),
+      fatigueLevel: serializer.fromJson<double?>(json['fatigueLevel']),
+      symptoms: serializer.fromJson<String?>(json['symptoms']),
+      recordedAt: serializer.fromJson<DateTime>(json['recordedAt']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      version: serializer.fromJson<int>(json['version']),
+      synced: serializer.fromJson<bool>(json['synced']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'clientId': serializer.toJson<String>(clientId),
+      'patientId': serializer.toJson<String>(patientId),
+      'systolic': serializer.toJson<int>(systolic),
+      'diastolic': serializer.toJson<int>(diastolic),
+      'heartRate': serializer.toJson<int?>(heartRate),
+      'status': serializer.toJson<String>(status),
+      'position': serializer.toJson<String?>(position),
+      'arm': serializer.toJson<String?>(arm),
+      'fatigueLevel': serializer.toJson<double?>(fatigueLevel),
+      'symptoms': serializer.toJson<String?>(symptoms),
+      'recordedAt': serializer.toJson<DateTime>(recordedAt),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'version': serializer.toJson<int>(version),
+      'synced': serializer.toJson<bool>(synced),
+    };
+  }
+
+  BPReading copyWith(
+          {String? id,
+          String? clientId,
+          String? patientId,
+          int? systolic,
+          int? diastolic,
+          Value<int?> heartRate = const Value.absent(),
+          String? status,
+          Value<String?> position = const Value.absent(),
+          Value<String?> arm = const Value.absent(),
+          Value<double?> fatigueLevel = const Value.absent(),
+          Value<String?> symptoms = const Value.absent(),
+          DateTime? recordedAt,
+          DateTime? createdAt,
+          int? version,
+          bool? synced}) =>
+      BPReading(
+        id: id ?? this.id,
+        clientId: clientId ?? this.clientId,
+        patientId: patientId ?? this.patientId,
+        systolic: systolic ?? this.systolic,
+        diastolic: diastolic ?? this.diastolic,
+        heartRate: heartRate.present ? heartRate.value : this.heartRate,
+        status: status ?? this.status,
+        position: position.present ? position.value : this.position,
+        arm: arm.present ? arm.value : this.arm,
+        fatigueLevel:
+            fatigueLevel.present ? fatigueLevel.value : this.fatigueLevel,
+        symptoms: symptoms.present ? symptoms.value : this.symptoms,
+        recordedAt: recordedAt ?? this.recordedAt,
+        createdAt: createdAt ?? this.createdAt,
+        version: version ?? this.version,
+        synced: synced ?? this.synced,
+      );
+  BPReading copyWithCompanion(BPReadingsCompanion data) {
+    return BPReading(
+      id: data.id.present ? data.id.value : this.id,
+      clientId: data.clientId.present ? data.clientId.value : this.clientId,
+      patientId: data.patientId.present ? data.patientId.value : this.patientId,
+      systolic: data.systolic.present ? data.systolic.value : this.systolic,
+      diastolic: data.diastolic.present ? data.diastolic.value : this.diastolic,
+      heartRate: data.heartRate.present ? data.heartRate.value : this.heartRate,
+      status: data.status.present ? data.status.value : this.status,
+      position: data.position.present ? data.position.value : this.position,
+      arm: data.arm.present ? data.arm.value : this.arm,
+      fatigueLevel: data.fatigueLevel.present
+          ? data.fatigueLevel.value
+          : this.fatigueLevel,
+      symptoms: data.symptoms.present ? data.symptoms.value : this.symptoms,
+      recordedAt:
+          data.recordedAt.present ? data.recordedAt.value : this.recordedAt,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      version: data.version.present ? data.version.value : this.version,
+      synced: data.synced.present ? data.synced.value : this.synced,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('BPReading(')
+          ..write('id: $id, ')
+          ..write('clientId: $clientId, ')
+          ..write('patientId: $patientId, ')
+          ..write('systolic: $systolic, ')
+          ..write('diastolic: $diastolic, ')
+          ..write('heartRate: $heartRate, ')
+          ..write('status: $status, ')
+          ..write('position: $position, ')
+          ..write('arm: $arm, ')
+          ..write('fatigueLevel: $fatigueLevel, ')
+          ..write('symptoms: $symptoms, ')
+          ..write('recordedAt: $recordedAt, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('version: $version, ')
+          ..write('synced: $synced')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      id,
+      clientId,
+      patientId,
+      systolic,
+      diastolic,
+      heartRate,
+      status,
+      position,
+      arm,
+      fatigueLevel,
+      symptoms,
+      recordedAt,
+      createdAt,
+      version,
+      synced);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is BPReading &&
+          other.id == this.id &&
+          other.clientId == this.clientId &&
+          other.patientId == this.patientId &&
+          other.systolic == this.systolic &&
+          other.diastolic == this.diastolic &&
+          other.heartRate == this.heartRate &&
+          other.status == this.status &&
+          other.position == this.position &&
+          other.arm == this.arm &&
+          other.fatigueLevel == this.fatigueLevel &&
+          other.symptoms == this.symptoms &&
+          other.recordedAt == this.recordedAt &&
+          other.createdAt == this.createdAt &&
+          other.version == this.version &&
+          other.synced == this.synced);
+}
+
+class BPReadingsCompanion extends UpdateCompanion<BPReading> {
+  final Value<String> id;
+  final Value<String> clientId;
+  final Value<String> patientId;
+  final Value<int> systolic;
+  final Value<int> diastolic;
+  final Value<int?> heartRate;
+  final Value<String> status;
+  final Value<String?> position;
+  final Value<String?> arm;
+  final Value<double?> fatigueLevel;
+  final Value<String?> symptoms;
+  final Value<DateTime> recordedAt;
+  final Value<DateTime> createdAt;
+  final Value<int> version;
+  final Value<bool> synced;
+  final Value<int> rowid;
+  const BPReadingsCompanion({
+    this.id = const Value.absent(),
+    this.clientId = const Value.absent(),
+    this.patientId = const Value.absent(),
+    this.systolic = const Value.absent(),
+    this.diastolic = const Value.absent(),
+    this.heartRate = const Value.absent(),
+    this.status = const Value.absent(),
+    this.position = const Value.absent(),
+    this.arm = const Value.absent(),
+    this.fatigueLevel = const Value.absent(),
+    this.symptoms = const Value.absent(),
+    this.recordedAt = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.version = const Value.absent(),
+    this.synced = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  BPReadingsCompanion.insert({
+    required String id,
+    required String clientId,
+    required String patientId,
+    required int systolic,
+    required int diastolic,
+    this.heartRate = const Value.absent(),
+    required String status,
+    this.position = const Value.absent(),
+    this.arm = const Value.absent(),
+    this.fatigueLevel = const Value.absent(),
+    this.symptoms = const Value.absent(),
+    required DateTime recordedAt,
+    this.createdAt = const Value.absent(),
+    this.version = const Value.absent(),
+    this.synced = const Value.absent(),
+    this.rowid = const Value.absent(),
+  })  : id = Value(id),
+        clientId = Value(clientId),
+        patientId = Value(patientId),
+        systolic = Value(systolic),
+        diastolic = Value(diastolic),
+        status = Value(status),
+        recordedAt = Value(recordedAt);
+  static Insertable<BPReading> custom({
+    Expression<String>? id,
+    Expression<String>? clientId,
+    Expression<String>? patientId,
+    Expression<int>? systolic,
+    Expression<int>? diastolic,
+    Expression<int>? heartRate,
+    Expression<String>? status,
+    Expression<String>? position,
+    Expression<String>? arm,
+    Expression<double>? fatigueLevel,
+    Expression<String>? symptoms,
+    Expression<DateTime>? recordedAt,
+    Expression<DateTime>? createdAt,
+    Expression<int>? version,
+    Expression<bool>? synced,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (clientId != null) 'client_id': clientId,
+      if (patientId != null) 'patient_id': patientId,
+      if (systolic != null) 'systolic': systolic,
+      if (diastolic != null) 'diastolic': diastolic,
+      if (heartRate != null) 'heart_rate': heartRate,
+      if (status != null) 'status': status,
+      if (position != null) 'position': position,
+      if (arm != null) 'arm': arm,
+      if (fatigueLevel != null) 'fatigue_level': fatigueLevel,
+      if (symptoms != null) 'symptoms': symptoms,
+      if (recordedAt != null) 'recorded_at': recordedAt,
+      if (createdAt != null) 'created_at': createdAt,
+      if (version != null) 'version': version,
+      if (synced != null) 'synced': synced,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  BPReadingsCompanion copyWith(
+      {Value<String>? id,
+      Value<String>? clientId,
+      Value<String>? patientId,
+      Value<int>? systolic,
+      Value<int>? diastolic,
+      Value<int?>? heartRate,
+      Value<String>? status,
+      Value<String?>? position,
+      Value<String?>? arm,
+      Value<double?>? fatigueLevel,
+      Value<String?>? symptoms,
+      Value<DateTime>? recordedAt,
+      Value<DateTime>? createdAt,
+      Value<int>? version,
+      Value<bool>? synced,
+      Value<int>? rowid}) {
+    return BPReadingsCompanion(
+      id: id ?? this.id,
+      clientId: clientId ?? this.clientId,
+      patientId: patientId ?? this.patientId,
+      systolic: systolic ?? this.systolic,
+      diastolic: diastolic ?? this.diastolic,
+      heartRate: heartRate ?? this.heartRate,
+      status: status ?? this.status,
+      position: position ?? this.position,
+      arm: arm ?? this.arm,
+      fatigueLevel: fatigueLevel ?? this.fatigueLevel,
+      symptoms: symptoms ?? this.symptoms,
+      recordedAt: recordedAt ?? this.recordedAt,
+      createdAt: createdAt ?? this.createdAt,
+      version: version ?? this.version,
+      synced: synced ?? this.synced,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (clientId.present) {
+      map['client_id'] = Variable<String>(clientId.value);
+    }
+    if (patientId.present) {
+      map['patient_id'] = Variable<String>(patientId.value);
+    }
+    if (systolic.present) {
+      map['systolic'] = Variable<int>(systolic.value);
+    }
+    if (diastolic.present) {
+      map['diastolic'] = Variable<int>(diastolic.value);
+    }
+    if (heartRate.present) {
+      map['heart_rate'] = Variable<int>(heartRate.value);
+    }
+    if (status.present) {
+      map['status'] = Variable<String>(status.value);
+    }
+    if (position.present) {
+      map['position'] = Variable<String>(position.value);
+    }
+    if (arm.present) {
+      map['arm'] = Variable<String>(arm.value);
+    }
+    if (fatigueLevel.present) {
+      map['fatigue_level'] = Variable<double>(fatigueLevel.value);
+    }
+    if (symptoms.present) {
+      map['symptoms'] = Variable<String>(symptoms.value);
+    }
+    if (recordedAt.present) {
+      map['recorded_at'] = Variable<DateTime>(recordedAt.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (version.present) {
+      map['version'] = Variable<int>(version.value);
+    }
+    if (synced.present) {
+      map['synced'] = Variable<bool>(synced.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('BPReadingsCompanion(')
+          ..write('id: $id, ')
+          ..write('clientId: $clientId, ')
+          ..write('patientId: $patientId, ')
+          ..write('systolic: $systolic, ')
+          ..write('diastolic: $diastolic, ')
+          ..write('heartRate: $heartRate, ')
+          ..write('status: $status, ')
+          ..write('position: $position, ')
+          ..write('arm: $arm, ')
+          ..write('fatigueLevel: $fatigueLevel, ')
+          ..write('symptoms: $symptoms, ')
+          ..write('recordedAt: $recordedAt, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('version: $version, ')
+          ..write('synced: $synced, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $SyncQueueTable extends SyncQueue
+    with TableInfo<$SyncQueueTable, SyncQueueData> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $SyncQueueTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+      'id', aliasedName, false,
+      hasAutoIncrement: true,
+      type: DriftSqlType.int,
+      requiredDuringInsert: false,
+      defaultConstraints:
+          GeneratedColumn.constraintIsAlways('PRIMARY KEY AUTOINCREMENT'));
+  static const VerificationMeta _opTypeMeta = const VerificationMeta('opType');
+  @override
+  late final GeneratedColumn<String> opType = GeneratedColumn<String>(
+      'op_type', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _entityTypeMeta =
+      const VerificationMeta('entityType');
+  @override
+  late final GeneratedColumn<String> entityType = GeneratedColumn<String>(
+      'entity_type', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _entityIdMeta =
+      const VerificationMeta('entityId');
+  @override
+  late final GeneratedColumn<String> entityId = GeneratedColumn<String>(
+      'entity_id', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _clientIdMeta =
+      const VerificationMeta('clientId');
+  @override
+  late final GeneratedColumn<String> clientId = GeneratedColumn<String>(
+      'client_id', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _payloadMeta =
+      const VerificationMeta('payload');
+  @override
+  late final GeneratedColumn<String> payload = GeneratedColumn<String>(
+      'payload', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _attemptsMeta =
+      const VerificationMeta('attempts');
+  @override
+  late final GeneratedColumn<int> attempts = GeneratedColumn<int>(
+      'attempts', aliasedName, false,
+      type: DriftSqlType.int,
+      requiredDuringInsert: false,
+      defaultValue: const Constant(0));
+  static const VerificationMeta _nextAttemptAtMeta =
+      const VerificationMeta('nextAttemptAt');
+  @override
+  late final GeneratedColumn<DateTime> nextAttemptAt =
+      GeneratedColumn<DateTime>('next_attempt_at', aliasedName, true,
+          type: DriftSqlType.dateTime, requiredDuringInsert: false);
+  static const VerificationMeta _lastErrorMeta =
+      const VerificationMeta('lastError');
+  @override
+  late final GeneratedColumn<String> lastError = GeneratedColumn<String>(
+      'last_error', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
+  static const VerificationMeta _statusMeta = const VerificationMeta('status');
+  @override
+  late final GeneratedColumn<String> status = GeneratedColumn<String>(
+      'status', aliasedName, false,
+      type: DriftSqlType.string,
+      requiredDuringInsert: false,
+      defaultValue: const Constant('pending'));
+  static const VerificationMeta _createdAtMeta =
+      const VerificationMeta('createdAt');
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+      'created_at', aliasedName, false,
+      type: DriftSqlType.dateTime,
+      requiredDuringInsert: false,
+      defaultValue: currentDateAndTime);
+  static const VerificationMeta _updatedAtMeta =
+      const VerificationMeta('updatedAt');
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+      'updated_at', aliasedName, false,
+      type: DriftSqlType.dateTime,
+      requiredDuringInsert: false,
+      defaultValue: currentDateAndTime);
+  @override
+  List<GeneratedColumn> get $columns => [
+        id,
+        opType,
+        entityType,
+        entityId,
+        clientId,
+        payload,
+        attempts,
+        nextAttemptAt,
+        lastError,
+        status,
+        createdAt,
+        updatedAt
+      ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'sync_queue';
+  @override
+  VerificationContext validateIntegrity(Insertable<SyncQueueData> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('op_type')) {
+      context.handle(_opTypeMeta,
+          opType.isAcceptableOrUnknown(data['op_type']!, _opTypeMeta));
+    } else if (isInserting) {
+      context.missing(_opTypeMeta);
+    }
+    if (data.containsKey('entity_type')) {
+      context.handle(
+          _entityTypeMeta,
+          entityType.isAcceptableOrUnknown(
+              data['entity_type']!, _entityTypeMeta));
+    } else if (isInserting) {
+      context.missing(_entityTypeMeta);
+    }
+    if (data.containsKey('entity_id')) {
+      context.handle(_entityIdMeta,
+          entityId.isAcceptableOrUnknown(data['entity_id']!, _entityIdMeta));
+    } else if (isInserting) {
+      context.missing(_entityIdMeta);
+    }
+    if (data.containsKey('client_id')) {
+      context.handle(_clientIdMeta,
+          clientId.isAcceptableOrUnknown(data['client_id']!, _clientIdMeta));
+    } else if (isInserting) {
+      context.missing(_clientIdMeta);
+    }
+    if (data.containsKey('payload')) {
+      context.handle(_payloadMeta,
+          payload.isAcceptableOrUnknown(data['payload']!, _payloadMeta));
+    } else if (isInserting) {
+      context.missing(_payloadMeta);
+    }
+    if (data.containsKey('attempts')) {
+      context.handle(_attemptsMeta,
+          attempts.isAcceptableOrUnknown(data['attempts']!, _attemptsMeta));
+    }
+    if (data.containsKey('next_attempt_at')) {
+      context.handle(
+          _nextAttemptAtMeta,
+          nextAttemptAt.isAcceptableOrUnknown(
+              data['next_attempt_at']!, _nextAttemptAtMeta));
+    }
+    if (data.containsKey('last_error')) {
+      context.handle(_lastErrorMeta,
+          lastError.isAcceptableOrUnknown(data['last_error']!, _lastErrorMeta));
+    }
+    if (data.containsKey('status')) {
+      context.handle(_statusMeta,
+          status.isAcceptableOrUnknown(data['status']!, _statusMeta));
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(_createdAtMeta,
+          createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta));
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(_updatedAtMeta,
+          updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta));
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  SyncQueueData map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return SyncQueueData(
+      id: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
+      opType: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}op_type'])!,
+      entityType: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}entity_type'])!,
+      entityId: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}entity_id'])!,
+      clientId: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}client_id'])!,
+      payload: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}payload'])!,
+      attempts: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}attempts'])!,
+      nextAttemptAt: attachedDatabase.typeMapping.read(
+          DriftSqlType.dateTime, data['${effectivePrefix}next_attempt_at']),
+      lastError: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}last_error']),
+      status: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}status'])!,
+      createdAt: attachedDatabase.typeMapping
+          .read(DriftSqlType.dateTime, data['${effectivePrefix}created_at'])!,
+      updatedAt: attachedDatabase.typeMapping
+          .read(DriftSqlType.dateTime, data['${effectivePrefix}updated_at'])!,
+    );
+  }
+
+  @override
+  $SyncQueueTable createAlias(String alias) {
+    return $SyncQueueTable(attachedDatabase, alias);
+  }
+}
+
+class SyncQueueData extends DataClass implements Insertable<SyncQueueData> {
+  final int id;
+  final String opType;
+  final String entityType;
+  final String entityId;
+  final String clientId;
+  final String payload;
+  final int attempts;
+  final DateTime? nextAttemptAt;
+  final String? lastError;
+  final String status;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  const SyncQueueData(
+      {required this.id,
+      required this.opType,
+      required this.entityType,
+      required this.entityId,
+      required this.clientId,
+      required this.payload,
+      required this.attempts,
+      this.nextAttemptAt,
+      this.lastError,
+      required this.status,
+      required this.createdAt,
+      required this.updatedAt});
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<int>(id);
+    map['op_type'] = Variable<String>(opType);
+    map['entity_type'] = Variable<String>(entityType);
+    map['entity_id'] = Variable<String>(entityId);
+    map['client_id'] = Variable<String>(clientId);
+    map['payload'] = Variable<String>(payload);
+    map['attempts'] = Variable<int>(attempts);
+    if (!nullToAbsent || nextAttemptAt != null) {
+      map['next_attempt_at'] = Variable<DateTime>(nextAttemptAt);
+    }
+    if (!nullToAbsent || lastError != null) {
+      map['last_error'] = Variable<String>(lastError);
+    }
+    map['status'] = Variable<String>(status);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['updated_at'] = Variable<DateTime>(updatedAt);
+    return map;
+  }
+
+  SyncQueueCompanion toCompanion(bool nullToAbsent) {
+    return SyncQueueCompanion(
+      id: Value(id),
+      opType: Value(opType),
+      entityType: Value(entityType),
+      entityId: Value(entityId),
+      clientId: Value(clientId),
+      payload: Value(payload),
+      attempts: Value(attempts),
+      nextAttemptAt: nextAttemptAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(nextAttemptAt),
+      lastError: lastError == null && nullToAbsent
+          ? const Value.absent()
+          : Value(lastError),
+      status: Value(status),
+      createdAt: Value(createdAt),
+      updatedAt: Value(updatedAt),
+    );
+  }
+
+  factory SyncQueueData.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return SyncQueueData(
+      id: serializer.fromJson<int>(json['id']),
+      opType: serializer.fromJson<String>(json['opType']),
+      entityType: serializer.fromJson<String>(json['entityType']),
+      entityId: serializer.fromJson<String>(json['entityId']),
+      clientId: serializer.fromJson<String>(json['clientId']),
+      payload: serializer.fromJson<String>(json['payload']),
+      attempts: serializer.fromJson<int>(json['attempts']),
+      nextAttemptAt: serializer.fromJson<DateTime?>(json['nextAttemptAt']),
+      lastError: serializer.fromJson<String?>(json['lastError']),
+      status: serializer.fromJson<String>(json['status']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<int>(id),
+      'opType': serializer.toJson<String>(opType),
+      'entityType': serializer.toJson<String>(entityType),
+      'entityId': serializer.toJson<String>(entityId),
+      'clientId': serializer.toJson<String>(clientId),
+      'payload': serializer.toJson<String>(payload),
+      'attempts': serializer.toJson<int>(attempts),
+      'nextAttemptAt': serializer.toJson<DateTime?>(nextAttemptAt),
+      'lastError': serializer.toJson<String?>(lastError),
+      'status': serializer.toJson<String>(status),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'updatedAt': serializer.toJson<DateTime>(updatedAt),
+    };
+  }
+
+  SyncQueueData copyWith(
+          {int? id,
+          String? opType,
+          String? entityType,
+          String? entityId,
+          String? clientId,
+          String? payload,
+          int? attempts,
+          Value<DateTime?> nextAttemptAt = const Value.absent(),
+          Value<String?> lastError = const Value.absent(),
+          String? status,
+          DateTime? createdAt,
+          DateTime? updatedAt}) =>
+      SyncQueueData(
+        id: id ?? this.id,
+        opType: opType ?? this.opType,
+        entityType: entityType ?? this.entityType,
+        entityId: entityId ?? this.entityId,
+        clientId: clientId ?? this.clientId,
+        payload: payload ?? this.payload,
+        attempts: attempts ?? this.attempts,
+        nextAttemptAt:
+            nextAttemptAt.present ? nextAttemptAt.value : this.nextAttemptAt,
+        lastError: lastError.present ? lastError.value : this.lastError,
+        status: status ?? this.status,
+        createdAt: createdAt ?? this.createdAt,
+        updatedAt: updatedAt ?? this.updatedAt,
+      );
+  SyncQueueData copyWithCompanion(SyncQueueCompanion data) {
+    return SyncQueueData(
+      id: data.id.present ? data.id.value : this.id,
+      opType: data.opType.present ? data.opType.value : this.opType,
+      entityType:
+          data.entityType.present ? data.entityType.value : this.entityType,
+      entityId: data.entityId.present ? data.entityId.value : this.entityId,
+      clientId: data.clientId.present ? data.clientId.value : this.clientId,
+      payload: data.payload.present ? data.payload.value : this.payload,
+      attempts: data.attempts.present ? data.attempts.value : this.attempts,
+      nextAttemptAt: data.nextAttemptAt.present
+          ? data.nextAttemptAt.value
+          : this.nextAttemptAt,
+      lastError: data.lastError.present ? data.lastError.value : this.lastError,
+      status: data.status.present ? data.status.value : this.status,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('SyncQueueData(')
+          ..write('id: $id, ')
+          ..write('opType: $opType, ')
+          ..write('entityType: $entityType, ')
+          ..write('entityId: $entityId, ')
+          ..write('clientId: $clientId, ')
+          ..write('payload: $payload, ')
+          ..write('attempts: $attempts, ')
+          ..write('nextAttemptAt: $nextAttemptAt, ')
+          ..write('lastError: $lastError, ')
+          ..write('status: $status, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      id,
+      opType,
+      entityType,
+      entityId,
+      clientId,
+      payload,
+      attempts,
+      nextAttemptAt,
+      lastError,
+      status,
+      createdAt,
+      updatedAt);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is SyncQueueData &&
+          other.id == this.id &&
+          other.opType == this.opType &&
+          other.entityType == this.entityType &&
+          other.entityId == this.entityId &&
+          other.clientId == this.clientId &&
+          other.payload == this.payload &&
+          other.attempts == this.attempts &&
+          other.nextAttemptAt == this.nextAttemptAt &&
+          other.lastError == this.lastError &&
+          other.status == this.status &&
+          other.createdAt == this.createdAt &&
+          other.updatedAt == this.updatedAt);
+}
+
+class SyncQueueCompanion extends UpdateCompanion<SyncQueueData> {
+  final Value<int> id;
+  final Value<String> opType;
+  final Value<String> entityType;
+  final Value<String> entityId;
+  final Value<String> clientId;
+  final Value<String> payload;
+  final Value<int> attempts;
+  final Value<DateTime?> nextAttemptAt;
+  final Value<String?> lastError;
+  final Value<String> status;
+  final Value<DateTime> createdAt;
+  final Value<DateTime> updatedAt;
+  const SyncQueueCompanion({
+    this.id = const Value.absent(),
+    this.opType = const Value.absent(),
+    this.entityType = const Value.absent(),
+    this.entityId = const Value.absent(),
+    this.clientId = const Value.absent(),
+    this.payload = const Value.absent(),
+    this.attempts = const Value.absent(),
+    this.nextAttemptAt = const Value.absent(),
+    this.lastError = const Value.absent(),
+    this.status = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+  });
+  SyncQueueCompanion.insert({
+    this.id = const Value.absent(),
+    required String opType,
+    required String entityType,
+    required String entityId,
+    required String clientId,
+    required String payload,
+    this.attempts = const Value.absent(),
+    this.nextAttemptAt = const Value.absent(),
+    this.lastError = const Value.absent(),
+    this.status = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+  })  : opType = Value(opType),
+        entityType = Value(entityType),
+        entityId = Value(entityId),
+        clientId = Value(clientId),
+        payload = Value(payload);
+  static Insertable<SyncQueueData> custom({
+    Expression<int>? id,
+    Expression<String>? opType,
+    Expression<String>? entityType,
+    Expression<String>? entityId,
+    Expression<String>? clientId,
+    Expression<String>? payload,
+    Expression<int>? attempts,
+    Expression<DateTime>? nextAttemptAt,
+    Expression<String>? lastError,
+    Expression<String>? status,
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? updatedAt,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (opType != null) 'op_type': opType,
+      if (entityType != null) 'entity_type': entityType,
+      if (entityId != null) 'entity_id': entityId,
+      if (clientId != null) 'client_id': clientId,
+      if (payload != null) 'payload': payload,
+      if (attempts != null) 'attempts': attempts,
+      if (nextAttemptAt != null) 'next_attempt_at': nextAttemptAt,
+      if (lastError != null) 'last_error': lastError,
+      if (status != null) 'status': status,
+      if (createdAt != null) 'created_at': createdAt,
+      if (updatedAt != null) 'updated_at': updatedAt,
+    });
+  }
+
+  SyncQueueCompanion copyWith(
+      {Value<int>? id,
+      Value<String>? opType,
+      Value<String>? entityType,
+      Value<String>? entityId,
+      Value<String>? clientId,
+      Value<String>? payload,
+      Value<int>? attempts,
+      Value<DateTime?>? nextAttemptAt,
+      Value<String?>? lastError,
+      Value<String>? status,
+      Value<DateTime>? createdAt,
+      Value<DateTime>? updatedAt}) {
+    return SyncQueueCompanion(
+      id: id ?? this.id,
+      opType: opType ?? this.opType,
+      entityType: entityType ?? this.entityType,
+      entityId: entityId ?? this.entityId,
+      clientId: clientId ?? this.clientId,
+      payload: payload ?? this.payload,
+      attempts: attempts ?? this.attempts,
+      nextAttemptAt: nextAttemptAt ?? this.nextAttemptAt,
+      lastError: lastError ?? this.lastError,
+      status: status ?? this.status,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (opType.present) {
+      map['op_type'] = Variable<String>(opType.value);
+    }
+    if (entityType.present) {
+      map['entity_type'] = Variable<String>(entityType.value);
+    }
+    if (entityId.present) {
+      map['entity_id'] = Variable<String>(entityId.value);
+    }
+    if (clientId.present) {
+      map['client_id'] = Variable<String>(clientId.value);
+    }
+    if (payload.present) {
+      map['payload'] = Variable<String>(payload.value);
+    }
+    if (attempts.present) {
+      map['attempts'] = Variable<int>(attempts.value);
+    }
+    if (nextAttemptAt.present) {
+      map['next_attempt_at'] = Variable<DateTime>(nextAttemptAt.value);
+    }
+    if (lastError.present) {
+      map['last_error'] = Variable<String>(lastError.value);
+    }
+    if (status.present) {
+      map['status'] = Variable<String>(status.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('SyncQueueCompanion(')
+          ..write('id: $id, ')
+          ..write('opType: $opType, ')
+          ..write('entityType: $entityType, ')
+          ..write('entityId: $entityId, ')
+          ..write('clientId: $clientId, ')
+          ..write('payload: $payload, ')
+          ..write('attempts: $attempts, ')
+          ..write('nextAttemptAt: $nextAttemptAt, ')
+          ..write('lastError: $lastError, ')
+          ..write('status: $status, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $AIRecommendationsTable extends AIRecommendations
+    with TableInfo<$AIRecommendationsTable, AIRecommendation> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $AIRecommendationsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+      'id', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _patientIdMeta =
+      const VerificationMeta('patientId');
+  @override
+  late final GeneratedColumn<String> patientId = GeneratedColumn<String>(
+      'patient_id', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _typeMeta = const VerificationMeta('type');
+  @override
+  late final GeneratedColumn<String> type = GeneratedColumn<String>(
+      'type', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _titleMeta = const VerificationMeta('title');
+  @override
+  late final GeneratedColumn<String> title = GeneratedColumn<String>(
+      'title', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _contentMeta =
+      const VerificationMeta('content');
+  @override
+  late final GeneratedColumn<String> content = GeneratedColumn<String>(
+      'content', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _priorityMeta =
+      const VerificationMeta('priority');
+  @override
+  late final GeneratedColumn<String> priority = GeneratedColumn<String>(
+      'priority', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _confidenceMeta =
+      const VerificationMeta('confidence');
+  @override
+  late final GeneratedColumn<double> confidence = GeneratedColumn<double>(
+      'confidence', aliasedName, false,
+      type: DriftSqlType.double, requiredDuringInsert: true);
+  static const VerificationMeta _triggersMeta =
+      const VerificationMeta('triggers');
+  @override
+  late final GeneratedColumn<String> triggers = GeneratedColumn<String>(
+      'triggers', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
+  static const VerificationMeta _relatedVitalsMeta =
+      const VerificationMeta('relatedVitals');
+  @override
+  late final GeneratedColumn<String> relatedVitals = GeneratedColumn<String>(
+      'related_vitals', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
+  static const VerificationMeta _validUntilMeta =
+      const VerificationMeta('validUntil');
+  @override
+  late final GeneratedColumn<DateTime> validUntil = GeneratedColumn<DateTime>(
+      'valid_until', aliasedName, true,
+      type: DriftSqlType.dateTime, requiredDuringInsert: false);
+  static const VerificationMeta _createdAtMeta =
+      const VerificationMeta('createdAt');
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+      'created_at', aliasedName, false,
+      type: DriftSqlType.dateTime,
+      requiredDuringInsert: false,
+      defaultValue: currentDateAndTime);
+  static const VerificationMeta _versionMeta =
+      const VerificationMeta('version');
+  @override
+  late final GeneratedColumn<int> version = GeneratedColumn<int>(
+      'version', aliasedName, false,
+      type: DriftSqlType.int,
+      requiredDuringInsert: false,
+      defaultValue: const Constant(1));
+  static const VerificationMeta _syncedMeta = const VerificationMeta('synced');
+  @override
+  late final GeneratedColumn<bool> synced = GeneratedColumn<bool>(
+      'synced', aliasedName, false,
+      type: DriftSqlType.bool,
+      requiredDuringInsert: false,
+      defaultConstraints:
+          GeneratedColumn.constraintIsAlways('CHECK ("synced" IN (0, 1))'),
+      defaultValue: const Constant(false));
+  static const VerificationMeta _acknowledgedMeta =
+      const VerificationMeta('acknowledged');
+  @override
+  late final GeneratedColumn<bool> acknowledged = GeneratedColumn<bool>(
+      'acknowledged', aliasedName, false,
+      type: DriftSqlType.bool,
+      requiredDuringInsert: false,
+      defaultConstraints: GeneratedColumn.constraintIsAlways(
+          'CHECK ("acknowledged" IN (0, 1))'),
+      defaultValue: const Constant(false));
+  @override
+  List<GeneratedColumn> get $columns => [
+        id,
+        patientId,
+        type,
+        title,
+        content,
+        priority,
+        confidence,
+        triggers,
+        relatedVitals,
+        validUntil,
+        createdAt,
+        version,
+        synced,
+        acknowledged
+      ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'a_i_recommendations';
+  @override
+  VerificationContext validateIntegrity(Insertable<AIRecommendation> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('patient_id')) {
+      context.handle(_patientIdMeta,
+          patientId.isAcceptableOrUnknown(data['patient_id']!, _patientIdMeta));
+    } else if (isInserting) {
+      context.missing(_patientIdMeta);
+    }
+    if (data.containsKey('type')) {
+      context.handle(
+          _typeMeta, type.isAcceptableOrUnknown(data['type']!, _typeMeta));
+    } else if (isInserting) {
+      context.missing(_typeMeta);
+    }
+    if (data.containsKey('title')) {
+      context.handle(
+          _titleMeta, title.isAcceptableOrUnknown(data['title']!, _titleMeta));
+    } else if (isInserting) {
+      context.missing(_titleMeta);
+    }
+    if (data.containsKey('content')) {
+      context.handle(_contentMeta,
+          content.isAcceptableOrUnknown(data['content']!, _contentMeta));
+    } else if (isInserting) {
+      context.missing(_contentMeta);
+    }
+    if (data.containsKey('priority')) {
+      context.handle(_priorityMeta,
+          priority.isAcceptableOrUnknown(data['priority']!, _priorityMeta));
+    } else if (isInserting) {
+      context.missing(_priorityMeta);
+    }
+    if (data.containsKey('confidence')) {
+      context.handle(
+          _confidenceMeta,
+          confidence.isAcceptableOrUnknown(
+              data['confidence']!, _confidenceMeta));
+    } else if (isInserting) {
+      context.missing(_confidenceMeta);
+    }
+    if (data.containsKey('triggers')) {
+      context.handle(_triggersMeta,
+          triggers.isAcceptableOrUnknown(data['triggers']!, _triggersMeta));
+    }
+    if (data.containsKey('related_vitals')) {
+      context.handle(
+          _relatedVitalsMeta,
+          relatedVitals.isAcceptableOrUnknown(
+              data['related_vitals']!, _relatedVitalsMeta));
+    }
+    if (data.containsKey('valid_until')) {
+      context.handle(
+          _validUntilMeta,
+          validUntil.isAcceptableOrUnknown(
+              data['valid_until']!, _validUntilMeta));
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(_createdAtMeta,
+          createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta));
+    }
+    if (data.containsKey('version')) {
+      context.handle(_versionMeta,
+          version.isAcceptableOrUnknown(data['version']!, _versionMeta));
+    }
+    if (data.containsKey('synced')) {
+      context.handle(_syncedMeta,
+          synced.isAcceptableOrUnknown(data['synced']!, _syncedMeta));
+    }
+    if (data.containsKey('acknowledged')) {
+      context.handle(
+          _acknowledgedMeta,
+          acknowledged.isAcceptableOrUnknown(
+              data['acknowledged']!, _acknowledgedMeta));
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  AIRecommendation map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return AIRecommendation(
+      id: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}id'])!,
+      patientId: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}patient_id'])!,
+      type: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}type'])!,
+      title: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}title'])!,
+      content: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}content'])!,
+      priority: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}priority'])!,
+      confidence: attachedDatabase.typeMapping
+          .read(DriftSqlType.double, data['${effectivePrefix}confidence'])!,
+      triggers: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}triggers']),
+      relatedVitals: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}related_vitals']),
+      validUntil: attachedDatabase.typeMapping
+          .read(DriftSqlType.dateTime, data['${effectivePrefix}valid_until']),
+      createdAt: attachedDatabase.typeMapping
+          .read(DriftSqlType.dateTime, data['${effectivePrefix}created_at'])!,
+      version: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}version'])!,
+      synced: attachedDatabase.typeMapping
+          .read(DriftSqlType.bool, data['${effectivePrefix}synced'])!,
+      acknowledged: attachedDatabase.typeMapping
+          .read(DriftSqlType.bool, data['${effectivePrefix}acknowledged'])!,
+    );
+  }
+
+  @override
+  $AIRecommendationsTable createAlias(String alias) {
+    return $AIRecommendationsTable(attachedDatabase, alias);
+  }
+}
+
+class AIRecommendation extends DataClass
+    implements Insertable<AIRecommendation> {
+  final String id;
+  final String patientId;
+  final String type;
+  final String title;
+  final String content;
+  final String priority;
+  final double confidence;
+  final String? triggers;
+  final String? relatedVitals;
+  final DateTime? validUntil;
+  final DateTime createdAt;
+  final int version;
+  final bool synced;
+  final bool acknowledged;
+  const AIRecommendation(
+      {required this.id,
+      required this.patientId,
+      required this.type,
+      required this.title,
+      required this.content,
+      required this.priority,
+      required this.confidence,
+      this.triggers,
+      this.relatedVitals,
+      this.validUntil,
+      required this.createdAt,
+      required this.version,
+      required this.synced,
+      required this.acknowledged});
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['patient_id'] = Variable<String>(patientId);
+    map['type'] = Variable<String>(type);
+    map['title'] = Variable<String>(title);
+    map['content'] = Variable<String>(content);
+    map['priority'] = Variable<String>(priority);
+    map['confidence'] = Variable<double>(confidence);
+    if (!nullToAbsent || triggers != null) {
+      map['triggers'] = Variable<String>(triggers);
+    }
+    if (!nullToAbsent || relatedVitals != null) {
+      map['related_vitals'] = Variable<String>(relatedVitals);
+    }
+    if (!nullToAbsent || validUntil != null) {
+      map['valid_until'] = Variable<DateTime>(validUntil);
+    }
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['version'] = Variable<int>(version);
+    map['synced'] = Variable<bool>(synced);
+    map['acknowledged'] = Variable<bool>(acknowledged);
+    return map;
+  }
+
+  AIRecommendationsCompanion toCompanion(bool nullToAbsent) {
+    return AIRecommendationsCompanion(
+      id: Value(id),
+      patientId: Value(patientId),
+      type: Value(type),
+      title: Value(title),
+      content: Value(content),
+      priority: Value(priority),
+      confidence: Value(confidence),
+      triggers: triggers == null && nullToAbsent
+          ? const Value.absent()
+          : Value(triggers),
+      relatedVitals: relatedVitals == null && nullToAbsent
+          ? const Value.absent()
+          : Value(relatedVitals),
+      validUntil: validUntil == null && nullToAbsent
+          ? const Value.absent()
+          : Value(validUntil),
+      createdAt: Value(createdAt),
+      version: Value(version),
+      synced: Value(synced),
+      acknowledged: Value(acknowledged),
+    );
+  }
+
+  factory AIRecommendation.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return AIRecommendation(
+      id: serializer.fromJson<String>(json['id']),
+      patientId: serializer.fromJson<String>(json['patientId']),
+      type: serializer.fromJson<String>(json['type']),
+      title: serializer.fromJson<String>(json['title']),
+      content: serializer.fromJson<String>(json['content']),
+      priority: serializer.fromJson<String>(json['priority']),
+      confidence: serializer.fromJson<double>(json['confidence']),
+      triggers: serializer.fromJson<String?>(json['triggers']),
+      relatedVitals: serializer.fromJson<String?>(json['relatedVitals']),
+      validUntil: serializer.fromJson<DateTime?>(json['validUntil']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      version: serializer.fromJson<int>(json['version']),
+      synced: serializer.fromJson<bool>(json['synced']),
+      acknowledged: serializer.fromJson<bool>(json['acknowledged']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'patientId': serializer.toJson<String>(patientId),
+      'type': serializer.toJson<String>(type),
+      'title': serializer.toJson<String>(title),
+      'content': serializer.toJson<String>(content),
+      'priority': serializer.toJson<String>(priority),
+      'confidence': serializer.toJson<double>(confidence),
+      'triggers': serializer.toJson<String?>(triggers),
+      'relatedVitals': serializer.toJson<String?>(relatedVitals),
+      'validUntil': serializer.toJson<DateTime?>(validUntil),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'version': serializer.toJson<int>(version),
+      'synced': serializer.toJson<bool>(synced),
+      'acknowledged': serializer.toJson<bool>(acknowledged),
+    };
+  }
+
+  AIRecommendation copyWith(
+          {String? id,
+          String? patientId,
+          String? type,
+          String? title,
+          String? content,
+          String? priority,
+          double? confidence,
+          Value<String?> triggers = const Value.absent(),
+          Value<String?> relatedVitals = const Value.absent(),
+          Value<DateTime?> validUntil = const Value.absent(),
+          DateTime? createdAt,
+          int? version,
+          bool? synced,
+          bool? acknowledged}) =>
+      AIRecommendation(
+        id: id ?? this.id,
+        patientId: patientId ?? this.patientId,
+        type: type ?? this.type,
+        title: title ?? this.title,
+        content: content ?? this.content,
+        priority: priority ?? this.priority,
+        confidence: confidence ?? this.confidence,
+        triggers: triggers.present ? triggers.value : this.triggers,
+        relatedVitals:
+            relatedVitals.present ? relatedVitals.value : this.relatedVitals,
+        validUntil: validUntil.present ? validUntil.value : this.validUntil,
+        createdAt: createdAt ?? this.createdAt,
+        version: version ?? this.version,
+        synced: synced ?? this.synced,
+        acknowledged: acknowledged ?? this.acknowledged,
+      );
+  AIRecommendation copyWithCompanion(AIRecommendationsCompanion data) {
+    return AIRecommendation(
+      id: data.id.present ? data.id.value : this.id,
+      patientId: data.patientId.present ? data.patientId.value : this.patientId,
+      type: data.type.present ? data.type.value : this.type,
+      title: data.title.present ? data.title.value : this.title,
+      content: data.content.present ? data.content.value : this.content,
+      priority: data.priority.present ? data.priority.value : this.priority,
+      confidence:
+          data.confidence.present ? data.confidence.value : this.confidence,
+      triggers: data.triggers.present ? data.triggers.value : this.triggers,
+      relatedVitals: data.relatedVitals.present
+          ? data.relatedVitals.value
+          : this.relatedVitals,
+      validUntil:
+          data.validUntil.present ? data.validUntil.value : this.validUntil,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      version: data.version.present ? data.version.value : this.version,
+      synced: data.synced.present ? data.synced.value : this.synced,
+      acknowledged: data.acknowledged.present
+          ? data.acknowledged.value
+          : this.acknowledged,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('AIRecommendation(')
+          ..write('id: $id, ')
+          ..write('patientId: $patientId, ')
+          ..write('type: $type, ')
+          ..write('title: $title, ')
+          ..write('content: $content, ')
+          ..write('priority: $priority, ')
+          ..write('confidence: $confidence, ')
+          ..write('triggers: $triggers, ')
+          ..write('relatedVitals: $relatedVitals, ')
+          ..write('validUntil: $validUntil, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('version: $version, ')
+          ..write('synced: $synced, ')
+          ..write('acknowledged: $acknowledged')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      id,
+      patientId,
+      type,
+      title,
+      content,
+      priority,
+      confidence,
+      triggers,
+      relatedVitals,
+      validUntil,
+      createdAt,
+      version,
+      synced,
+      acknowledged);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is AIRecommendation &&
+          other.id == this.id &&
+          other.patientId == this.patientId &&
+          other.type == this.type &&
+          other.title == this.title &&
+          other.content == this.content &&
+          other.priority == this.priority &&
+          other.confidence == this.confidence &&
+          other.triggers == this.triggers &&
+          other.relatedVitals == this.relatedVitals &&
+          other.validUntil == this.validUntil &&
+          other.createdAt == this.createdAt &&
+          other.version == this.version &&
+          other.synced == this.synced &&
+          other.acknowledged == this.acknowledged);
+}
+
+class AIRecommendationsCompanion extends UpdateCompanion<AIRecommendation> {
+  final Value<String> id;
+  final Value<String> patientId;
+  final Value<String> type;
+  final Value<String> title;
+  final Value<String> content;
+  final Value<String> priority;
+  final Value<double> confidence;
+  final Value<String?> triggers;
+  final Value<String?> relatedVitals;
+  final Value<DateTime?> validUntil;
+  final Value<DateTime> createdAt;
+  final Value<int> version;
+  final Value<bool> synced;
+  final Value<bool> acknowledged;
+  final Value<int> rowid;
+  const AIRecommendationsCompanion({
+    this.id = const Value.absent(),
+    this.patientId = const Value.absent(),
+    this.type = const Value.absent(),
+    this.title = const Value.absent(),
+    this.content = const Value.absent(),
+    this.priority = const Value.absent(),
+    this.confidence = const Value.absent(),
+    this.triggers = const Value.absent(),
+    this.relatedVitals = const Value.absent(),
+    this.validUntil = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.version = const Value.absent(),
+    this.synced = const Value.absent(),
+    this.acknowledged = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  AIRecommendationsCompanion.insert({
+    required String id,
+    required String patientId,
+    required String type,
+    required String title,
+    required String content,
+    required String priority,
+    required double confidence,
+    this.triggers = const Value.absent(),
+    this.relatedVitals = const Value.absent(),
+    this.validUntil = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.version = const Value.absent(),
+    this.synced = const Value.absent(),
+    this.acknowledged = const Value.absent(),
+    this.rowid = const Value.absent(),
+  })  : id = Value(id),
+        patientId = Value(patientId),
+        type = Value(type),
+        title = Value(title),
+        content = Value(content),
+        priority = Value(priority),
+        confidence = Value(confidence);
+  static Insertable<AIRecommendation> custom({
+    Expression<String>? id,
+    Expression<String>? patientId,
+    Expression<String>? type,
+    Expression<String>? title,
+    Expression<String>? content,
+    Expression<String>? priority,
+    Expression<double>? confidence,
+    Expression<String>? triggers,
+    Expression<String>? relatedVitals,
+    Expression<DateTime>? validUntil,
+    Expression<DateTime>? createdAt,
+    Expression<int>? version,
+    Expression<bool>? synced,
+    Expression<bool>? acknowledged,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (patientId != null) 'patient_id': patientId,
+      if (type != null) 'type': type,
+      if (title != null) 'title': title,
+      if (content != null) 'content': content,
+      if (priority != null) 'priority': priority,
+      if (confidence != null) 'confidence': confidence,
+      if (triggers != null) 'triggers': triggers,
+      if (relatedVitals != null) 'related_vitals': relatedVitals,
+      if (validUntil != null) 'valid_until': validUntil,
+      if (createdAt != null) 'created_at': createdAt,
+      if (version != null) 'version': version,
+      if (synced != null) 'synced': synced,
+      if (acknowledged != null) 'acknowledged': acknowledged,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  AIRecommendationsCompanion copyWith(
+      {Value<String>? id,
+      Value<String>? patientId,
+      Value<String>? type,
+      Value<String>? title,
+      Value<String>? content,
+      Value<String>? priority,
+      Value<double>? confidence,
+      Value<String?>? triggers,
+      Value<String?>? relatedVitals,
+      Value<DateTime?>? validUntil,
+      Value<DateTime>? createdAt,
+      Value<int>? version,
+      Value<bool>? synced,
+      Value<bool>? acknowledged,
+      Value<int>? rowid}) {
+    return AIRecommendationsCompanion(
+      id: id ?? this.id,
+      patientId: patientId ?? this.patientId,
+      type: type ?? this.type,
+      title: title ?? this.title,
+      content: content ?? this.content,
+      priority: priority ?? this.priority,
+      confidence: confidence ?? this.confidence,
+      triggers: triggers ?? this.triggers,
+      relatedVitals: relatedVitals ?? this.relatedVitals,
+      validUntil: validUntil ?? this.validUntil,
+      createdAt: createdAt ?? this.createdAt,
+      version: version ?? this.version,
+      synced: synced ?? this.synced,
+      acknowledged: acknowledged ?? this.acknowledged,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (patientId.present) {
+      map['patient_id'] = Variable<String>(patientId.value);
+    }
+    if (type.present) {
+      map['type'] = Variable<String>(type.value);
+    }
+    if (title.present) {
+      map['title'] = Variable<String>(title.value);
+    }
+    if (content.present) {
+      map['content'] = Variable<String>(content.value);
+    }
+    if (priority.present) {
+      map['priority'] = Variable<String>(priority.value);
+    }
+    if (confidence.present) {
+      map['confidence'] = Variable<double>(confidence.value);
+    }
+    if (triggers.present) {
+      map['triggers'] = Variable<String>(triggers.value);
+    }
+    if (relatedVitals.present) {
+      map['related_vitals'] = Variable<String>(relatedVitals.value);
+    }
+    if (validUntil.present) {
+      map['valid_until'] = Variable<DateTime>(validUntil.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (version.present) {
+      map['version'] = Variable<int>(version.value);
+    }
+    if (synced.present) {
+      map['synced'] = Variable<bool>(synced.value);
+    }
+    if (acknowledged.present) {
+      map['acknowledged'] = Variable<bool>(acknowledged.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('AIRecommendationsCompanion(')
+          ..write('id: $id, ')
+          ..write('patientId: $patientId, ')
+          ..write('type: $type, ')
+          ..write('title: $title, ')
+          ..write('content: $content, ')
+          ..write('priority: $priority, ')
+          ..write('confidence: $confidence, ')
+          ..write('triggers: $triggers, ')
+          ..write('relatedVitals: $relatedVitals, ')
+          ..write('validUntil: $validUntil, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('version: $version, ')
+          ..write('synced: $synced, ')
+          ..write('acknowledged: $acknowledged, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$DgtlDatabase extends GeneratedDatabase {
   _$DgtlDatabase(QueryExecutor e) : super(e);
   $DgtlDatabaseManager get managers => $DgtlDatabaseManager(this);
@@ -3205,6 +5858,11 @@ abstract class _$DgtlDatabase extends GeneratedDatabase {
   late final $SymptomsTable symptoms = $SymptomsTable(this);
   late final $MedicationsTable medications = $MedicationsTable(this);
   late final $RagQueryCacheTable ragQueryCache = $RagQueryCacheTable(this);
+  late final $VitalsTable vitals = $VitalsTable(this);
+  late final $BPReadingsTable bPReadings = $BPReadingsTable(this);
+  late final $SyncQueueTable syncQueue = $SyncQueueTable(this);
+  late final $AIRecommendationsTable aIRecommendations =
+      $AIRecommendationsTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
@@ -3216,7 +5874,11 @@ abstract class _$DgtlDatabase extends GeneratedDatabase {
         labResults,
         symptoms,
         medications,
-        ragQueryCache
+        ragQueryCache,
+        vitals,
+        bPReadings,
+        syncQueue,
+        aIRecommendations
       ];
 }
 
@@ -5509,6 +8171,1205 @@ typedef $$RagQueryCacheTableProcessedTableManager = ProcessedTableManager<
     ),
     RagQueryCacheData,
     PrefetchHooks Function()>;
+typedef $$VitalsTableCreateCompanionBuilder = VitalsCompanion Function({
+  required String id,
+  required String clientId,
+  required String patientId,
+  required String type,
+  required double value,
+  required String unit,
+  Value<String?> status,
+  Value<String?> notes,
+  required DateTime recordedAt,
+  Value<DateTime> createdAt,
+  Value<DateTime> updatedAt,
+  Value<int> version,
+  Value<bool> synced,
+  Value<String?> deviceId,
+  Value<int> rowid,
+});
+typedef $$VitalsTableUpdateCompanionBuilder = VitalsCompanion Function({
+  Value<String> id,
+  Value<String> clientId,
+  Value<String> patientId,
+  Value<String> type,
+  Value<double> value,
+  Value<String> unit,
+  Value<String?> status,
+  Value<String?> notes,
+  Value<DateTime> recordedAt,
+  Value<DateTime> createdAt,
+  Value<DateTime> updatedAt,
+  Value<int> version,
+  Value<bool> synced,
+  Value<String?> deviceId,
+  Value<int> rowid,
+});
+
+class $$VitalsTableFilterComposer
+    extends Composer<_$DgtlDatabase, $VitalsTable> {
+  $$VitalsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+      column: $table.id, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get clientId => $composableBuilder(
+      column: $table.clientId, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get patientId => $composableBuilder(
+      column: $table.patientId, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get type => $composableBuilder(
+      column: $table.type, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<double> get value => $composableBuilder(
+      column: $table.value, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get unit => $composableBuilder(
+      column: $table.unit, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get status => $composableBuilder(
+      column: $table.status, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get notes => $composableBuilder(
+      column: $table.notes, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<DateTime> get recordedAt => $composableBuilder(
+      column: $table.recordedAt, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+      column: $table.createdAt, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
+      column: $table.updatedAt, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<int> get version => $composableBuilder(
+      column: $table.version, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<bool> get synced => $composableBuilder(
+      column: $table.synced, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get deviceId => $composableBuilder(
+      column: $table.deviceId, builder: (column) => ColumnFilters(column));
+}
+
+class $$VitalsTableOrderingComposer
+    extends Composer<_$DgtlDatabase, $VitalsTable> {
+  $$VitalsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+      column: $table.id, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get clientId => $composableBuilder(
+      column: $table.clientId, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get patientId => $composableBuilder(
+      column: $table.patientId, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get type => $composableBuilder(
+      column: $table.type, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<double> get value => $composableBuilder(
+      column: $table.value, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get unit => $composableBuilder(
+      column: $table.unit, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get status => $composableBuilder(
+      column: $table.status, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get notes => $composableBuilder(
+      column: $table.notes, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<DateTime> get recordedAt => $composableBuilder(
+      column: $table.recordedAt, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+      column: $table.createdAt, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
+      column: $table.updatedAt, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<int> get version => $composableBuilder(
+      column: $table.version, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<bool> get synced => $composableBuilder(
+      column: $table.synced, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get deviceId => $composableBuilder(
+      column: $table.deviceId, builder: (column) => ColumnOrderings(column));
+}
+
+class $$VitalsTableAnnotationComposer
+    extends Composer<_$DgtlDatabase, $VitalsTable> {
+  $$VitalsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get clientId =>
+      $composableBuilder(column: $table.clientId, builder: (column) => column);
+
+  GeneratedColumn<String> get patientId =>
+      $composableBuilder(column: $table.patientId, builder: (column) => column);
+
+  GeneratedColumn<String> get type =>
+      $composableBuilder(column: $table.type, builder: (column) => column);
+
+  GeneratedColumn<double> get value =>
+      $composableBuilder(column: $table.value, builder: (column) => column);
+
+  GeneratedColumn<String> get unit =>
+      $composableBuilder(column: $table.unit, builder: (column) => column);
+
+  GeneratedColumn<String> get status =>
+      $composableBuilder(column: $table.status, builder: (column) => column);
+
+  GeneratedColumn<String> get notes =>
+      $composableBuilder(column: $table.notes, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get recordedAt => $composableBuilder(
+      column: $table.recordedAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+
+  GeneratedColumn<int> get version =>
+      $composableBuilder(column: $table.version, builder: (column) => column);
+
+  GeneratedColumn<bool> get synced =>
+      $composableBuilder(column: $table.synced, builder: (column) => column);
+
+  GeneratedColumn<String> get deviceId =>
+      $composableBuilder(column: $table.deviceId, builder: (column) => column);
+}
+
+class $$VitalsTableTableManager extends RootTableManager<
+    _$DgtlDatabase,
+    $VitalsTable,
+    Vital,
+    $$VitalsTableFilterComposer,
+    $$VitalsTableOrderingComposer,
+    $$VitalsTableAnnotationComposer,
+    $$VitalsTableCreateCompanionBuilder,
+    $$VitalsTableUpdateCompanionBuilder,
+    (Vital, BaseReferences<_$DgtlDatabase, $VitalsTable, Vital>),
+    Vital,
+    PrefetchHooks Function()> {
+  $$VitalsTableTableManager(_$DgtlDatabase db, $VitalsTable table)
+      : super(TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$VitalsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$VitalsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$VitalsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback: ({
+            Value<String> id = const Value.absent(),
+            Value<String> clientId = const Value.absent(),
+            Value<String> patientId = const Value.absent(),
+            Value<String> type = const Value.absent(),
+            Value<double> value = const Value.absent(),
+            Value<String> unit = const Value.absent(),
+            Value<String?> status = const Value.absent(),
+            Value<String?> notes = const Value.absent(),
+            Value<DateTime> recordedAt = const Value.absent(),
+            Value<DateTime> createdAt = const Value.absent(),
+            Value<DateTime> updatedAt = const Value.absent(),
+            Value<int> version = const Value.absent(),
+            Value<bool> synced = const Value.absent(),
+            Value<String?> deviceId = const Value.absent(),
+            Value<int> rowid = const Value.absent(),
+          }) =>
+              VitalsCompanion(
+            id: id,
+            clientId: clientId,
+            patientId: patientId,
+            type: type,
+            value: value,
+            unit: unit,
+            status: status,
+            notes: notes,
+            recordedAt: recordedAt,
+            createdAt: createdAt,
+            updatedAt: updatedAt,
+            version: version,
+            synced: synced,
+            deviceId: deviceId,
+            rowid: rowid,
+          ),
+          createCompanionCallback: ({
+            required String id,
+            required String clientId,
+            required String patientId,
+            required String type,
+            required double value,
+            required String unit,
+            Value<String?> status = const Value.absent(),
+            Value<String?> notes = const Value.absent(),
+            required DateTime recordedAt,
+            Value<DateTime> createdAt = const Value.absent(),
+            Value<DateTime> updatedAt = const Value.absent(),
+            Value<int> version = const Value.absent(),
+            Value<bool> synced = const Value.absent(),
+            Value<String?> deviceId = const Value.absent(),
+            Value<int> rowid = const Value.absent(),
+          }) =>
+              VitalsCompanion.insert(
+            id: id,
+            clientId: clientId,
+            patientId: patientId,
+            type: type,
+            value: value,
+            unit: unit,
+            status: status,
+            notes: notes,
+            recordedAt: recordedAt,
+            createdAt: createdAt,
+            updatedAt: updatedAt,
+            version: version,
+            synced: synced,
+            deviceId: deviceId,
+            rowid: rowid,
+          ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ));
+}
+
+typedef $$VitalsTableProcessedTableManager = ProcessedTableManager<
+    _$DgtlDatabase,
+    $VitalsTable,
+    Vital,
+    $$VitalsTableFilterComposer,
+    $$VitalsTableOrderingComposer,
+    $$VitalsTableAnnotationComposer,
+    $$VitalsTableCreateCompanionBuilder,
+    $$VitalsTableUpdateCompanionBuilder,
+    (Vital, BaseReferences<_$DgtlDatabase, $VitalsTable, Vital>),
+    Vital,
+    PrefetchHooks Function()>;
+typedef $$BPReadingsTableCreateCompanionBuilder = BPReadingsCompanion Function({
+  required String id,
+  required String clientId,
+  required String patientId,
+  required int systolic,
+  required int diastolic,
+  Value<int?> heartRate,
+  required String status,
+  Value<String?> position,
+  Value<String?> arm,
+  Value<double?> fatigueLevel,
+  Value<String?> symptoms,
+  required DateTime recordedAt,
+  Value<DateTime> createdAt,
+  Value<int> version,
+  Value<bool> synced,
+  Value<int> rowid,
+});
+typedef $$BPReadingsTableUpdateCompanionBuilder = BPReadingsCompanion Function({
+  Value<String> id,
+  Value<String> clientId,
+  Value<String> patientId,
+  Value<int> systolic,
+  Value<int> diastolic,
+  Value<int?> heartRate,
+  Value<String> status,
+  Value<String?> position,
+  Value<String?> arm,
+  Value<double?> fatigueLevel,
+  Value<String?> symptoms,
+  Value<DateTime> recordedAt,
+  Value<DateTime> createdAt,
+  Value<int> version,
+  Value<bool> synced,
+  Value<int> rowid,
+});
+
+class $$BPReadingsTableFilterComposer
+    extends Composer<_$DgtlDatabase, $BPReadingsTable> {
+  $$BPReadingsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+      column: $table.id, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get clientId => $composableBuilder(
+      column: $table.clientId, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get patientId => $composableBuilder(
+      column: $table.patientId, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<int> get systolic => $composableBuilder(
+      column: $table.systolic, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<int> get diastolic => $composableBuilder(
+      column: $table.diastolic, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<int> get heartRate => $composableBuilder(
+      column: $table.heartRate, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get status => $composableBuilder(
+      column: $table.status, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get position => $composableBuilder(
+      column: $table.position, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get arm => $composableBuilder(
+      column: $table.arm, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<double> get fatigueLevel => $composableBuilder(
+      column: $table.fatigueLevel, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get symptoms => $composableBuilder(
+      column: $table.symptoms, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<DateTime> get recordedAt => $composableBuilder(
+      column: $table.recordedAt, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+      column: $table.createdAt, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<int> get version => $composableBuilder(
+      column: $table.version, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<bool> get synced => $composableBuilder(
+      column: $table.synced, builder: (column) => ColumnFilters(column));
+}
+
+class $$BPReadingsTableOrderingComposer
+    extends Composer<_$DgtlDatabase, $BPReadingsTable> {
+  $$BPReadingsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+      column: $table.id, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get clientId => $composableBuilder(
+      column: $table.clientId, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get patientId => $composableBuilder(
+      column: $table.patientId, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<int> get systolic => $composableBuilder(
+      column: $table.systolic, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<int> get diastolic => $composableBuilder(
+      column: $table.diastolic, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<int> get heartRate => $composableBuilder(
+      column: $table.heartRate, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get status => $composableBuilder(
+      column: $table.status, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get position => $composableBuilder(
+      column: $table.position, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get arm => $composableBuilder(
+      column: $table.arm, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<double> get fatigueLevel => $composableBuilder(
+      column: $table.fatigueLevel,
+      builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get symptoms => $composableBuilder(
+      column: $table.symptoms, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<DateTime> get recordedAt => $composableBuilder(
+      column: $table.recordedAt, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+      column: $table.createdAt, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<int> get version => $composableBuilder(
+      column: $table.version, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<bool> get synced => $composableBuilder(
+      column: $table.synced, builder: (column) => ColumnOrderings(column));
+}
+
+class $$BPReadingsTableAnnotationComposer
+    extends Composer<_$DgtlDatabase, $BPReadingsTable> {
+  $$BPReadingsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get clientId =>
+      $composableBuilder(column: $table.clientId, builder: (column) => column);
+
+  GeneratedColumn<String> get patientId =>
+      $composableBuilder(column: $table.patientId, builder: (column) => column);
+
+  GeneratedColumn<int> get systolic =>
+      $composableBuilder(column: $table.systolic, builder: (column) => column);
+
+  GeneratedColumn<int> get diastolic =>
+      $composableBuilder(column: $table.diastolic, builder: (column) => column);
+
+  GeneratedColumn<int> get heartRate =>
+      $composableBuilder(column: $table.heartRate, builder: (column) => column);
+
+  GeneratedColumn<String> get status =>
+      $composableBuilder(column: $table.status, builder: (column) => column);
+
+  GeneratedColumn<String> get position =>
+      $composableBuilder(column: $table.position, builder: (column) => column);
+
+  GeneratedColumn<String> get arm =>
+      $composableBuilder(column: $table.arm, builder: (column) => column);
+
+  GeneratedColumn<double> get fatigueLevel => $composableBuilder(
+      column: $table.fatigueLevel, builder: (column) => column);
+
+  GeneratedColumn<String> get symptoms =>
+      $composableBuilder(column: $table.symptoms, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get recordedAt => $composableBuilder(
+      column: $table.recordedAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<int> get version =>
+      $composableBuilder(column: $table.version, builder: (column) => column);
+
+  GeneratedColumn<bool> get synced =>
+      $composableBuilder(column: $table.synced, builder: (column) => column);
+}
+
+class $$BPReadingsTableTableManager extends RootTableManager<
+    _$DgtlDatabase,
+    $BPReadingsTable,
+    BPReading,
+    $$BPReadingsTableFilterComposer,
+    $$BPReadingsTableOrderingComposer,
+    $$BPReadingsTableAnnotationComposer,
+    $$BPReadingsTableCreateCompanionBuilder,
+    $$BPReadingsTableUpdateCompanionBuilder,
+    (BPReading, BaseReferences<_$DgtlDatabase, $BPReadingsTable, BPReading>),
+    BPReading,
+    PrefetchHooks Function()> {
+  $$BPReadingsTableTableManager(_$DgtlDatabase db, $BPReadingsTable table)
+      : super(TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$BPReadingsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$BPReadingsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$BPReadingsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback: ({
+            Value<String> id = const Value.absent(),
+            Value<String> clientId = const Value.absent(),
+            Value<String> patientId = const Value.absent(),
+            Value<int> systolic = const Value.absent(),
+            Value<int> diastolic = const Value.absent(),
+            Value<int?> heartRate = const Value.absent(),
+            Value<String> status = const Value.absent(),
+            Value<String?> position = const Value.absent(),
+            Value<String?> arm = const Value.absent(),
+            Value<double?> fatigueLevel = const Value.absent(),
+            Value<String?> symptoms = const Value.absent(),
+            Value<DateTime> recordedAt = const Value.absent(),
+            Value<DateTime> createdAt = const Value.absent(),
+            Value<int> version = const Value.absent(),
+            Value<bool> synced = const Value.absent(),
+            Value<int> rowid = const Value.absent(),
+          }) =>
+              BPReadingsCompanion(
+            id: id,
+            clientId: clientId,
+            patientId: patientId,
+            systolic: systolic,
+            diastolic: diastolic,
+            heartRate: heartRate,
+            status: status,
+            position: position,
+            arm: arm,
+            fatigueLevel: fatigueLevel,
+            symptoms: symptoms,
+            recordedAt: recordedAt,
+            createdAt: createdAt,
+            version: version,
+            synced: synced,
+            rowid: rowid,
+          ),
+          createCompanionCallback: ({
+            required String id,
+            required String clientId,
+            required String patientId,
+            required int systolic,
+            required int diastolic,
+            Value<int?> heartRate = const Value.absent(),
+            required String status,
+            Value<String?> position = const Value.absent(),
+            Value<String?> arm = const Value.absent(),
+            Value<double?> fatigueLevel = const Value.absent(),
+            Value<String?> symptoms = const Value.absent(),
+            required DateTime recordedAt,
+            Value<DateTime> createdAt = const Value.absent(),
+            Value<int> version = const Value.absent(),
+            Value<bool> synced = const Value.absent(),
+            Value<int> rowid = const Value.absent(),
+          }) =>
+              BPReadingsCompanion.insert(
+            id: id,
+            clientId: clientId,
+            patientId: patientId,
+            systolic: systolic,
+            diastolic: diastolic,
+            heartRate: heartRate,
+            status: status,
+            position: position,
+            arm: arm,
+            fatigueLevel: fatigueLevel,
+            symptoms: symptoms,
+            recordedAt: recordedAt,
+            createdAt: createdAt,
+            version: version,
+            synced: synced,
+            rowid: rowid,
+          ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ));
+}
+
+typedef $$BPReadingsTableProcessedTableManager = ProcessedTableManager<
+    _$DgtlDatabase,
+    $BPReadingsTable,
+    BPReading,
+    $$BPReadingsTableFilterComposer,
+    $$BPReadingsTableOrderingComposer,
+    $$BPReadingsTableAnnotationComposer,
+    $$BPReadingsTableCreateCompanionBuilder,
+    $$BPReadingsTableUpdateCompanionBuilder,
+    (BPReading, BaseReferences<_$DgtlDatabase, $BPReadingsTable, BPReading>),
+    BPReading,
+    PrefetchHooks Function()>;
+typedef $$SyncQueueTableCreateCompanionBuilder = SyncQueueCompanion Function({
+  Value<int> id,
+  required String opType,
+  required String entityType,
+  required String entityId,
+  required String clientId,
+  required String payload,
+  Value<int> attempts,
+  Value<DateTime?> nextAttemptAt,
+  Value<String?> lastError,
+  Value<String> status,
+  Value<DateTime> createdAt,
+  Value<DateTime> updatedAt,
+});
+typedef $$SyncQueueTableUpdateCompanionBuilder = SyncQueueCompanion Function({
+  Value<int> id,
+  Value<String> opType,
+  Value<String> entityType,
+  Value<String> entityId,
+  Value<String> clientId,
+  Value<String> payload,
+  Value<int> attempts,
+  Value<DateTime?> nextAttemptAt,
+  Value<String?> lastError,
+  Value<String> status,
+  Value<DateTime> createdAt,
+  Value<DateTime> updatedAt,
+});
+
+class $$SyncQueueTableFilterComposer
+    extends Composer<_$DgtlDatabase, $SyncQueueTable> {
+  $$SyncQueueTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get id => $composableBuilder(
+      column: $table.id, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get opType => $composableBuilder(
+      column: $table.opType, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get entityType => $composableBuilder(
+      column: $table.entityType, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get entityId => $composableBuilder(
+      column: $table.entityId, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get clientId => $composableBuilder(
+      column: $table.clientId, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get payload => $composableBuilder(
+      column: $table.payload, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<int> get attempts => $composableBuilder(
+      column: $table.attempts, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<DateTime> get nextAttemptAt => $composableBuilder(
+      column: $table.nextAttemptAt, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get lastError => $composableBuilder(
+      column: $table.lastError, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get status => $composableBuilder(
+      column: $table.status, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+      column: $table.createdAt, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
+      column: $table.updatedAt, builder: (column) => ColumnFilters(column));
+}
+
+class $$SyncQueueTableOrderingComposer
+    extends Composer<_$DgtlDatabase, $SyncQueueTable> {
+  $$SyncQueueTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get id => $composableBuilder(
+      column: $table.id, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get opType => $composableBuilder(
+      column: $table.opType, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get entityType => $composableBuilder(
+      column: $table.entityType, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get entityId => $composableBuilder(
+      column: $table.entityId, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get clientId => $composableBuilder(
+      column: $table.clientId, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get payload => $composableBuilder(
+      column: $table.payload, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<int> get attempts => $composableBuilder(
+      column: $table.attempts, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<DateTime> get nextAttemptAt => $composableBuilder(
+      column: $table.nextAttemptAt,
+      builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get lastError => $composableBuilder(
+      column: $table.lastError, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get status => $composableBuilder(
+      column: $table.status, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+      column: $table.createdAt, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
+      column: $table.updatedAt, builder: (column) => ColumnOrderings(column));
+}
+
+class $$SyncQueueTableAnnotationComposer
+    extends Composer<_$DgtlDatabase, $SyncQueueTable> {
+  $$SyncQueueTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get opType =>
+      $composableBuilder(column: $table.opType, builder: (column) => column);
+
+  GeneratedColumn<String> get entityType => $composableBuilder(
+      column: $table.entityType, builder: (column) => column);
+
+  GeneratedColumn<String> get entityId =>
+      $composableBuilder(column: $table.entityId, builder: (column) => column);
+
+  GeneratedColumn<String> get clientId =>
+      $composableBuilder(column: $table.clientId, builder: (column) => column);
+
+  GeneratedColumn<String> get payload =>
+      $composableBuilder(column: $table.payload, builder: (column) => column);
+
+  GeneratedColumn<int> get attempts =>
+      $composableBuilder(column: $table.attempts, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get nextAttemptAt => $composableBuilder(
+      column: $table.nextAttemptAt, builder: (column) => column);
+
+  GeneratedColumn<String> get lastError =>
+      $composableBuilder(column: $table.lastError, builder: (column) => column);
+
+  GeneratedColumn<String> get status =>
+      $composableBuilder(column: $table.status, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+}
+
+class $$SyncQueueTableTableManager extends RootTableManager<
+    _$DgtlDatabase,
+    $SyncQueueTable,
+    SyncQueueData,
+    $$SyncQueueTableFilterComposer,
+    $$SyncQueueTableOrderingComposer,
+    $$SyncQueueTableAnnotationComposer,
+    $$SyncQueueTableCreateCompanionBuilder,
+    $$SyncQueueTableUpdateCompanionBuilder,
+    (
+      SyncQueueData,
+      BaseReferences<_$DgtlDatabase, $SyncQueueTable, SyncQueueData>
+    ),
+    SyncQueueData,
+    PrefetchHooks Function()> {
+  $$SyncQueueTableTableManager(_$DgtlDatabase db, $SyncQueueTable table)
+      : super(TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$SyncQueueTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$SyncQueueTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$SyncQueueTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback: ({
+            Value<int> id = const Value.absent(),
+            Value<String> opType = const Value.absent(),
+            Value<String> entityType = const Value.absent(),
+            Value<String> entityId = const Value.absent(),
+            Value<String> clientId = const Value.absent(),
+            Value<String> payload = const Value.absent(),
+            Value<int> attempts = const Value.absent(),
+            Value<DateTime?> nextAttemptAt = const Value.absent(),
+            Value<String?> lastError = const Value.absent(),
+            Value<String> status = const Value.absent(),
+            Value<DateTime> createdAt = const Value.absent(),
+            Value<DateTime> updatedAt = const Value.absent(),
+          }) =>
+              SyncQueueCompanion(
+            id: id,
+            opType: opType,
+            entityType: entityType,
+            entityId: entityId,
+            clientId: clientId,
+            payload: payload,
+            attempts: attempts,
+            nextAttemptAt: nextAttemptAt,
+            lastError: lastError,
+            status: status,
+            createdAt: createdAt,
+            updatedAt: updatedAt,
+          ),
+          createCompanionCallback: ({
+            Value<int> id = const Value.absent(),
+            required String opType,
+            required String entityType,
+            required String entityId,
+            required String clientId,
+            required String payload,
+            Value<int> attempts = const Value.absent(),
+            Value<DateTime?> nextAttemptAt = const Value.absent(),
+            Value<String?> lastError = const Value.absent(),
+            Value<String> status = const Value.absent(),
+            Value<DateTime> createdAt = const Value.absent(),
+            Value<DateTime> updatedAt = const Value.absent(),
+          }) =>
+              SyncQueueCompanion.insert(
+            id: id,
+            opType: opType,
+            entityType: entityType,
+            entityId: entityId,
+            clientId: clientId,
+            payload: payload,
+            attempts: attempts,
+            nextAttemptAt: nextAttemptAt,
+            lastError: lastError,
+            status: status,
+            createdAt: createdAt,
+            updatedAt: updatedAt,
+          ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ));
+}
+
+typedef $$SyncQueueTableProcessedTableManager = ProcessedTableManager<
+    _$DgtlDatabase,
+    $SyncQueueTable,
+    SyncQueueData,
+    $$SyncQueueTableFilterComposer,
+    $$SyncQueueTableOrderingComposer,
+    $$SyncQueueTableAnnotationComposer,
+    $$SyncQueueTableCreateCompanionBuilder,
+    $$SyncQueueTableUpdateCompanionBuilder,
+    (
+      SyncQueueData,
+      BaseReferences<_$DgtlDatabase, $SyncQueueTable, SyncQueueData>
+    ),
+    SyncQueueData,
+    PrefetchHooks Function()>;
+typedef $$AIRecommendationsTableCreateCompanionBuilder
+    = AIRecommendationsCompanion Function({
+  required String id,
+  required String patientId,
+  required String type,
+  required String title,
+  required String content,
+  required String priority,
+  required double confidence,
+  Value<String?> triggers,
+  Value<String?> relatedVitals,
+  Value<DateTime?> validUntil,
+  Value<DateTime> createdAt,
+  Value<int> version,
+  Value<bool> synced,
+  Value<bool> acknowledged,
+  Value<int> rowid,
+});
+typedef $$AIRecommendationsTableUpdateCompanionBuilder
+    = AIRecommendationsCompanion Function({
+  Value<String> id,
+  Value<String> patientId,
+  Value<String> type,
+  Value<String> title,
+  Value<String> content,
+  Value<String> priority,
+  Value<double> confidence,
+  Value<String?> triggers,
+  Value<String?> relatedVitals,
+  Value<DateTime?> validUntil,
+  Value<DateTime> createdAt,
+  Value<int> version,
+  Value<bool> synced,
+  Value<bool> acknowledged,
+  Value<int> rowid,
+});
+
+class $$AIRecommendationsTableFilterComposer
+    extends Composer<_$DgtlDatabase, $AIRecommendationsTable> {
+  $$AIRecommendationsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+      column: $table.id, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get patientId => $composableBuilder(
+      column: $table.patientId, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get type => $composableBuilder(
+      column: $table.type, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get title => $composableBuilder(
+      column: $table.title, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get content => $composableBuilder(
+      column: $table.content, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get priority => $composableBuilder(
+      column: $table.priority, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<double> get confidence => $composableBuilder(
+      column: $table.confidence, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get triggers => $composableBuilder(
+      column: $table.triggers, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get relatedVitals => $composableBuilder(
+      column: $table.relatedVitals, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<DateTime> get validUntil => $composableBuilder(
+      column: $table.validUntil, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+      column: $table.createdAt, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<int> get version => $composableBuilder(
+      column: $table.version, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<bool> get synced => $composableBuilder(
+      column: $table.synced, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<bool> get acknowledged => $composableBuilder(
+      column: $table.acknowledged, builder: (column) => ColumnFilters(column));
+}
+
+class $$AIRecommendationsTableOrderingComposer
+    extends Composer<_$DgtlDatabase, $AIRecommendationsTable> {
+  $$AIRecommendationsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+      column: $table.id, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get patientId => $composableBuilder(
+      column: $table.patientId, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get type => $composableBuilder(
+      column: $table.type, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get title => $composableBuilder(
+      column: $table.title, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get content => $composableBuilder(
+      column: $table.content, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get priority => $composableBuilder(
+      column: $table.priority, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<double> get confidence => $composableBuilder(
+      column: $table.confidence, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get triggers => $composableBuilder(
+      column: $table.triggers, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get relatedVitals => $composableBuilder(
+      column: $table.relatedVitals,
+      builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<DateTime> get validUntil => $composableBuilder(
+      column: $table.validUntil, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+      column: $table.createdAt, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<int> get version => $composableBuilder(
+      column: $table.version, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<bool> get synced => $composableBuilder(
+      column: $table.synced, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<bool> get acknowledged => $composableBuilder(
+      column: $table.acknowledged,
+      builder: (column) => ColumnOrderings(column));
+}
+
+class $$AIRecommendationsTableAnnotationComposer
+    extends Composer<_$DgtlDatabase, $AIRecommendationsTable> {
+  $$AIRecommendationsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get patientId =>
+      $composableBuilder(column: $table.patientId, builder: (column) => column);
+
+  GeneratedColumn<String> get type =>
+      $composableBuilder(column: $table.type, builder: (column) => column);
+
+  GeneratedColumn<String> get title =>
+      $composableBuilder(column: $table.title, builder: (column) => column);
+
+  GeneratedColumn<String> get content =>
+      $composableBuilder(column: $table.content, builder: (column) => column);
+
+  GeneratedColumn<String> get priority =>
+      $composableBuilder(column: $table.priority, builder: (column) => column);
+
+  GeneratedColumn<double> get confidence => $composableBuilder(
+      column: $table.confidence, builder: (column) => column);
+
+  GeneratedColumn<String> get triggers =>
+      $composableBuilder(column: $table.triggers, builder: (column) => column);
+
+  GeneratedColumn<String> get relatedVitals => $composableBuilder(
+      column: $table.relatedVitals, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get validUntil => $composableBuilder(
+      column: $table.validUntil, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<int> get version =>
+      $composableBuilder(column: $table.version, builder: (column) => column);
+
+  GeneratedColumn<bool> get synced =>
+      $composableBuilder(column: $table.synced, builder: (column) => column);
+
+  GeneratedColumn<bool> get acknowledged => $composableBuilder(
+      column: $table.acknowledged, builder: (column) => column);
+}
+
+class $$AIRecommendationsTableTableManager extends RootTableManager<
+    _$DgtlDatabase,
+    $AIRecommendationsTable,
+    AIRecommendation,
+    $$AIRecommendationsTableFilterComposer,
+    $$AIRecommendationsTableOrderingComposer,
+    $$AIRecommendationsTableAnnotationComposer,
+    $$AIRecommendationsTableCreateCompanionBuilder,
+    $$AIRecommendationsTableUpdateCompanionBuilder,
+    (
+      AIRecommendation,
+      BaseReferences<_$DgtlDatabase, $AIRecommendationsTable, AIRecommendation>
+    ),
+    AIRecommendation,
+    PrefetchHooks Function()> {
+  $$AIRecommendationsTableTableManager(
+      _$DgtlDatabase db, $AIRecommendationsTable table)
+      : super(TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$AIRecommendationsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$AIRecommendationsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$AIRecommendationsTableAnnotationComposer(
+                  $db: db, $table: table),
+          updateCompanionCallback: ({
+            Value<String> id = const Value.absent(),
+            Value<String> patientId = const Value.absent(),
+            Value<String> type = const Value.absent(),
+            Value<String> title = const Value.absent(),
+            Value<String> content = const Value.absent(),
+            Value<String> priority = const Value.absent(),
+            Value<double> confidence = const Value.absent(),
+            Value<String?> triggers = const Value.absent(),
+            Value<String?> relatedVitals = const Value.absent(),
+            Value<DateTime?> validUntil = const Value.absent(),
+            Value<DateTime> createdAt = const Value.absent(),
+            Value<int> version = const Value.absent(),
+            Value<bool> synced = const Value.absent(),
+            Value<bool> acknowledged = const Value.absent(),
+            Value<int> rowid = const Value.absent(),
+          }) =>
+              AIRecommendationsCompanion(
+            id: id,
+            patientId: patientId,
+            type: type,
+            title: title,
+            content: content,
+            priority: priority,
+            confidence: confidence,
+            triggers: triggers,
+            relatedVitals: relatedVitals,
+            validUntil: validUntil,
+            createdAt: createdAt,
+            version: version,
+            synced: synced,
+            acknowledged: acknowledged,
+            rowid: rowid,
+          ),
+          createCompanionCallback: ({
+            required String id,
+            required String patientId,
+            required String type,
+            required String title,
+            required String content,
+            required String priority,
+            required double confidence,
+            Value<String?> triggers = const Value.absent(),
+            Value<String?> relatedVitals = const Value.absent(),
+            Value<DateTime?> validUntil = const Value.absent(),
+            Value<DateTime> createdAt = const Value.absent(),
+            Value<int> version = const Value.absent(),
+            Value<bool> synced = const Value.absent(),
+            Value<bool> acknowledged = const Value.absent(),
+            Value<int> rowid = const Value.absent(),
+          }) =>
+              AIRecommendationsCompanion.insert(
+            id: id,
+            patientId: patientId,
+            type: type,
+            title: title,
+            content: content,
+            priority: priority,
+            confidence: confidence,
+            triggers: triggers,
+            relatedVitals: relatedVitals,
+            validUntil: validUntil,
+            createdAt: createdAt,
+            version: version,
+            synced: synced,
+            acknowledged: acknowledged,
+            rowid: rowid,
+          ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ));
+}
+
+typedef $$AIRecommendationsTableProcessedTableManager = ProcessedTableManager<
+    _$DgtlDatabase,
+    $AIRecommendationsTable,
+    AIRecommendation,
+    $$AIRecommendationsTableFilterComposer,
+    $$AIRecommendationsTableOrderingComposer,
+    $$AIRecommendationsTableAnnotationComposer,
+    $$AIRecommendationsTableCreateCompanionBuilder,
+    $$AIRecommendationsTableUpdateCompanionBuilder,
+    (
+      AIRecommendation,
+      BaseReferences<_$DgtlDatabase, $AIRecommendationsTable, AIRecommendation>
+    ),
+    AIRecommendation,
+    PrefetchHooks Function()>;
 
 class $DgtlDatabaseManager {
   final _$DgtlDatabase _db;
@@ -5527,4 +9388,12 @@ class $DgtlDatabaseManager {
       $$MedicationsTableTableManager(_db, _db.medications);
   $$RagQueryCacheTableTableManager get ragQueryCache =>
       $$RagQueryCacheTableTableManager(_db, _db.ragQueryCache);
+  $$VitalsTableTableManager get vitals =>
+      $$VitalsTableTableManager(_db, _db.vitals);
+  $$BPReadingsTableTableManager get bPReadings =>
+      $$BPReadingsTableTableManager(_db, _db.bPReadings);
+  $$SyncQueueTableTableManager get syncQueue =>
+      $$SyncQueueTableTableManager(_db, _db.syncQueue);
+  $$AIRecommendationsTableTableManager get aIRecommendations =>
+      $$AIRecommendationsTableTableManager(_db, _db.aIRecommendations);
 }

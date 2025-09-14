@@ -1,9 +1,13 @@
 import 'package:drift/drift.dart';
+import 'package:drift/native.dart';
+import 'dart:io';
 // Conditional connection import
 import 'connection/connection_web.dart'
   if (dart.library.io) 'connection/connection_io.dart' as conn;
 import 'package:crypto/crypto.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+// Import vitals tables for integration
+import 'vitals_tables.dart';
 
 part 'database_production.g.dart';
 
@@ -21,9 +25,6 @@ class MedicalKnowledgeBase extends Table {
   RealColumn get confidence => real().withDefault(const Constant(0.0))();
   DateTimeColumn get createdAt => dateTime().withDefault(currentDateAndTime)();
   DateTimeColumn get updatedAt => dateTime().withDefault(currentDateAndTime)();
-  
-  @override
-  Set<Column> get primaryKey => {id};
 }
 
 // Patient Data with Privacy Encryption
@@ -103,6 +104,7 @@ class RagQueryCache extends Table {
 }
 
 @DriftDatabase(tables: [
+  // RAG-enabled medical knowledge tables
   MedicalKnowledgeBase,
   Patients,
   ClinicalAssessments,
@@ -110,9 +112,16 @@ class RagQueryCache extends Table {
   Symptoms,
   Medications,
   RagQueryCache,
+  // Vitals monitoring tables for CKD management
+  Vitals,
+  BPReadings,
+  SyncQueue,
+  AIRecommendations,
 ])
 class DgtlDatabase extends _$DgtlDatabase {
   DgtlDatabase() : super(conn.openConnection());
+  // Special constructor for command-line scripts
+  DgtlDatabase.forScript() : super(NativeDatabase(File('dgtl_app.db')));
 
   @override
   int get schemaVersion => 1;
@@ -175,7 +184,7 @@ class DgtlDatabase extends _$DgtlDatabase {
         retrievedContext: retrievedContext,
         generatedResponse: generatedResponse,
         relevanceScore: relevanceScore,
-        expiresAt: Value(DateTime.now().add(cacheDuration)),
+        expiresAt: DateTime.now().add(cacheDuration),
       ),
     );
   }

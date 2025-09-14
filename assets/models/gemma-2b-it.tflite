@@ -1,0 +1,16 @@
+# Full TensorFlow Lite Gemma 2B Instruction-Tuned Model
+# This would be the actual model file in production
+# Placeholder for now - replace with actual model download
+# Size: ~2GB for 2B parameter model
+# Format: TensorFlow Lite (.tflite)
+
+# Model Architecture:
+# - 2 billion parameters
+# - Instruction-tuned for conversational AI
+# - Medical and healthcare domain optimization
+# - Quantized INT8 for mobile deployment
+
+# To replace with actual model:
+# wget https://huggingface.co/google/gemma-2b-it/resolve/main/model.tflite
+# mv model.tflite assets/models/gemma-2b-it.tflite
+

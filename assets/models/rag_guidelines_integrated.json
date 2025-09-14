@@ -1,0 +1,250 @@
+{
+  "metadata": {
+    "version": "3.0",
+    "integration_date": "2025-09-14T16:48:37.637124",
+    "source_types": [
+      "enhanced_knowledge",
+      "clinical_dataset",
+      "clinical_guidelines"
+    ],
+    "total_entries": 21,
+    "rag_optimized": true,
+    "guidelines_integrated": true
+  },
+  "knowledge_entries": [
+    {
+      "id": "patient_patterns_ckd_progression",
+      "content": "CKD Stage 4 progression: Creatinine stable 2.5-3.22 mg/dl over 5 years suggests controlled progression with good medication adherence. GFR 8.8-21.3 ml/min indicates need for renal replacement therapy preparation.",
+      "source": "Patient clinical dataset 2017-2023",
+      "category": "nephrology",
+      "confidence": 0.95,
+      "clinical_evidence": "Based on 6-year longitudinal data",
+      "embedding_ready": true,
+      "created_at": "2025-09-14T16:34:22.634573"
+    },
+    {
+      "id": "patient_patterns_medication_response",
+      "content": "Thyroid management in CKD: TSH reduction from 10.7 to 4.29 µIU/mL demonstrates effective levothyroxine therapy. Monitor for drug interactions with phosphate binders.",
+      "source": "Patient medication history",
+      "category": "endocrinology",
+      "confidence": 0.9,
+      "clinical_evidence": "Documented improvement 2017-2018",
+      "embedding_ready": true,
+      "created_at": "2025-09-14T16:34:22.635693"
+    },
+    {
+      "id": "patient_patterns_anemia_management",
+      "content": "CKD anemia pattern: Hemoglobin maintained 10.0-11.6 g/dl with iron supplementation. Consider ESA therapy if Hb consistently <10 g/dl despite iron repletion.",
+      "source": "Hematology monitoring data",
+      "category": "hematology",
+      "confidence": 0.88,
+      "clinical_evidence": "Multiple lab results 2017-2022",
+      "embedding_ready": true,
+      "created_at": "2025-09-14T16:34:22.635716"
+    },
+    {
+      "id": "lab_interpretations_creatinine_trending",
+      "content": "Creatinine stability at 3.0-3.22 mg/dl over years suggests optimal medical management. Sudden increases >0.5 mg/dl warrant immediate evaluation for reversible causes.",
+      "source": "Longitudinal lab analysis",
+      "category": "laboratory",
+      "confidence": 0.92,
+      "clinical_evidence": null,
+      "embedding_ready": true,
+      "created_at": "2025-09-14T16:34:22.635734"
+    },
+    {
+      "id": "lab_interpretations_gfr_interpretation",
+      "content": "Bilateral kidney GFR: Left 8.8 + Right 12.4 = 21.3 ml/min total. Differential function suggests right kidney preservation. Monitor for further decline.",
+      "source": "Nuclear medicine renogram 2018",
+      "category": "imaging",
+      "confidence": 0.98,
+      "clinical_evidence": null,
+      "embedding_ready": true,
+      "created_at": "2025-09-14T16:34:22.635750"
+    },
+    {
+      "id": "lab_interpretations_pth_elevation",
+      "content": "PTH 190.1 pg/ml indicates secondary hyperparathyroidism. Requires active vitamin D therapy, phosphate control, and calcium monitoring to prevent CKD-MBD.",
+      "source": "Endocrine evaluation",
+      "category": "endocrinology",
+      "confidence": 0.94,
+      "clinical_evidence": null,
+      "embedding_ready": true,
+      "created_at": "2025-09-14T16:34:22.635764"
+    },
+    {
+      "id": "medication_optimization_nephroprotection",
+      "content": "ACE inhibitor therapy demonstrated with atenolol for BP control. Consider ACE/ARB if not contraindicated for additional nephroprotection in proteinuric CKD.",
+      "source": "Prescription analysis 2018-2023",
+      "category": "cardiology",
+      "confidence": 0.87,
+      "clinical_evidence": null,
+      "embedding_ready": true,
+      "created_at": "2025-09-14T16:34:22.635779"
+    },
+    {
+      "id": "medication_optimization_mineral_metabolism",
+      "content": "Calcitriol 0.25mcg prescribed for CKD-MBD. Monitor serum calcium, phosphorus, and PTH quarterly. Adjust dose based on laboratory targets.",
+      "source": "Prescription records",
+      "category": "nephrology",
+      "confidence": 0.91,
+      "clinical_evidence": null,
+      "embedding_ready": true,
+      "created_at": "2025-09-14T16:34:22.635793"
+    },
+    {
+      "id": "risk_predictions_dialysis_timeline",
+      "content": "Based on stable creatinine 2.5-3.22 mg/dl and GFR 21.3 ml/min, estimated 12-24 months until dialysis requirement. Prepare vascular access when GFR <20 ml/min.",
+      "source": "Predictive modeling from clinical data",
+      "category": "prognosis",
+      "confidence": 0.85,
+      "clinical_evidence": null,
+      "embedding_ready": true,
+      "created_at": "2025-09-14T16:34:22.635807"
+    },
+    {
+      "id": "risk_predictions_cardiovascular_risk",
+      "content": "CKD Stage 4 + Hypertension + Hypothyroidism = High CV risk. Average BP 140/90 mmHg requires optimization. Consider cardioprotective strategies.",
+      "source": "Risk stratification analysis",
+      "category": "cardiology",
+      "confidence": 0.89,
+      "clinical_evidence": null,
+      "embedding_ready": true,
+      "created_at": "2025-09-14T16:34:22.635821"
+    },
+    {
+      "id": "clinical_creatinine_pattern",
+      "content": "Patient creatinine levels show stable CKD Stage 4 progression with values ranging 2.5-3.22 mg/dl over multiple years. This stability suggests good disease management.",
+      "source": "Clinical dataset trend analysis",
+      "category": "laboratory_trends",
+      "confidence": 0.92,
+      "clinical_evidence": "5 creatinine measurements",
+      "embedding_ready": true,
+      "created_at": "2025-09-14T16:34:22.637736"
+    },
+    {
+      "id": "clinical_bp_pattern",
+      "content": "Home blood pressure monitoring shows average 140/90 mmHg with 31 measurements. Consistent monitoring indicates good patient engagement in hypertension management.",
+      "source": "Clinical dataset BP analysis",
+      "category": "vital_signs_trends",
+      "confidence": 0.88,
+      "clinical_evidence": "Multiple home BP readings",
+      "embedding_ready": true,
+      "created_at": "2025-09-14T16:34:22.637769"
+    },
+    {
+      "id": "clinical_medication_adherence",
+      "content": "Multiple prescription records from 2018-2023 demonstrate consistent medication management including ACE inhibitors, thyroid replacement, and CKD-specific therapy.",
+      "source": "Clinical dataset medication analysis",
+      "category": "medication_patterns",
+      "confidence": 0.85,
+      "clinical_evidence": "3 prescription records",
+      "embedding_ready": true,
+      "created_at": "2025-09-14T16:34:22.638862"
+    },
+    {
+      "id": "guideline_cardioprotective_therapy",
+      "content": "Initiate ACE inhibitor (lisinopril 5-10mg daily) or ARB if ACE intolerant. Monitor creatinine and potassium. Evidence: 30-39% kidney failure risk reduction, 18-24% CV event reduction",
+      "source": "Stage 4 CKD Clinical Guidelines 2025",
+      "category": "clinical_guidelines",
+      "priority": "high",
+      "urgency": "Initiate within 1-2 weeks",
+      "monitoring": "Recheck labs in 1-2 weeks after initiation",
+      "confidence": 0.95,
+      "clinical_evidence": "Evidence-based clinical guidelines",
+      "embedding_ready": true,
+      "created_at": "2025-09-14T16:48:37.634725"
+    },
+    {
+      "id": "guideline_anemia_management",
+      "content": "Continue current anemia management. Monitor iron stores regularly. Evidence: Current hemoglobin within target range",
+      "source": "Stage 4 CKD Clinical Guidelines 2025",
+      "category": "clinical_guidelines",
+      "priority": "medium",
+      "urgency": "Continue current management",
+      "monitoring": "CBC every 3 months, iron studies every 6 months",
+      "confidence": 0.85,
+      "clinical_evidence": "Evidence-based clinical guidelines",
+      "embedding_ready": true,
+      "created_at": "2025-09-14T16:48:37.636287"
+    },
+    {
+      "id": "guideline_mineral_bone_disorder",
+      "content": "Check 25(OH)D and replete if low. Consider calcitriol or paricalcitol if D/Ca/Phos normal. Evaluate phosphate binders. Evidence: High PTH indicates secondary hyperparathyroidism",
+      "source": "Stage 4 CKD Clinical Guidelines 2025",
+      "category": "clinical_guidelines",
+      "priority": "high",
+      "urgency": "Initiate treatment within 2-4 weeks",
+      "monitoring": "PTH, Ca, Phos every 3-6 months",
+      "confidence": 0.95,
+      "clinical_evidence": "Evidence-based clinical guidelines",
+      "embedding_ready": true,
+      "created_at": "2025-09-14T16:48:37.636326"
+    },
+    {
+      "id": "guideline_dietary_management",
+      "content": "Restrict phosphate-rich foods (dairy, cola, processed meats). Consider phosphate binders if serum phosphate elevated. Evidence: Phosphate restriction slows MBD progression",
+      "source": "Stage 4 CKD Clinical Guidelines 2025",
+      "category": "clinical_guidelines",
+      "priority": "medium",
+      "urgency": "Implement dietary changes within 1-2 weeks",
+      "monitoring": "Serum phosphate every 3-6 months",
+      "confidence": 0.85,
+      "clinical_evidence": "Evidence-based clinical guidelines",
+      "embedding_ready": true,
+      "created_at": "2025-09-14T16:48:37.636361"
+    },
+    {
+      "id": "guideline_metabolic_acidosis_screening",
+      "content": "Obtain serum bicarbonate level. If <22 mEq/L, initiate oral bicarbonate or base-producing diet. Evidence: Treating acidosis slows CKD progression",
+      "source": "Stage 4 CKD Clinical Guidelines 2025",
+      "category": "clinical_guidelines",
+      "priority": "medium",
+      "urgency": "Obtain level within 2-4 weeks",
+      "monitoring": "Check bicarbonate every 3 months",
+      "confidence": 0.85,
+      "clinical_evidence": "Evidence-based clinical guidelines",
+      "embedding_ready": true,
+      "created_at": "2025-09-14T16:48:37.636388"
+    },
+    {
+      "id": "guideline_specialist_care",
+      "content": "Ensure regular nephrology follow-up every 2-3 months. Discuss RRT options and conservative care. Evidence: Stage 4 is transition phase requiring specialist management",
+      "source": "Stage 4 CKD Clinical Guidelines 2025",
+      "category": "clinical_guidelines",
+      "priority": "high",
+      "urgency": "Schedule within 4-6 weeks if not established",
+      "monitoring": "eGFR, albuminuria, progression rate every 2-3 months",
+      "confidence": 0.95,
+      "clinical_evidence": "Evidence-based clinical guidelines",
+      "embedding_ready": true,
+      "created_at": "2025-09-14T16:48:37.636411"
+    },
+    {
+      "id": "guideline_medication_safety",
+      "content": "Review all medications for dose adjustments (antibiotics, hypoglycemics, anticoagulants). Avoid NSAIDs and nephrotoxins. Evidence: Prevents drug accumulation and toxicity",
+      "source": "Stage 4 CKD Clinical Guidelines 2025",
+      "category": "clinical_guidelines",
+      "priority": "high",
+      "urgency": "Review within 1-2 weeks",
+      "monitoring": "Medication review every visit",
+      "confidence": 0.95,
+      "clinical_evidence": "Evidence-based clinical guidelines",
+      "embedding_ready": true,
+      "created_at": "2025-09-14T16:48:37.636433"
+    },
+    {
+      "id": "guideline_rrt_preparation",
+      "content": "Begin dialysis access planning. Consider arteriovenous fistula creation. Evaluate for transplant candidacy. Evidence: Early access planning improves outcomes",
+      "source": "Stage 4 CKD Clinical Guidelines 2025",
+      "category": "clinical_guidelines",
+      "priority": "high",
+      "urgency": "Initiate planning within 4-8 weeks",
+      "monitoring": "Access evaluation within 3-6 months",
+      "confidence": 0.95,
+      "clinical_evidence": "Evidence-based clinical guidelines",
+      "embedding_ready": true,
+      "created_at": "2025-09-14T16:48:37.636465"
+    }
+  ]
+}

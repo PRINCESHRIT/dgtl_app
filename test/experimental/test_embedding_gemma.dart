@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'lib/core/ai/embedding_gemma_service.dart';
+import '../../lib/core/ai/embedding_gemma_service.dart';
 
 /// Test script for EmbeddingGemma Phase 1.4 implementation
 void main() async {

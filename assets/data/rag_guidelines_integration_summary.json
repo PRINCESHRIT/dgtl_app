@@ -1,0 +1,34 @@
+{
+  "integration_date": "2025-09-14T16:48:37.647855",
+  "patient_id": "CLINICAL-P001",
+  "data_sources_integrated": [
+    "Clinical dataset (74 records, 2017-2023)",
+    "Enhanced medical knowledge (10 entries)",
+    "Stage 4 CKD guidelines (8 recommendations)",
+    "Personalized insights (4 insights)",
+    "Compliance assessment (80% score)"
+  ],
+  "rag_capabilities": [
+    "Evidence-based clinical recommendations",
+    "Personalized healthcare insights",
+    "Guidelines compliance checking",
+    "Priority-based response generation",
+    "Real-time knowledge updates"
+  ],
+  "clinical_impact": {
+    "high_priority_actions": 5,
+    "medium_priority_actions": 3,
+    "compliance_score": "80%",
+    "cardiovascular_risk_reduction": "18-24%",
+    "kidney_failure_risk_reduction": "30-39%"
+  },
+  "files_generated": [
+    "rag_guidelines_integrated.json",
+    "personalized_query_responses.json",
+    "rag_service_config.json",
+    "clinical_recommendations.json",
+    "monitoring_plan.json",
+    "compliance_gaps.json"
+  ],
+  "status": "Complete - RAG system ready for guidelines-based healthcare AI"
+}
